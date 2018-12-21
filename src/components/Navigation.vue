@@ -14,6 +14,9 @@
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item>
+                        <router-link to="/contribute" class='nav-link'>Contribute</router-link>
+                    </b-nav-item>
+                    <b-nav-item>
                         <router-link to="/about" class='nav-link'>About</router-link>
                     </b-nav-item>
                 </b-navbar-nav>
@@ -31,20 +34,14 @@
     export default {
         data() {
             return {
-                docs: null
+                docs: {}
             }
         },
         created() {
+            let self = this;
             this.$axios.get('/api-docs.json').then((response) => {
-                this.docs = response.data;
+                self.docs = response.data;
             });
-        },
-        filters: {
-            capitalize: function (value) {
-                if (!value) return ''
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
-            }
         }
     }
 
