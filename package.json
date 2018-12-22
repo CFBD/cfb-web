@@ -9,6 +9,9 @@
     "docker": "docker build . -t vue-app && docker run -d -p 3000:80 vue-app"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.6",
+    "@fortawesome/free-solid-svg-icons": "^5.4.1",
+    "@fortawesome/vue-fontawesome": "^0.1.1",
     "bootstrap-vue": "^2.0.0-rc.11",
     "vue": "^2.5.17",
     "vue-json-csv": "^1.1.0",
@@ -30,6 +33,7 @@
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-bootstrap-vue": "^0.1.0",
     "vue-cli-plugin-docker-nginx": "^1.0.1",
+    "vue-cli-plugin-fontawesome": "^0.1.0",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
