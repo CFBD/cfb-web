@@ -1,14 +1,23 @@
 <template>
     <div>
         <h1>{{this.name | capitalize}}</h1>
-        <div v-for="endpoint in this.endpoints" :key="endpoint.name">
-            <h3>{{endpoint.key}}</h3>
-        </div>
+        <b-card no-body>
+            <b-tabs pills card vertical>
+                <b-tab v-for="endpoint in this.endpoints" :key="endpoint.key" :title="endpoint.path.get.description">
+                    <endpoint :endpoint='endpoint'></endpoint>
+                </b-tab>
+            </b-tabs>
+        </b-card>
     </div>
 </template>
 
 <script>
+    import Endpoint from '@/components/Endpoint.vue';
+    
     export default {
+        components: {
+            Endpoint
+        },
         props: {
             name: String
         },
@@ -34,11 +43,6 @@
                 return this.$axios.get('/api-docs.json');
             }
         },
-        // created() {
-        //     this.getDocs().then(result => {
-        //         this.setData(result.data);
-        //     });
-        // },
         beforeRouteEnter(to, from, next) {
             next(vm => {
                 vm.getDocs().then(result => {
