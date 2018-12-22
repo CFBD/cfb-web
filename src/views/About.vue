@@ -1,7 +1,7 @@
 <template>
     <div class="about">
         <b-jumbotron>
-            <h1>This is an about page</h1>
+            <h1>More information forthcoming...</h1>
         </b-jumbotron>
     </div>
 </template>
