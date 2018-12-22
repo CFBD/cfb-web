@@ -1,36 +1,139 @@
 <template>
     <div>
-        <b-form @submit="onSubmit" v-if="this.endpoint.path.get.parameters.length > 0" >
-            <parameter-input v-for='parameter in this.endpoint.path.get.parameters' :key='parameter.name' :parameter='parameter'></parameter-input>
+        <b-form @submit="onSubmit">
+            <b-row class="my-1" v-for='qp in this.queryParams' :key='qp.parameter.name'>
+                <b-col sm="2"><label for="input-default">{{qp.parameter.name | capitalize }}</label></b-col>
+                <b-col sm="10">
+                    <b-form-input :placeholder='qp.parameter.description' :required='qp.parameter.required' :type='getType(qp.parameter.type)'
+                        v-model="qp.value">
+                    </b-form-input>
+                </b-col>
+            </b-row>
+            <b-button type="submit" variant="primary" size='lg' align='right'>Submit</b-button>
         </b-form>
+        <div v-if='items.length > 0'>
+            <hr class='my-4'>
+            <div class='results-grid'>
+                <h3 class='results-title'>Results Preview</h3>
+                <b-row class='export-form'>
+                    <b-col sm="5">
+                        <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" align='left' />
+                    </b-col>
+                    <b-col sm="5">
+                        <b-form-group horizontal="" label="Delimeter:">
+                            <b-form-select v-model="selected" :options="options" class="mb-3" size="sm" />
+                        </b-form-group>
+                    </b-col>
+                    <b-col sm="2">
+                        <download-csv :data='items' :delimiter='selected' class='btn btn-info'>
+                            Download
+                        </download-csv>
+                    </b-col>
+                    <b-col></b-col>
+                </b-row>
+                <b-table striped responsive hover small :items="items" :current-page="currentPage" :per-page="perPage">
+                </b-table>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    import ParameterInput from '@/components/ParameterInput.vue';
-
     export default {
         name: 'endpoint',
-        components: {
-            ParameterInput
-        },
         props: {
             endpoint: Object
         },
         data() {
             return {
-                queryParams: {}
+                queryParams: [],
+                items: [],
+                currentPage: 1,
+                perPage: 50,
+                totalRows: 0,
+                selected: ',',
+                options: [{
+                        value: ',',
+                        text: 'Comma (,)'
+                    },
+                    {
+                        value: '|',
+                        text: 'Pipe (|)'
+                    },
+                    {
+                        value: '\t',
+                        text: 'Tab'
+                    }
+                ]
             }
         },
         methods: {
             onSubmit(e) {
                 e.preventDefault();
+                let params = {};
+
+                for (let qp of this.queryParams) {
+                    if (qp.value) {
+                        params[qp.parameter.name] = qp.value;
+                    }
+                }
+
+                this.$axios.get(this.endpoint.key, {
+                    params: params
+                }).then(response => {
+                    let flattened = response.data.map(d => this.flatten(d));
+                    this.items = flattened;
+                    this.currentPage = 1;
+                    this.totalRows = this.items.length;
+                });
+            },
+            getType(paramType) {
+                let inputType = '';
+
+                switch (paramType) {
+                    case 'string':
+                        inputType = 'text';
+                    case 'integer':
+                        inputType = 'number';
+                    default:
+                        inputType = 'text';
+                }
+
+                return inputType;
+            },
+            flatten(data) {
+                var result = {};
+
+                function recurse(cur, prop) {
+                    if (Object(cur) !== cur) {
+                        result[prop] = cur;
+                    } else if (Array.isArray(cur)) {
+                        for (var i = 0, l = cur.length; i < l; i++)
+                            recurse(cur[i], prop + "[" + i + "]");
+                        if (l == 0)
+                            result[prop] = [];
+                    } else {
+                        var isEmpty = true;
+                        for (var p in cur) {
+                            isEmpty = false;
+                            recurse(cur[p], prop ? prop + "." + p : p);
+                        }
+                        if (isEmpty && prop)
+                            result[prop] = {};
+                    }
+                }
+                recurse(data, "");
+                return result;
             }
         },
-        beforeMount() {
+        created() {
             if (this.endpoint) {
                 for (let parameter of this.endpoint.path.get.parameters) {
-                    parameter.value = parameter.default;
+                    let value = parameter.default ? parameter.default : null;
+                    this.queryParams.push({
+                        parameter,
+                        value
+                    });
                 }
             }
         }
@@ -38,6 +141,15 @@
 
 </script>
 
-<style>
+<style lang='scss'>
+    button {
+        &[type='submit'] {
+            margin-top: 15px;
+        }
+    }
+
+    .results-title {
+        margin: 30px 0;
+    }
 
 </style>
