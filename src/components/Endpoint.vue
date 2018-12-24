@@ -81,7 +81,7 @@
                 this.$axios.get(this.endpoint.key, {
                     params: params
                 }).then(response => {
-                    let flattened = response.data.map(d => this.flatten(d));
+                    let flattened = this.flattentData(this.endpoint.key, response.data);
                     this.items = flattened;
                     this.currentPage = 1;
                     this.totalRows = this.items.length;
@@ -100,6 +100,26 @@
                 }
 
                 return inputType;
+            },
+            flattentData(key, data) {
+                let flattened = [];
+
+                switch (key){
+                    case '/coaches':
+                        for (let coach of data) {
+                            flattened.push(...coach.seasons.map(s => {
+                                s.first_name = coach.first_name;
+                                s.last_name = coach.last_name;
+
+                                return s;
+                            }));
+                        }
+                        break;
+                    default:
+                        flattened = data.map(d => this.flatten(d));
+                }
+
+                return flattened;
             },
             flatten(data) {
                 var result = {};
