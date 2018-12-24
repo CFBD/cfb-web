@@ -4,6 +4,7 @@ import './plugins/fontawesome'
 import './plugins/axios';
 import './plugins/bootstrap-vue';
 import './plugins/json-csv';
+import './plugins/vue-spinners';
 import App from './App.vue';
 import router from './router';
 

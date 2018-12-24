@@ -11,7 +11,11 @@
             </b-row>
             <b-button type="submit" variant="primary" size='lg' align='right'>Submit</b-button>
         </b-form>
-        <div v-if='items.length > 0'>
+        <div v-if='loading' align='center'>
+            <hr class='my-4'>
+            <pacman-loader class='loader' color='#17a2b8'></pacman-loader>
+        </div>
+        <div v-if='items.length > 0 && !loading'>
             <hr class='my-4'>
             <div class='results-grid'>
                 <h3 class='results-title'>Results Preview</h3>
@@ -52,6 +56,7 @@
                 perPage: 50,
                 totalRows: 0,
                 selected: ',',
+                loading: false,
                 options: [{
                         value: ',',
                         text: 'Comma (,)'
@@ -70,6 +75,7 @@
         methods: {
             onSubmit(e) {
                 e.preventDefault();
+                this.loading = true;
                 let params = {};
 
                 for (let qp of this.queryParams) {
@@ -85,6 +91,8 @@
                     this.items = flattened;
                     this.currentPage = 1;
                     this.totalRows = this.items.length;
+                }).finally(() => {
+                    this.loading = false;
                 });
             },
             getType(paramType) {
@@ -170,6 +178,10 @@
 
     .results-title {
         margin: 30px 0;
+    }
+
+    .loader {
+        margin: 40px 0;
     }
 
 </style>
