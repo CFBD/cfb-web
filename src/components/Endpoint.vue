@@ -112,7 +112,7 @@
             flattentData(key, data) {
                 let flattened = [];
 
-                switch (key){
+                switch (key) {
                     case '/coaches':
                         for (let coach of data) {
                             flattened.push(...coach.seasons.map(s => {
@@ -121,6 +121,46 @@
 
                                 return s;
                             }));
+                        }
+                        break;
+                    case '/games/players':
+                        for (let game of data) {
+                            for (let team of game.teams) {
+                                for (let category of team.categories) {
+                                    for (let type of category.types) {
+                                        flattened.push(...type.athletes.map(a => {
+                                            return {
+                                                game_id: game.id,
+                                                school: team.school,
+                                                conference: team.conference,
+                                                homeAway: team.homeAway,
+                                                points: team.points,
+                                                stat_category: category.name,
+                                                stat_type: type.name,
+                                                athlete: a.name,
+                                                stat: a.stat
+                                            }
+                                        }));
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case '/games/teams':
+                        for (let game of data) {
+                            for (let team of game.teams) {
+                                flattened.push(...team.stats.map(s => {
+                                    return {
+                                        game_id: game.id,
+                                        school: team.school,
+                                        conference: team.conference,
+                                        homeAway: team.homeAway,
+                                        points: team.points,
+                                        stat_category: s.category,
+                                        stat: s.stat
+                                    }
+                                }));
+                            }
                         }
                         break;
                     default:
@@ -182,6 +222,10 @@
 
     .loader {
         margin: 40px 0;
+    }
+
+    .tab-content {
+        width: 80%;
     }
 
 </style>
