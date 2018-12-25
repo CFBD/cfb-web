@@ -9,7 +9,7 @@
                     </b-form-input>
                 </b-col>
             </b-row>
-            <b-button type="submit" variant="primary" size='lg' align='right'>Submit</b-button>
+            <b-button type="submit" variant="primary" size='md' align='right'>Query</b-button>
         </b-form>
         <div v-if='loading' align='center'>
             <hr class='my-4'>
