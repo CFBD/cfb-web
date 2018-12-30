@@ -163,6 +163,25 @@
                             }
                         }
                         break;
+                    case '/rankings':
+                        for (let week of data) {
+                            for (let poll of week.polls) {
+                                for (let rank of poll.ranks) {
+                                    flattened.push({
+                                        season: week.season,
+                                        seasonType: week.season_type,
+                                        week: week.week,
+                                        poll: poll.poll,
+                                        rank: rank.rank,
+                                        school: rank.school,
+                                        conference: rank.conference,
+                                        firstPlaceVotes: rank.firstPlaceVotes,
+                                        points: rank.points
+                                    })
+                                }
+                            }
+                        }
+                        break;
                     default:
                         flattened = data.map(d => this.flatten(d));
                 }
