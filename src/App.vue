@@ -1,9 +1,7 @@
 <template>
     <div id="app">
         <navigation id='nav'></navigation>
-        <b-container>
-            <router-view />
-        </b-container>
+        <router-view />
     </div>
 </template>
 
@@ -28,7 +26,7 @@
         color: #2c3e50;
 
         div.container {
-          margin-top: 50px;
+            margin-top: 50px;
         }
     }
 

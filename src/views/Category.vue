@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id='CategoryContainer'>
         <h1>{{this.name | capitalize}}</h1>
         <b-card no-body>
             <b-tabs pills card vertical>
@@ -97,6 +97,8 @@
 
 </script>
 
-<style>
-
+<style lang="scss">
+    #CategoryContainer {
+        margin: 30px 15px;
+    }
 </style>

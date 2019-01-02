@@ -1,9 +1,11 @@
 <template>
     <div>
         <b-form @submit="onSubmit">
-            <b-row class="my-1" v-for='qp in this.queryParams' :key='qp.parameter.name'>
-                <b-col sm="2"><label for="input-default">{{qp.parameter.name | capitalize }}</label></b-col>
-                <b-col sm="10">
+            <b-row>
+            <b-col sm="6" v-for='qp in this.queryParams' :key='qp.parameter.name'>
+                <b-form-row>
+                <b-col sm="4"><label for="input-default">{{qp.parameter.name | capitalize }}</label></b-col>
+                <b-col sm="8">
                     <autocomplete v-if="isTeamParameter(qp.parameter.name)" :items='teams' v-on:selection='qp.value = $event' :placeholder="qp.parameter.description"></autocomplete>
                     <autocomplete v-else-if="isConferenceParameter(qp.parameter.name)" :items='conferences' displayProp='name' valueProp='abbreviation' v-on:selection='qp.value = $event' :placeholder="qp.parameter.description"></autocomplete>
                     <autocomplete v-else-if="qp.parameter.name == 'playType'" :items='playTypes' displayProp='text' valueProp='id' v-on:selection='qp.value = $event' :placeholder="qp.parameter.description"></autocomplete>
@@ -12,6 +14,8 @@
                         v-model="qp.value">
                     </b-form-input>
                 </b-col>
+                </b-form-row>
+            </b-col>
             </b-row>
             <b-button type="submit" variant="primary" size='md' align='right'>Query</b-button>
         </b-form>

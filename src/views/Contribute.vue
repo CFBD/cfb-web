@@ -1,5 +1,5 @@
 <template>
-    <div id='ContributeContainer'>
+    <b-container id='ContributeContainer'>
         <div>
             <h1>Contribute to the Project</h1>
             <p class='lead'>There are several ways you can contribute to this project, whether by your feedback on the project, through participation in the community for college football analytics, or other means.  This project is stronger when it is community driven.  Please see below for all of the different ways to collaborate.  If you would like to collaborate in a manner not listed below, please <a href="mailto:admin@collegefootballdata.com" target="_blank"> contact me</a> as I am always looking for more opportunities for collaboration.</p>
@@ -34,7 +34,7 @@
             <font-awesome-icon class="contribute-icon text-success" icon='donate' size='3x'></font-awesome-icon>
             <p>Has my work helped you out in any way?  Maybe you'd like to buy me a beer or help with the costs of hosting this infrastructure?  You can do so via <a href='https://paypal.me/BillRadjewski' target="_blank"> my PayPal link</a>.  There is no obligation whatsoever and any donation will not be without great appreciation.  Lots of time and effort go towards building up all of this functionality and continuing to improve it.  Server costs are relatively inexpensive at the moment, but certainly not free.  That said, this is a labor of love that I am more than happy to continue regardless.</p>
         </div>
-    </div>
+    </b-container>
 </template>
 
 <script>
