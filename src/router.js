@@ -35,11 +35,17 @@ const router = new Router({
     ]
 });
 
-if (process.env.ENABLE_DEV_TOOLS != true) {
-    Vue.use(VueAnalytics, {
-        id: 'UA-131519987-1',
-        router
-    });
-}
+Vue.use(VueAnalytics, {
+    id: 'UA-131519987-1',
+    router,
+    autoTracking: {
+        exception: true,
+        exceptionLogs: false
+    },
+    debug: {
+        sendHitTask: process.env.ENABLE_DEV_TOOLS == false
+    }
+});
+
 
 export default router;
