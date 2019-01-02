@@ -4,7 +4,7 @@
         <b-card no-body>
             <b-tabs pills card vertical>
                 <b-tab v-for="endpoint in this.endpoints" :key="endpoint.key" :title="endpoint.path.get.description">
-                    <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences'></endpoint>
+                    <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes'></endpoint>
                 </b-tab>
             </b-tabs>
         </b-card>
@@ -25,7 +25,8 @@
             return {
                 endpoints: [],
                 teams: [],
-                conferences: []
+                conferences: [],
+                playTypes: []
             }
         },
         methods: {
@@ -49,6 +50,9 @@
             },
             getConferences() {
                 return this.$axios.get('/conferences');
+            },
+            getPlayTypes() {
+                return this.$axios.get('/play/types');
             }
         },
         created() {
@@ -69,6 +73,10 @@
                                         }
                                     });
             });
+
+            this.getPlayTypes().then(result => {
+                this.playTypes = result.data;
+            })
         },
         beforeRouteEnter(to, from, next) {
             next(vm => {
