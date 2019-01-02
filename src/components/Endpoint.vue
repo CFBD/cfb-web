@@ -4,7 +4,9 @@
             <b-row class="my-1" v-for='qp in this.queryParams' :key='qp.parameter.name'>
                 <b-col sm="2"><label for="input-default">{{qp.parameter.name | capitalize }}</label></b-col>
                 <b-col sm="10">
-                    <b-form-input :placeholder='qp.parameter.description' :required='qp.parameter.required' :type='getType(qp.parameter.type)'
+                    <autocomplete v-if="isTeamParameter(qp.parameter.name)" :items='teams' v-on:selection='qp.value = $event'></autocomplete>
+                    <autocomplete v-else-if="isConferenceParameter(qp.parameter.name)" :items='conferences' displayProp='name' valueProp='abbreviation' v-on:selection='qp.value = $event'></autocomplete>
+                    <b-form-input v-else :placeholder='qp.parameter.description' :required='qp.parameter.required' :type='getType(qp.parameter.type)'
                         v-model="qp.value">
                     </b-form-input>
                 </b-col>
@@ -43,10 +45,17 @@
 </template>
 
 <script>
+    import Autocomplete from './Autocomplete.vue';
+
     export default {
         name: 'endpoint',
+        components: {
+            Autocomplete
+        },
         props: {
-            endpoint: Object
+            endpoint: Object,
+            conferences: Array,
+            teams: Array
         },
         data() {
             return {
@@ -108,6 +117,12 @@
                 }
 
                 return inputType;
+            },
+            isTeamParameter(inputName) {
+                return inputName == 'team' || inputName == 'home' || inputName == 'away' || inputName == 'offense' || inputName == 'defense';
+            },
+            isConferenceParameter(inputName) {
+                return inputName.toLowerCase().indexOf('conference') != -1;
             },
             flattentData(key, data) {
                 let flattened = [];

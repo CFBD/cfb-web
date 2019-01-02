@@ -4,7 +4,7 @@
         <b-card no-body>
             <b-tabs pills card vertical>
                 <b-tab v-for="endpoint in this.endpoints" :key="endpoint.key" :title="endpoint.path.get.description">
-                    <endpoint :endpoint='endpoint'></endpoint>
+                    <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences'></endpoint>
                 </b-tab>
             </b-tabs>
         </b-card>
@@ -13,7 +13,7 @@
 
 <script>
     import Endpoint from '@/components/Endpoint.vue';
-    
+
     export default {
         components: {
             Endpoint
@@ -23,7 +23,9 @@
         },
         data() {
             return {
-                endpoints: []
+                endpoints: [],
+                teams: [],
+                conferences: []
             }
         },
         methods: {
@@ -41,7 +43,32 @@
             },
             getDocs() {
                 return this.$axios.get('/api-docs.json');
+            },
+            getTeams() {
+                return this.$axios.get('/teams');
+            },
+            getConferences() {
+                return this.$axios.get('/conferences');
             }
+        },
+        created() {
+            this.getTeams().then(result => {
+                this.teams = result
+                                .data
+                                .filter(t => t.conference)
+                                .map(t => t.school);
+            });
+
+            this.getConferences().then(result => {
+                this.conferences = result
+                                    .data
+                                    .map(c => {
+                                        return {
+                                            name: c.name,
+                                            abbreviation: c.abbreviation
+                                        }
+                                    });
+            });
         },
         beforeRouteEnter(to, from, next) {
             next(vm => {
