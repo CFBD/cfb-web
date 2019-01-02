@@ -4,9 +4,9 @@
             <b-row class="my-1" v-for='qp in this.queryParams' :key='qp.parameter.name'>
                 <b-col sm="2"><label for="input-default">{{qp.parameter.name | capitalize }}</label></b-col>
                 <b-col sm="10">
-                    <autocomplete v-if="isTeamParameter(qp.parameter.name)" :items='teams' v-on:selection='qp.value = $event'></autocomplete>
-                    <autocomplete v-else-if="isConferenceParameter(qp.parameter.name)" :items='conferences' displayProp='name' valueProp='abbreviation' v-on:selection='qp.value = $event'></autocomplete>
-                    <autocomplete v-else-if="qp.parameter.name == 'playType'" :items='playTypes' displayProp='text' valueProp='id' v-on:selection='qp.value = $event'></autocomplete>
+                    <autocomplete v-if="isTeamParameter(qp.parameter.name)" :items='teams' v-on:selection='qp.value = $event' :placeholder="qp.parameter.description"></autocomplete>
+                    <autocomplete v-else-if="isConferenceParameter(qp.parameter.name)" :items='conferences' displayProp='name' valueProp='abbreviation' v-on:selection='qp.value = $event' :placeholder="qp.parameter.description"></autocomplete>
+                    <autocomplete v-else-if="qp.parameter.name == 'playType'" :items='playTypes' displayProp='text' valueProp='id' v-on:selection='qp.value = $event' :placeholder="qp.parameter.description"></autocomplete>
                     <b-form-select v-else-if="qp.parameter.name == 'seasonType'" v-model="qp.value" :options="['regular', 'postseason', 'both']" class="mb-3" />
                     <b-form-input v-else :placeholder='qp.parameter.description' :required='qp.parameter.required' :type='getType(qp.parameter.type)'
                         v-model="qp.value">

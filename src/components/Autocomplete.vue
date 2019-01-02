@@ -1,6 +1,6 @@
 <template>
     <div class="autocomplete">
-        <input class='form-control' type="text" placeholder="Start typing to get suggestions..." @focus="onFocus" @input="onChange" v-model="search" @keydown.down="onArrowDown" @keydown.up="onArrowUp" @keydown.enter="onEnter" @keydown.tab="onEnter" :required="isRequired" />
+        <input class='form-control' type="text" :placeholder="placeholder" @focus="onFocus" @input="onChange" v-model="search" @keydown.down="onArrowDown" @keydown.up="onArrowUp" @keydown.enter="onEnter" @keydown.tab="onEnter" :required="isRequired" />
         <ul id="autocomplete-results" v-show="isOpen" class="autocomplete-results">
             <li class="loading" v-if="isLoading">
                 Loading results...
@@ -55,6 +55,11 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            placeholder: {
+                type: String,
+                required: false,
+                default: 'Start typing to get suggestions...'
             }
         },
         data() {
