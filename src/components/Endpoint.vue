@@ -204,6 +204,9 @@
                             }
                         }
                         break;
+                    case '/teams/matchup':
+                        flattened = data.games.map(g => this.flatten(g));
+                        break;
                     default:
                         flattened = data.map(d => this.flatten(d));
                 }
