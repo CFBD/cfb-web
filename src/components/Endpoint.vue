@@ -126,7 +126,7 @@
                 return inputType;
             },
             isTeamParameter(inputName) {
-                return inputName == 'team' || inputName == 'home' || inputName == 'away' || inputName == 'offense' || inputName == 'defense';
+                return inputName.toLowerCase().indexOf('team') !== -1 || inputName == 'home' || inputName == 'away' || inputName == 'offense' || inputName == 'defense';
             },
             isConferenceParameter(inputName) {
                 return inputName.toLowerCase().indexOf('conference') != -1;
