@@ -43,7 +43,7 @@ Vue.use(VueAnalytics, {
         exceptionLogs: false
     },
     debug: {
-        sendHitTask: process.env.ENABLE_DEV_TOOLS == false
+        sendHitTask: process.env.ENABLE_DEV_TOOLS == 'false'
     }
 });
 
