@@ -2,7 +2,10 @@
     <div>
         <b-navbar toggleable="md" type="dark" variant="primary">
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-            <b-navbar-brand href='/'>CollegeFootballData.com</b-navbar-brand>
+            <b-navbar-brand href='/'>
+                <img src='/Logo.png' class='brand-image' />
+                CollegeFootballData.com
+            </b-navbar-brand>
             <b-collapse is-nav id="nav_collapse">
                 <b-navbar-nav>
                     <b-nav-item>
@@ -10,7 +13,8 @@
                     </b-nav-item>
                     <b-nav-item-dropdown text="Data" class='nav-link'>
                         <b-dropdown-item v-for="tag in this.docs.tags" :key="tag.name">
-                            <router-link :to="`/category/${tag.name}`" class='nav-link text-primary'>{{tag.name | capitalize}}</router-link>
+                            <router-link :to="`/category/${tag.name}`" class='nav-link text-primary'>{{tag.name |
+                                capitalize}}</router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item>
@@ -46,3 +50,11 @@
     }
 
 </script>
+
+<style lang="scss">
+    .brand-image {
+        height: 30px;
+        width: 30px;
+    }
+</style>
+
