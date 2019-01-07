@@ -2,7 +2,7 @@
     <div id='CategoryContainer'>
         <h1>{{this.name | capitalize}}</h1>
         <b-card no-body>
-            <b-tabs pills card vertical>
+            <b-tabs pills card vertical v-model='tabIndex'>
                 <b-tab v-for="endpoint in this.endpoints" :key="endpoint.key" :title="endpoint.path.get.description">
                     <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes'></endpoint>
                 </b-tab>
@@ -26,7 +26,8 @@
                 endpoints: [],
                 teams: [],
                 conferences: [],
-                playTypes: []
+                playTypes: [],
+                tabIndex: 0
             }
         },
         methods: {
@@ -80,6 +81,7 @@
         },
         beforeRouteEnter(to, from, next) {
             next(vm => {
+                vm.tabIndex = 0;
                 vm.getDocs().then(result => {
                     vm.setData(result.data, vm.name);
                 });
@@ -87,6 +89,7 @@
         },
         beforeRouteUpdate(to, from, next) {
             this.endpoints = [];
+            this.tabIndex = 0;
 
             this.getDocs().then(result => {
                 this.setData(result.data, to.params.name);
