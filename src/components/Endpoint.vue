@@ -203,7 +203,7 @@
                                 for (let rank of poll.ranks) {
                                     flattened.push({
                                         season: week.season,
-                                        seasonType: week.season_type,
+                                        seasonType: week.seasonType,
                                         week: week.week,
                                         poll: poll.poll,
                                         rank: rank.rank,
