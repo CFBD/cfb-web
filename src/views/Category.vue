@@ -1,13 +1,11 @@
 <template>
     <div id='CategoryContainer'>
         <h1>{{this.name | capitalize}}</h1>
-        <b-card no-body>
-            <b-tabs pills card vertical v-model='tabIndex'>
-                <b-tab v-for="endpoint in this.endpoints" :key="endpoint.key" :title="endpoint.path.get.description">
-                    <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes'></endpoint>
-                </b-tab>
-            </b-tabs>
-        </b-card>
+        <b-tabs pills v-model='tabIndex'>
+            <b-tab v-for="endpoint in this.endpoints" :key="endpoint.key" :title="endpoint.path.get.description">
+                <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes'></endpoint>
+            </b-tab>
+        </b-tabs>
     </div>
 </template>
 
@@ -59,20 +57,20 @@
         created() {
             this.getTeams().then(result => {
                 this.teams = result
-                                .data
-                                .filter(t => t.conference)
-                                .map(t => t.school);
+                    .data
+                    .filter(t => t.conference)
+                    .map(t => t.school);
             });
 
             this.getConferences().then(result => {
                 this.conferences = result
-                                    .data
-                                    .map(c => {
-                                        return {
-                                            name: c.name,
-                                            abbreviation: c.abbreviation
-                                        }
-                                    });
+                    .data
+                    .map(c => {
+                        return {
+                            name: c.name,
+                            abbreviation: c.abbreviation
+                        }
+                    });
             });
 
             this.getPlayTypes().then(result => {
@@ -103,5 +101,27 @@
 <style lang="scss">
     #CategoryContainer {
         margin: 30px 15px;
+
+        .tabs {
+            > div {
+                &:first-child {
+                    margin-bottom: 50px;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+
+                ul:focus {
+                    outline: none;
+                }
+            }
+
+            .nav {
+                display: flex;
+                justify-content: center;
+            }
+        }
     }
+
 </style>
