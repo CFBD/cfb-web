@@ -55,6 +55,9 @@
                     <b-table hover small :items='results.games' :fields='fields' :current-page="currentPage" :per-page="perPage"></b-table>
                     <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" align='center' />
                 </b-col>
+                <b-col sm='6'>
+                    <matchup-scatter :chart-data='scatterData' :options='scatterOptions'></matchup-scatter>
+                </b-col>
             </b-row>
         </div>
     </b-container>
@@ -62,10 +65,12 @@
 
 <script>
     import Autocomplete from '@/components/Autocomplete.vue';
+    import MatchupScatter from '@/components/MatchupScatter.vue';
 
     export default {
         components: {
-            Autocomplete
+            Autocomplete,
+            MatchupScatter
         },
         data() {
             return {
@@ -98,6 +103,8 @@
                 currentPage: 1,
                 perPage: 10,
                 totalRows: 0,
+                scatterData: [],
+                scatterOptions: null
             }
         },
         methods: {
@@ -132,6 +139,33 @@
 
                     this.currentPage = 1;
                     this.totalRows = this.results.games.length;
+
+                    let chartData = this.results.games.map(g => {
+                        if (this.results.team1 === g.homeTeam) {
+                            return {
+                                x: g.homeScore,
+                                y: g.awayScore
+                            }
+                        } else {
+                            return {
+                                x: g.awayScore,
+                                y: g.homeScore
+                            }
+                        }
+                    });
+
+                    this.scatterData = {
+                        datasets: [{
+                            label: 'Scores',
+                            pointBackgroundColor: chartData.map(cd => cd.x > cd.y ? this.team1.alt_color :
+                                cd.y > cd.x ? this.team2.alt_color : '#888888'),
+                            pointBorderColor: chartData.map(cd => cd.x > cd.y ? this.team1.color :
+                                cd.y > cd.x ? this.team2.color : '#888888'),
+                            pointRadius: 4,
+                            pointBorderWidth: 2,
+                            data: chartData
+                        }]
+                    };
                 });
             },
             updateTeam(index, team) {
