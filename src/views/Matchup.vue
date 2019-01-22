@@ -104,7 +104,37 @@
                 perPage: 10,
                 totalRows: 0,
                 scatterData: [],
-                scatterOptions: null
+                scatterOptions: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Historical Scores'
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: 80
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Team2 Points'
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: 80
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Team1 Points'
+                            }
+                        }]
+                    }
+                }
             }
         },
         methods: {
