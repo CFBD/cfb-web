@@ -6,6 +6,7 @@ import Home from './views/Home.vue';
 import Category from './views/Category.vue';
 import About from './views/About.vue';
 import Contribute from './views/Contribute.vue';
+import Matchup from './views/Matchup.vue';
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ const router = new Router({
             path: '/contribute',
             name: 'contribute',
             component: Contribute
+        },
+        {
+            path: '/matchup',
+            name: 'matchup',
+            component: Matchup
         }
     ]
 });

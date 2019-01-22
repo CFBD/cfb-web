@@ -17,6 +17,11 @@
                                 capitalize}}</router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
+                    <b-nav-item-dropdown text='Tools' class='nav-link'>
+                        <b-dropdown-item>
+                            <router-link to='/matchup' class='nav-link text-primary'>Matchups</router-link>
+                        </b-dropdown-item>
+                    </b-nav-item-dropdown>
                     <b-nav-item>
                         <router-link to="/contribute" class='nav-link'>Contribute</router-link>
                     </b-nav-item>
