@@ -51,7 +51,7 @@
             </b-row>
             <b-row class='data-container'>
                 <b-col sm='6'>
-                    <h1>Results</h1>
+                    <h3>Results</h3>
                     <b-table hover small :items='results.games' :fields='fields' :current-page="currentPage" :per-page="perPage"></b-table>
                     <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" align='center' />
                 </b-col>
