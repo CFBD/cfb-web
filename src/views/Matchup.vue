@@ -26,6 +26,28 @@
                 </b-row>
             </b-col>
         </b-row>
+        <b-row>
+            <b-col>
+                <b-row>
+                    <b-col sm='4'>
+                        <label class='team-label'>Start year (optional):</label>
+                    </b-col>
+                    <b-col sm='8'>
+                        <b-form-input type='number' min='1869' max='3000' v-model='startYear' placeholder='Pick a start year...' @change="getMatchup"></b-form-input>
+                    </b-col>
+                </b-row>
+            </b-col>
+            <b-col>
+                <b-row>
+                    <b-col sm='4'>
+                        <label class='team-label'>End year (optional):</label>
+                    </b-col>
+                    <b-col sm='8'>
+                        <b-form-input type='number' min='1869' max='3000' v-model='endYear' placeholder='Pick an end year...' @change="getMatchup"></b-form-input>
+                    </b-col>
+                </b-row>
+            </b-col>
+        </b-row>
         <div v-if='results'>
             <b-row v-if='results' class='record-container'>
                 <b-col auto></b-col>
@@ -77,6 +99,8 @@
                 teams: [],
                 team1: null,
                 team2: null,
+                startYear: null,
+                endYear: null,
                 results: null,
                 fields: [{
                         key: 'date',
@@ -142,11 +166,25 @@
                 return this.$axios.get('/teams');
             },
             getMatchup() {
+                if (!this.team1 || !this.team2) {
+                    return;
+                }
+
+                let params = {
+                    team1: this.team1.school,
+                    team2: this.team2.school
+                };
+
+                if (this.startYear) {
+                    params.minYear = this.startYear;
+                }
+
+                if (this.endYear) {
+                    params.maxYear = this.endYear;
+                }
+
                 this.$axios.get('/teams/matchup', {
-                    params: {
-                        team1: this.team1.school,
-                        team2: this.team2.school
-                    }
+                    params
                 }).then(result => {
                     result.data.games = result.data.games.sort((a, b) => new Date(a).valueOf() - new Date(b).valueOf() >
                         0 ? 1 : -1);
