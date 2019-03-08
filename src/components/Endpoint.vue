@@ -112,7 +112,14 @@
                 this.$axios.get(this.endpoint.key, {
                     params: params
                 }).then(response => {
-                    let flattened = this.flattentData(this.endpoint.key, response.data);
+                    let flattened = this.flattentData(this.endpoint.key, response.data)
+                                        .map(f => {
+                                            if (f['clock.minutes'] && !f['clock.seconds']) {
+                                                f['clock.seconds'] = 0;
+                                            }
+
+                                            return f;
+                                        });
                     this.items = flattened;
                     this.currentPage = 1;
                     this.totalRows = this.items.length;
