@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-navbar toggleable="md" type="dark" variant="primary">
+        <b-navbar toggleable="md" type="dark" variant="secondary">
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
             <b-navbar-brand href='/'>
                 <img src='/Logo.png' class='brand-image' />
@@ -30,7 +30,7 @@
                     </b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class='ml-auto'>
-                    <b-button href="https://api.collegefootballdata.com" target="_blank">
+                    <b-button variant="primary" href="https://api.collegefootballdata.com" target="_blank">
                         API
                     </b-button>
                 </b-navbar-nav>
