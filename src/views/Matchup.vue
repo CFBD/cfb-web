@@ -80,6 +80,9 @@
                 <b-col sm='6'>
                     <matchup-scatter :chart-data='scatterData' :options='scatterOptions'></matchup-scatter>
                 </b-col>
+                <b-col sm='6'>
+                    <win-history :chart-data='lineData'></win-history>
+                </b-col>
             </b-row>
         </div>
     </b-container>
@@ -88,11 +91,13 @@
 <script>
     import Autocomplete from '@/components/Autocomplete.vue';
     import MatchupScatter from '@/components/MatchupScatter.vue';
+    import WinHistory from '@/components/WinHistory.vue';
 
     export default {
         components: {
             Autocomplete,
-            MatchupScatter
+            MatchupScatter,
+            WinHistory
         },
         data() {
             return {
@@ -158,7 +163,8 @@
                             }
                         }]
                     }
-                }
+                },
+                lineData: []
             }
         },
         methods: {
@@ -234,6 +240,42 @@
                             data: chartData
                         }]
                     };
+
+                    let self = this;
+                    let years = Array.from(new Set(this.results.games.map(g => new Date(g.date).getFullYear()))).sort();
+                    let team1Wins = years.map(year => {
+                        return self.results
+                                .games
+                                .filter(g => new Date(g.date).getFullYear() <= year && ((g.homeTeam ==
+                                    self.results.team1 && g.homeScore > g.awayScore) || (g.awayTeam ==
+                                    self.results.team1 && g.awayScore > g.homeScore)))
+                                .length;
+                    });
+                    let team2Wins = years.map(year => {
+                        return self.results
+                                .games
+                                .filter(g => new Date(g.date).getFullYear() <= year && ((g.homeTeam ==
+                                    self.results.team2 && g.homeScore > g.awayScore) || (g.awayTeam ==
+                                    self.results.team2 && g.awayScore > g.homeScore)))
+                                .length;
+                    });
+
+                    this.lineData = {
+                        labels: years,
+                        datasets: [{
+                            label: this.team1.school,
+                            pointRadius: 0,
+                            borderColor: this.team1.color,
+                            // backgroundColor:  rgba(0,0,0,0),
+                            data: team1Wins
+                        }, {
+                            label: this.team2.school,
+                            pointRadius: 0,
+                            borderColor: this.team2.color,
+                            // backgroundColor: rgba(0,0,0,0),
+                            data: team2Wins
+                        }]
+                    }
                 });
             },
             updateTeam(index, team) {
