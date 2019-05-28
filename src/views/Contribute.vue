@@ -2,13 +2,14 @@
     <b-container id='ContributeContainer'>
         <div>
             <h1>Contribute to the Project</h1>
-            <p class='lead'>There are several ways you can contribute to this project, whether by your feedback on the project, through participation in the community for college football analytics, or other means.  This project is stronger when it is community driven.  Please see below for all of the different ways to collaborate.  If you would like to collaborate in a manner not listed below, please <a href="mailto:admin@collegefootballdata.com" target="_blank"> contact me</a> as I am always looking for more opportunities for collaboration.</p>
+            <p class='lead'>There are several ways you can contribute to this project, whether by your feedback on the project, through participation in the community for college football analytics, or other means.  This project is stronger when it is community driven.  Please see below for all of the different ways to collaborate.  If you would like to collaborate in a manner not listed below, please <a href="mailto:admin@collegefootballdata.com" target="_blank"> contact me</a> or comment in the <a href="https://discord.gg/Eb3ex5a" target='_blank'>Discord community</a> as I am always looking for more opportunities for collaboration.  For quickest response time, <a href="https://discord.gg/Eb3ex5a" target='_blank'>Discord</a> is the preferred method of contact.</p>
         </div>
         <hr>
         <div>
             <h3>Want to participate?</h3>
             <font-awesome-icon class="contribute-icon text-danger" :icon="['fab', 'reddit-alien']" size='3x'></font-awesome-icon>
             <p>Please consider joining reddit's community for college football analytics, <a href="https://old.reddit.com/r/cfbanalysis" target='_blank'>r/CFBAnalysis</a>.  In partnership with <a href="https://old.reddit.com/r/cfb" target='_blank'>r/CFB</a>, the larget collection of college football fans anywhere on the internet, r/CFBAnalysis is a place for data scientists of all levels to come together to discuss any methodologies, data sources, and projects relating to college football data analytics.</p>
+            <p>Please also consider joining our <a href="https://discord.gg/Eb3ex5a" target='_blank'>Discord community</a>, made up of CFB analysis enthusiasts of all levels, from those just starting out to experts who have been doing this sort of stuff for a long time.  Everyone is welcome!</p>
         </div>
         <hr>
         <div>
