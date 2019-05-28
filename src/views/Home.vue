@@ -3,6 +3,7 @@
         <b-jumbotron header="College Football Data" lead="Welcome to CollegeFootballData.com!">
             <hr>
             <p>Comprehensive source of college football data, no matter your analytical or data needs</p>
+            <p><a class='blurple' href="https://discord.gg/Eb3ex5a"><font-awesome-icon :icon="['fab', 'discord']" size='2x'></font-awesome-icon> Join us on Discord!</a></p>
         </b-jumbotron>
         <b-row class='home-details'>
             <b-col align='center' class='right-divider'>
@@ -60,6 +61,14 @@
         
         .note-icon {
             margin-bottom: 25px;
+        }
+    }
+
+    .blurple {
+        color: #7289DA;
+
+        &:hover {
+            text-decoration: none;
         }
     }
 </style>
