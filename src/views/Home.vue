@@ -3,7 +3,9 @@
         <b-jumbotron header="College Football Data" lead="Welcome to CollegeFootballData.com!">
             <hr>
             <p>Comprehensive source of college football data, no matter your analytical or data needs</p>
-            <p><a class='blurple' href="https://discord.gg/Eb3ex5a"><font-awesome-icon :icon="['fab', 'discord']" size='2x'></font-awesome-icon> Join us on Discord!</a></p>
+            <br/>
+            <p><a class='twitter-link text-info' href='https://twitter.com/cfb_data' target="_blank"><font-awesome-icon class="text-info" :icon="['fab', 'twitter']" size='2x'></font-awesome-icon> Follow us on Twitter</a></p>
+            <p><a class='blurple' href="https://discord.gg/Eb3ex5a" target="_blank"><font-awesome-icon :icon="['fab', 'discord']" size='2x'></font-awesome-icon> Join us on Discord!</a></p>
         </b-jumbotron>
         <b-row class='home-details'>
             <b-col align='center' class='right-divider'>
@@ -58,7 +60,7 @@
         h5 {
             height: 75px;
         }
-        
+
         .note-icon {
             margin-bottom: 25px;
         }
@@ -67,6 +69,12 @@
     .blurple {
         color: #7289DA;
 
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .twitter-link {
         &:hover {
             text-decoration: none;
         }
