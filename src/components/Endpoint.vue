@@ -227,6 +227,23 @@
                     case '/teams/matchup':
                         flattened = data.games.map(g => this.flatten(g));
                         break;
+                    case '/lines':
+                        for (let game of data) {
+                            for (let line of gam.lines) {
+                                flattened.push({
+                                    id: game.id,
+                                    homeTeam: game.homeTeam,
+                                    homeScore: game.homeScore,
+                                    awayTeam: game.awayTeam,
+                                    awayScore: game.awayScore,
+                                    lineProvider: line.provider,
+                                    overUnder: line.overUnder,
+                                    spread: line.spread,
+                                    formattedSpread: line.formattedSpread
+                                });
+                            }
+                        }
+                        break;
                     default:
                         flattened = data.map(d => this.flatten(d));
                 }
