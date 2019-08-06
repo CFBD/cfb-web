@@ -229,7 +229,7 @@
                         break;
                     case '/lines':
                         for (let game of data) {
-                            for (let line of gam.lines) {
+                            for (let line of game.lines) {
                                 flattened.push({
                                     id: game.id,
                                     homeTeam: game.homeTeam,
