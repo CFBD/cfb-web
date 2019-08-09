@@ -2,7 +2,7 @@
     <div>
         <b-form @submit="onSubmit">
             <b-row>
-                <b-col sm="6" v-for='qp in this.queryParams' :key='qp.parameter.name'>
+                <b-col sm="4" v-for='qp in this.queryParams' :key='qp.parameter.name'>
                     <b-form-row>
                         <b-col sm="4"><label for="input-default">{{qp.parameter.name | capitalize }}</label></b-col>
                         <b-col sm="8">

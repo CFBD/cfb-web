@@ -1,11 +1,13 @@
 <template>
     <div id='CategoryContainer'>
+        <b-card>
         <h1>{{this.name | capitalize}}</h1>
         <b-tabs pills v-model='tabIndex'>
             <b-tab v-for="endpoint in this.endpoints" :key="endpoint.key" :title="endpoint.path.get.description">
                 <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes'></endpoint>
             </b-tab>
         </b-tabs>
+        </b-card>
     </div>
 </template>
 

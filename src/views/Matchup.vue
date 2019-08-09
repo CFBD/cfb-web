@@ -1,87 +1,111 @@
 <template>
-    <b-container>
-        <h1>Matchup Tool</h1>
-        <p class='lead'>Select two teams to get matchup results and history.</p>
-        <b-row>
-            <b-col>
-                <b-row>
-                    <b-col sm='4'>
-                        <label class='team-label'>Team 1:</label>
-                    </b-col>
-                    <b-col sm='8'>
-                        <autocomplete display-prop='school' placeholder='Select a team...' :items='teams'
-                            v-on:selection='updateTeam(1, $event)'></autocomplete>
-                    </b-col>
-                </b-row>
-            </b-col>
-            <b-col>
-                <b-row>
-                    <b-col sm='4'>
-                        <label class='team-label'>Team 2:</label>
-                    </b-col>
-                    <b-col sm='8'>
-                        <autocomplete display-prop='school' placeholder='Select a team...' :items='teams'
-                            v-on:selection='updateTeam(2, $event)'></autocomplete>
-                    </b-col>
-                </b-row>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <b-row>
-                    <b-col sm='4'>
-                        <label class='team-label'>Start year (optional):</label>
-                    </b-col>
-                    <b-col sm='8'>
-                        <b-form-input type='number' min='1869' max='3000' v-model='startYear' placeholder='Pick a start year...' @change="getMatchup"></b-form-input>
-                    </b-col>
-                </b-row>
-            </b-col>
-            <b-col>
-                <b-row>
-                    <b-col sm='4'>
-                        <label class='team-label'>End year (optional):</label>
-                    </b-col>
-                    <b-col sm='8'>
-                        <b-form-input type='number' min='1869' max='3000' v-model='endYear' placeholder='Pick an end year...' @change="getMatchup"></b-form-input>
-                    </b-col>
-                </b-row>
-            </b-col>
-        </b-row>
+    <b-container class='page-container'>
+        <b-card>
+            <b-row>
+                <b-col>
+                    <h1>Matchup Tool</h1>
+                    <p class='lead'>Select two teams to get matchup results and history.</p>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col>
+                    <b-row>
+                        <b-col sm='4'>
+                            <label class='team-label'>Team 1:</label>
+                        </b-col>
+                        <b-col sm='8'>
+                            <autocomplete display-prop='school' placeholder='Select a team...' :items='teams'
+                                v-on:selection='updateTeam(1, $event)'></autocomplete>
+                        </b-col>
+                    </b-row>
+                </b-col>
+                <b-col>
+                    <b-row>
+                        <b-col sm='4'>
+                            <label class='team-label'>Team 2:</label>
+                        </b-col>
+                        <b-col sm='8'>
+                            <autocomplete display-prop='school' placeholder='Select a team...' :items='teams'
+                                v-on:selection='updateTeam(2, $event)'></autocomplete>
+                        </b-col>
+                    </b-row>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col>
+                    <b-row>
+                        <b-col sm='4'>
+                            <label class='team-label'>Start year (optional):</label>
+                        </b-col>
+                        <b-col sm='8'>
+                            <b-form-input type='number' min='1869' max='3000' v-model='startYear'
+                                placeholder='Pick a start year...' @change="getMatchup"></b-form-input>
+                        </b-col>
+                    </b-row>
+                </b-col>
+                <b-col>
+                    <b-row>
+                        <b-col sm='4'>
+                            <label class='team-label'>End year (optional):</label>
+                        </b-col>
+                        <b-col sm='8'>
+                            <b-form-input type='number' min='1869' max='3000' v-model='endYear'
+                                placeholder='Pick an end year...' @change="getMatchup"></b-form-input>
+                        </b-col>
+                    </b-row>
+                </b-col>
+            </b-row>
+        </b-card>
         <div v-if='results'>
-            <b-row v-if='results' class='record-container'>
-                <b-col auto></b-col>
+            <b-row>
                 <b-col>
-                    <b-img :src='team1.logos[0]' class='logo' />
-                    <h2 class='team-name' :style='{ color: getColor(team1.color) }'>{{ team1.school }}</h2>
+                    <b-card>
+                        <b-row v-if='results' class='record-container'>
+                            <b-col auto></b-col>
+                            <b-col>
+                                <b-img :src='team1.logos[0]' class='logo' />
+                                <h2 class='team-name' :style='{ color: getColor(team1.color) }'>{{ team1.school }}</h2>
+                            </b-col>
+                            <b-col class='record'>
+                                <div class='record-div'>
+                                    <h1 class='text-center'>
+                                        <strong>
+                                            <span
+                                                :style='{ color: getColor(team1.color) }'>{{results.team1Wins}}</span>-<span
+                                                class='text-muted'>{{results.ties}}</span>-<span
+                                                :style='{ color: getColor(team2.color) }'>{{results.team2Wins}}</span>
+                                        </strong>
+                                    </h1>
+                                </div>
+                            </b-col>
+                            <b-col>
+                                <b-img :src='team2.logos[0]' class='logo' />
+                                <h2 class='team-name' :style='{ color: getColor(team2.color) }'>{{ team2.school }}</h2>
+                            </b-col>
+                            <b-col auto></b-col>
+                        </b-row>
+                    </b-card>
                 </b-col>
-                <b-col class='record'>
-                    <div class='record-div'>
-                        <h1 class='text-center'>
-                            <strong>
-                                <span :style='{ color: getColor(team1.color) }'>{{results.team1Wins}}</span>-<span
-                                    class='text-muted'>{{results.ties}}</span>-<span :style='{ color: getColor(team2.color) }'>{{results.team2Wins}}</span>
-                            </strong>
-                        </h1>
-                    </div>
-                </b-col>
-                <b-col>
-                    <b-img :src='team2.logos[0]' class='logo' />
-                    <h2 class='team-name' :style='{ color: getColor(team2.color) }'>{{ team2.school }}</h2>
-                </b-col>
-                <b-col auto></b-col>
             </b-row>
             <b-row class='data-container'>
                 <b-col sm='6'>
-                    <h3>Results</h3>
-                    <b-table hover small :items='results.games' :fields='fields' :current-page="currentPage" :per-page="perPage"></b-table>
-                    <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" align='center' />
+                    <b-card>
+                        <h3>Results</h3>
+                        <b-table hover small :items='results.games' :fields='fields' :current-page="currentPage"
+                            :per-page="perPage"></b-table>
+                        <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage"
+                            align='center' />
+                    </b-card>
                 </b-col>
                 <b-col sm='6'>
-                    <matchup-scatter :chart-data='scatterData' :options='scatterOptions'></matchup-scatter>
+                    <b-card>
+                        <matchup-scatter :chart-data='scatterData' :options='scatterOptions'></matchup-scatter>
+                    </b-card>
                 </b-col>
                 <b-col sm='6'>
-                    <win-history :chart-data='lineData'></win-history>
+                    <b-card>
+                        <win-history :chart-data='lineData'></win-history>
+                    </b-card>
                 </b-col>
             </b-row>
         </div>
@@ -192,7 +216,8 @@
                 this.$axios.get('/teams/matchup', {
                     params
                 }).then(result => {
-                    result.data.games = result.data.games.sort((a, b) => new Date(a).valueOf() - new Date(b).valueOf() >
+                    result.data.games = result.data.games.sort((a, b) => new Date(a).valueOf() - new Date(b)
+                        .valueOf() >
                         0 ? 1 : -1);
 
                     for (let game of result.data.games) {
@@ -231,7 +256,8 @@
                     this.scatterData = {
                         datasets: [{
                             label: 'Scores',
-                            pointBackgroundColor: chartData.map(cd => cd.x > cd.y ? this.team1.alt_color :
+                            pointBackgroundColor: chartData.map(cd => cd.x > cd.y ? this.team1
+                                .alt_color :
                                 cd.y > cd.x ? this.team2.alt_color : '#888888'),
                             pointBorderColor: chartData.map(cd => cd.x > cd.y ? this.team1.color :
                                 cd.y > cd.x ? this.team2.color : '#888888'),
@@ -242,22 +268,25 @@
                     };
 
                     let self = this;
-                    let years = Array.from(new Set(this.results.games.map(g => new Date(g.date).getFullYear()))).sort();
+                    let years = Array.from(new Set(this.results.games.map(g => new Date(g.date).getFullYear())))
+                        .sort();
                     let team1Wins = years.map(year => {
                         return self.results
-                                .games
-                                .filter(g => new Date(g.date).getFullYear() <= year && ((g.homeTeam ==
-                                    self.results.team1 && g.homeScore > g.awayScore) || (g.awayTeam ==
-                                    self.results.team1 && g.awayScore > g.homeScore)))
-                                .length;
+                            .games
+                            .filter(g => new Date(g.date).getFullYear() <= year && ((g.homeTeam ==
+                                self.results.team1 && g.homeScore > g.awayScore) || (g
+                                .awayTeam ==
+                                self.results.team1 && g.awayScore > g.homeScore)))
+                            .length;
                     });
                     let team2Wins = years.map(year => {
                         return self.results
-                                .games
-                                .filter(g => new Date(g.date).getFullYear() <= year && ((g.homeTeam ==
-                                    self.results.team2 && g.homeScore > g.awayScore) || (g.awayTeam ==
-                                    self.results.team2 && g.awayScore > g.homeScore)))
-                                .length;
+                            .games
+                            .filter(g => new Date(g.date).getFullYear() <= year && ((g.homeTeam ==
+                                self.results.team2 && g.homeScore > g.awayScore) || (g
+                                .awayTeam ==
+                                self.results.team2 && g.awayScore > g.homeScore)))
+                            .length;
                     });
 
                     this.lineData = {

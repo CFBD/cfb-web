@@ -30,7 +30,7 @@
                     </b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class='ml-auto'>
-                    <b-button variant="primary" href="https://api.collegefootballdata.com" target="_blank">
+                    <b-button id='api-link' href="https://api.collegefootballdata.com" target="_blank">
                         API
                     </b-button>
                 </b-navbar-nav>
@@ -61,5 +61,9 @@
         height: 30px;
         width: 30px;
     }
-</style>
 
+    #api-link {
+        background-color: #38b0ff;
+    }
+
+</style>
