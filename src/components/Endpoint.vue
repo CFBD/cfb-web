@@ -1,6 +1,15 @@
 <template>
     <div>
         <b-form @submit="onSubmit">
+            <b-row class='text-justify-center'>
+                <b-col />
+                <b-col>
+                    <p class='muted'>
+                        {{ this.endpoint.path.get.summary }}
+                    </p>
+                </b-col>
+                <b-col />
+            </b-row>
             <b-row>
                 <b-col sm="4" v-for='qp in this.queryParams' :key='qp.parameter.name'>
                     <b-form-row>

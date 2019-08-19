@@ -106,10 +106,6 @@
 
         .tabs {
             > div {
-                &:first-child {
-                    margin-bottom: 50px;
-                }
-
                 &:focus {
                     outline: none;
                 }
