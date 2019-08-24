@@ -8,6 +8,7 @@ import About from './views/About.vue';
 import Contribute from './views/Contribute.vue';
 import Matchup from './views/Matchup.vue';
 import SP from './views/SP.vue';
+import SPTrends from './views/SPTrends.vue';
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ const router = new Router({
             path: '/sp',
             name: 'sp',
             component: SP
+        },
+        {
+            path: '/sp/trends',
+            name: 'spTrends',
+            component: SPTrends
         }
     ]
 });
