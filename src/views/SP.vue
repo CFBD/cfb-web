@@ -183,7 +183,7 @@
                             year: this.year
                         }
                     }).then(results => {
-                        this.results = results.data;
+                        this.results = results.data.filter(r => r.team != 'nationalAverages');
                         this.reloadData();
                     });
                 }

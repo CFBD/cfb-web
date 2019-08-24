@@ -129,7 +129,7 @@
                 scatterData: [],
                 scatterOptions: {
                     legend: {
-                        display: false
+                        display: true
                     },
                     title: {
                         display: true,
@@ -161,9 +161,10 @@
             },
             reloadData() {
                 if (this.results && this.dataPoint && this.team) {
-                    this.scatterOptions.title.text = `${this.team.school} S&P+ Trends`;
-                    let labels = this.results.map(r => r.year);
-                    let data = this.results.map(r => this.getValueByKey(r, this.dataPoint.split('.')));
+                    this.scatterOptions.title.text = `Team S&P+ Trends`;
+                    let labels = this.results.filter(r => r.team == this.team.school).map(r => r.year);
+                    let data = this.results.filter(r => r.team == this.team.school).map(r => this.getValueByKey(r, this.dataPoint.split('.')));
+                    let averages = this.results.filter(r => r.team == 'nationalAverages').map(r => this.getValueByKey(r, this.dataPoint.split('.')));
 
                     this.scatterData = {
                         labels: labels,
@@ -171,7 +172,15 @@
                             pointRadius: 10,
                             borderColor: this.team.color,
                             fill: false,
+                            label: this.team.school,
                             data: data
+                        },{
+                            borderDash: [5, 10],
+                            pointRadius: 0,
+                            borderColor: '#cccccc',
+                            fill: false,
+                            label: 'National Average',
+                            data: averages
                         }]
                     };
                 }
