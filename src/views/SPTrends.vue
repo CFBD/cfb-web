@@ -52,6 +52,7 @@
         data() {
             return {
                 teams: [],
+                conferences: [],
                 dataPoints: [{
                     value: 'rating',
                     text: 'Overall Rating'
@@ -127,6 +128,7 @@
                 team: null,
                 dataPoint: null,
                 scatterData: [],
+                conferenceData: [],
                 scatterOptions: {
                     legend: {
                         display: true
@@ -142,6 +144,9 @@
             getTeams() {
                 return this.$axios.get('/teams');
             },
+            getConferences() {
+                return this.$axios.get('/conferences');
+            },
             refreshData(team) {
                 if (team) {
                     this.team = team;
@@ -151,6 +156,15 @@
                         }
                     }).then(results => {
                         this.results = results.data;
+
+                        this.$axios.get('/ratings/sp/conferences', {
+                            params: {
+                                conference: this.conferences.find(c => c.name == this.team.conference).abbreviation
+                            }
+                        }).then(result => {
+                            this.conferenceData = result.data;
+                        });
+
                         this.reloadData();
                     });
                 }
@@ -165,6 +179,7 @@
                     let labels = this.results.filter(r => r.team == this.team.school).map(r => r.year);
                     let data = this.results.filter(r => r.team == this.team.school).map(r => this.getValueByKey(r, this.dataPoint.split('.')));
                     let averages = this.results.filter(r => r.team == 'nationalAverages').map(r => this.getValueByKey(r, this.dataPoint.split('.')));
+                    let conferenceAverages = this.conferenceData.map(r => this.getValueByKey(r, this.dataPoint.split('.')));
 
                     this.scatterData = {
                         labels: labels,
@@ -181,6 +196,13 @@
                             fill: false,
                             label: 'National Average',
                             data: averages
+                        },{
+                            borderDash: [5, 10],
+                            pointRadius: 0,
+                            borderColor: '#a9e7e8',
+                            fill: false,
+                            label: `${this.team.conference} Average`,
+                            data: conferenceAverages
                         }]
                     };
                 }
@@ -210,6 +232,10 @@
 
                     return index;
                 });
+            });
+
+            this.getConferences().then(result => {
+                this.conferences = result.data;
             });
         }
     }
