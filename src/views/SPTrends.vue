@@ -163,9 +163,8 @@
                             }
                         }).then(result => {
                             this.conferenceData = result.data;
+                            this.reloadData();
                         });
-
-                        this.reloadData();
                     });
                 }
             },
@@ -179,7 +178,10 @@
                     let labels = this.results.filter(r => r.team == this.team.school).map(r => r.year);
                     let data = this.results.filter(r => r.team == this.team.school).map(r => this.getValueByKey(r, this.dataPoint.split('.')));
                     let averages = this.results.filter(r => r.team == 'nationalAverages').map(r => this.getValueByKey(r, this.dataPoint.split('.')));
-                    let conferenceAverages = this.conferenceData.map(r => this.getValueByKey(r, this.dataPoint.split('.')));
+                    let conferenceAverages = labels.map(l => {
+                        let item = this.conferenceData.find(d => d.year == l);
+                        return item ? this.getValueByKey(item, this.dataPoint.split('.')) : null;
+                    });
 
                     this.scatterData = {
                         labels: labels,
