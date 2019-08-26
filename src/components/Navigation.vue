@@ -27,6 +27,9 @@
                         <b-dropdown-item>
                             <router-link to='/matchup' class='nav-link text-primary'>Matchups</router-link>
                         </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/predictedpoints' class='nav-link text-primary'>Predicted Points</router-link>
+                        </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item>
                         <router-link to="/contribute" class='nav-link'>Contribute</router-link>
