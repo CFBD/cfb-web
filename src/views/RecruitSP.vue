@@ -3,8 +3,9 @@
         <b-card>
             <b-row>
                 <b-col>
-                    <h1>S&amp;P+ Visualizations</h1>
-                    <p class='lead'>Select a year and two data points to begin generating visualizations.</p>
+                    <h1>SP+ and Recruiting</h1>
+                    <p class='lead'>Select a year, an SP+ metric, and a recruiting position grouping to begin generating
+                        visualizations.</p>
                 </b-col>
             </b-row>
         </b-card>
@@ -20,16 +21,18 @@
                             </b-form-select>
                         </b-col>
                         <b-col lg='3'>
-                            <b-row class='justify-content-center'><label>Data Point 1</label></b-row>
-                                <b-form-select v-model="dataPoint1" :options='dataPoints' @change="updateDataPoint1">
-                                    <option :value="null">Please select a data point</option>
-                                </b-form-select>
+                            <b-row class='justify-content-center'><label>SP+ Metric</label></b-row>
+                            <b-form-select v-model="spMetric" :options='dataPoints' @change="updateSPMetric">
+                                <option :value="null">Please select a data point</option>
+                            </b-form-select>
                         </b-col>
                         <b-col lg='3'>
-                            <b-row class='justify-content-center'><label>Data Point 2</label></b-row>
-                                <b-form-select v-model="dataPoint2" :options='dataPoints' @change="updateDataPoint2">
-                                    <option :value="null">Please select a data point</option>
-                                </b-form-select>
+                            <b-row class='justify-content-center'><label>Recruiting Rating Averages (4 yr)</label>
+                            </b-row>
+                            <b-form-select v-model="recruitingMetric" :options='positionGroups'
+                                @change="updatePositionGroup">
+                                <option :value="null">Please select a recruiting metric</option>
+                            </b-form-select>
                         </b-col>
                         <b-col />
                     </b-row>
@@ -48,7 +51,8 @@
         <b-row>
             <b-col>
                 <b-card>
-                    <matchup-scatter :height='300' :chart-data='scatterData' :options='scatterOptions'></matchup-scatter>
+                    <matchup-scatter :height='300' :chart-data='scatterData' :options='scatterOptions'>
+                    </matchup-scatter>
                 </b-card>
             </b-col>
         </b-row>
@@ -66,8 +70,6 @@
             return {
                 teams: [],
                 years: [
-                    2006,
-                    2007,
                     2008,
                     2009,
                     2010,
@@ -150,6 +152,16 @@
                     value: 'defense.havoc.db',
                     text: 'DB Havoc'
                 }],
+                positionGroups: [
+                    "All Positions",
+                    "Defensive Backs",
+                    "Defensive Line",
+                    "Linebackers",
+                    "Offensive Line",
+                    "Quarterbacks",
+                    "Receivers",
+                    "Running Backs"
+                ],
                 conferences: [
                     "All",
                     "ACC",
@@ -165,10 +177,11 @@
                     "Sun Belt"
                 ],
                 conference: 'All',
-                results: null,
+                spResults: null,
+                recruitingResults: null,
                 year: null,
-                dataPoint1: null,
-                dataPoint2: null,
+                spMetric: null,
+                recruitingMetric: null,
                 scatterData: [],
                 scatterOptions: {
                     legend: {
@@ -182,13 +195,13 @@
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Data Point 2'
+                                labelString: 'Recruiting Metric'
                             }
                         }],
                         xAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Data Point 1'
+                                labelString: 'SP+ Metric'
                             }
                         }]
                     }
@@ -207,17 +220,26 @@
                             year: this.year
                         }
                     }).then(results => {
-                        this.results = results.data.filter(r => r.team != 'nationalAverages');
-                        this.reloadData();
+                        this.spResults = results.data.filter(r => r.team != 'nationalAverages');
+
+                        this.$axios.get('/recruiting/groups', {
+                            params: {
+                                endYear: this.year,
+                                startYear: (this.year - 3)
+                            }
+                        }).then(results => {
+                            this.recruitingResults = results.data;
+                            this.reloadData();
+                        });
                     });
                 }
             },
-            updateDataPoint1(key) {
-                this.dataPoint1 = key;
+            updateSPMetric(key) {
+                this.spMetric = key;
                 this.reloadData();
             },
-            updateDataPoint2(key) {
-                this.dataPoint2 = key;
+            updatePositionGroup(key) {
+                this.recruitingMetric = key;
                 this.reloadData();
             },
             updateConferenceFilter(key) {
@@ -225,21 +247,24 @@
                 this.reloadData();
             },
             reloadData() {
-                if (this.results && this.dataPoint1 && this.dataPoint2) {
-                    this.scatterOptions.title.text = `S&P+`;
+                if (this.spResults && this.spMetric && this.recruitingResults && this.recruitingMetric) {
+                    this.scatterOptions.title.text = `SP+ and Recruiting`;
 
-                    let points = this.results.filter(r => this.conference == 'All' || r.conference == this.conference).map(r => {
-                        let img = new Image();
-                        img.src = `/logos/${this.teams.find(t => t.school == r.team).id}.png`
-                        return img;
-                    });
+                    let points = this.spResults.filter(s => this.conference == 'All' || s.conference == this.conference)
+                        .map(r => {
+                            let img = new Image();
+                            img.src = `/logos/${this.teams.find(t => t.school == r.team).id}.png`
+                            return img;
+                        });
 
                     this.scatterData = {
                         datasets: [{
                             pointStyle: points,
-                            data: this.results.filter(r => this.conference == 'All' || r.conference == this.conference).map(r => ({
-                                x: this.getValueByKey(r, this.dataPoint1.split('.')),
-                                y: this.getValueByKey(r, this.dataPoint2.split('.'))
+                            data: this.spResults.filter(s => this.conference == 'All' || s.conference ==
+                                this.conference).map(r => ({
+                                x: this.getValueByKey(r, this.spMetric.split('.')),
+                                y: this.recruitingResults.find(rr => rr.team == r.team && rr
+                                    .positionGroup == this.recruitingMetric).averageRating
                             }))
                         }]
                     };

@@ -10,6 +10,7 @@ import Matchup from './views/Matchup.vue';
 import SP from './views/SP.vue';
 import SPTrends from './views/SPTrends.vue';
 import PP from './views/PP.vue';
+import RecruitSP from './views/RecruitSP.vue';
 
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ const router = new Router({
             path: '/predictedpoints',
             name: 'predictedPoints',
             component: PP
+        },
+        {
+            path: '/sp/recruiting',
+            name: 'recruitingSP',
+            component: RecruitSP
         }
     ]
 });

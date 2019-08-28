@@ -19,10 +19,13 @@
                     </b-nav-item-dropdown>
                     <b-nav-item-dropdown text='Tools' class='nav-link'>
                         <b-dropdown-item>
-                            <router-link to='/sp' class='nav-link text-primary'>S&amp;P+</router-link>
+                            <router-link to='/sp' class='nav-link text-primary'>SP+</router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
-                            <router-link to='/sp/trends' class='nav-link text-primary'>S&amp;P+ Team Trends</router-link>
+                            <router-link to='/sp/trends' class='nav-link text-primary'>SP+ Team Trends</router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/sp/recruiting' class='nav-link text-primary'>SP+ and Recruiting</router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
                             <router-link to='/matchup' class='nav-link text-primary'>Matchups</router-link>
