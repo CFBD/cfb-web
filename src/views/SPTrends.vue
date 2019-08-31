@@ -174,6 +174,7 @@
             },
             reloadData() {
                 if (this.results && this.dataPoint && this.team) {
+                    this.$ga.event('visualization', 'generation', 'sp-trends');
                     this.scatterOptions.title.text = `Team S&P+ Trends`;
                     let labels = this.results.filter(r => r.team == this.team.school).map(r => r.year);
                     let data = this.results.filter(r => r.team == this.team.school).map(r => this.getValueByKey(r, this.dataPoint.split('.')));

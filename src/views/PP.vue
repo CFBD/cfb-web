@@ -110,6 +110,7 @@
             },
             reloadData() {
                 if (this.down && this.distance) {
+                    this.$ga.event('visualization', 'generation', 'predicted-points');
                     this.$axios.get('/ppa/predicted', {
                         params: {
                             down: this.down,

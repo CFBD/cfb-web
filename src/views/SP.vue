@@ -226,6 +226,7 @@
             },
             reloadData() {
                 if (this.results && this.dataPoint1 && this.dataPoint2) {
+                    this.$ga.event('visualization', 'generation', 'sp');
                     this.scatterOptions.title.text = `S&P+`;
 
                     let points = this.results.filter(r => this.conference == 'All' || r.conference == this.conference).map(r => {

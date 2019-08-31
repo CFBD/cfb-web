@@ -248,6 +248,7 @@
             },
             reloadData() {
                 if (this.spResults && this.spMetric && this.recruitingResults && this.recruitingMetric) {
+                    this.$ga.event('visualization', 'generation', 'recruiting-sp');
                     this.scatterOptions.title.text = `SP+ and Recruiting`;
 
                     let points = this.spResults.filter(s => this.conference == 'All' || s.conference == this.conference)

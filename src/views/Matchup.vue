@@ -213,6 +213,8 @@
                     params.maxYear = this.endYear;
                 }
 
+                this.$ga.event('visualization', 'generation', 'matchup');
+
                 this.$axios.get('/teams/matchup', {
                     params
                 }).then(result => {
