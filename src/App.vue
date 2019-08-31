@@ -44,6 +44,7 @@
     .page-container {
         margin-top: 2em;
         padding-bottom: 2em;
+        margin-bottom: 500px;
 
         .title-card {
             .row {

@@ -11,13 +11,10 @@
                     <b-nav-item>
                         <router-link to="/" class='nav-link'>Home</router-link>
                     </b-nav-item>
-                    <b-nav-item-dropdown text="Data" class='nav-link'>
-                        <b-dropdown-item v-for="tag in this.docs.tags" :key="tag.name">
-                            <router-link :to="`/category/${tag.name}`" class='nav-link text-primary'>{{tag.name |
-                                capitalize}}</router-link>
-                        </b-dropdown-item>
-                    </b-nav-item-dropdown>
-                    <b-nav-item-dropdown text='Tools' class='nav-link'>
+                    <b-nav-item>
+                        <router-link to='/data' class='nav-link'>Data</router-link>
+                    </b-nav-item>
+                    <b-nav-item-dropdown text='Visualizations' class='nav-link'>
                         <b-dropdown-item>
                             <router-link to='/sp' class='nav-link text-primary'>SP+</router-link>
                         </b-dropdown-item>
@@ -53,17 +50,7 @@
 
 <script>
     export default {
-        data() {
-            return {
-                docs: {}
-            }
-        },
-        created() {
-            let self = this;
-            this.$axios.get('/api-docs.json').then((response) => {
-                self.docs = response.data;
-            });
-        }
+
     }
 
 </script>
