@@ -12,6 +12,7 @@ import SPTrends from './views/SPTrends.vue';
 import PP from './views/PP.vue';
 import RecruitSP from './views/RecruitSP.vue';
 import DataPage from './views/DataPage.vue';
+import WP from './views/WP.vue';
 
 Vue.use(Router)
 
@@ -67,6 +68,11 @@ const router = new Router({
             path: '/data',
             name: 'dataPage',
             component: DataPage
+        },
+        {
+            path: '/wp',
+            name: 'wp',
+            component: WP
         }
     ]
 });

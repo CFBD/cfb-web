@@ -30,6 +30,9 @@
                         <b-dropdown-item>
                             <router-link to='/predictedpoints' class='nav-link text-primary'>Predicted Points</router-link>
                         </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/wp' class='nav-link text-primary'>Predicted Win %</router-link>
+                        </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item>
                         <router-link to="/contribute" class='nav-link'>Contribute</router-link>
