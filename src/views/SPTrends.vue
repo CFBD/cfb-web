@@ -26,6 +26,16 @@
                         </b-col>
                         <b-col />
                     </b-row>
+                    <b-row>
+                        <b-col />
+                        <b-col lg='3'>
+                            <b-row class='justify-content-center'><label>Comparison team (optional)</label></b-row>
+                            <autocomplete display-prop='school' placeholder='Select a team...' :items='teams'
+                                @selection='updateTeam2($event)'></autocomplete>
+                        </b-col>
+                        <b-col lg='3' />
+                        <b-col />
+                    </b-row>
                 </b-card>
             </b-col>
         </b-row>
@@ -124,8 +134,10 @@
                     text: 'DB Havoc'
                 }],
                 results: null,
+                results2: null,
                 year: null,
                 team: null,
+                team2: null,
                 dataPoint: null,
                 scatterData: [],
                 conferenceData: [],
@@ -168,6 +180,23 @@
                     });
                 }
             },
+            updateTeam2(team) {
+                if (team) {
+                    this.team2 = team;
+                    this.$axios.get('/ratings/sp', {
+                        params: {
+                            team: this.team2.school
+                        }
+                    }).then(results => {
+                        this.results2 = results.data;
+                        this.reloadData();
+                    });
+                } else {
+                    this.team2 = null;
+                    this.results2 = null;
+                    this.reloadData();
+                }
+            },
             updateDataPoint(key) {
                 this.dataPoint = key;
                 this.reloadData();
@@ -184,10 +213,8 @@
                         return item ? this.getValueByKey(item, this.dataPoint.split('.')) : null;
                     });
 
-                    this.scatterData = {
-                        labels: labels,
-                        datasets: [{
-                            pointRadius: 10,
+                    let datasets = [{
+                            pointRadius: 5,
                             borderColor: this.team.color,
                             fill: false,
                             label: this.team.school,
@@ -199,14 +226,30 @@
                             fill: false,
                             label: 'National Average',
                             data: averages
-                        },{
+                        }];
+
+                    if (this.team2 && this.results2) {
+                        datasets.push({
+                            pointRadius: 5,
+                            borderColor: this.team2.color,
+                            fill: false,
+                            label: this.team2.school,
+                            data: this.results2.filter(r => r.team == this.team2.school).map(r => this.getValueByKey(r, this.dataPoint.split('.')))
+                        })
+                    } else {
+                        datasets.push({
                             borderDash: [5, 10],
                             pointRadius: 0,
                             borderColor: '#a9e7e8',
                             fill: false,
                             label: `${this.team.conference} Average`,
                             data: conferenceAverages
-                        }]
+                        });
+                    }
+
+                    this.scatterData = {
+                        labels: labels,
+                        datasets
                     };
                 }
             },
