@@ -236,7 +236,9 @@
                             label: this.team2.school,
                             data: this.results2.filter(r => r.team == this.team2.school).map(r => this.getValueByKey(r, this.dataPoint.split('.')))
                         })
-                    } else {
+                    }
+
+                    if (!(this.team2 && this.results2) || (this.team2 && this.team.conference == this.team2.conference)) {
                         datasets.push({
                             borderDash: [5, 10],
                             pointRadius: 0,
