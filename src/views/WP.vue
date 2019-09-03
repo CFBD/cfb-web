@@ -68,13 +68,15 @@
                             }
                         }],
                         xAxes: [{
+                            type: 'linear',
                             ticks: {
                                 min: 0,
-                                max: 3600
+                                max: 4,
+                                stepSize: 1
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Time'
+                                labelString: 'End of Quarter'
                             }
                         }]
                     }
@@ -113,22 +115,23 @@
                     this.title = `${away} vs ${home}`;
                     this.$ga.event('visualization', 'generation', 'wp-chart');
                     this.scatterOptions.title.text = `Predicted Win Probability`;
-                    let labels = this.results.map(r => (3600 - r.time_remaining));
+
+                    let ctx = document.getElementById('line-chart').getContext('2d');
+
+                    let gradient = ctx.createLinearGradient(0,(ctx.canvas.clientHeight * .41),0,(ctx.canvas.clientHeight * .60));
+                    gradient.addColorStop(0, homeTeam.color);
+                    gradient.addColorStop(1, awayTeam.color);
 
                     this.scatterData = {
-                        labels: labels,
                         datasets: [{
                             pointRadius: 0,
-                            borderColor: homeTeam.color,
+                            borderColor: gradient,
                             fill: false,
-                            label: homeTeam.school,
-                            data: this.results.map(r => r.output)
-                        },{
-                            pointRadius: 0,
-                            borderColor: awayTeam.color,
-                            fill: false,
-                            label: awayTeam.school,
-                            data: this.results.map(r => (100 - r.output))
+                            label: `${homeTeam.school} %`,
+                            data: this.results.map(r => ({
+                                x: (3600 - r.time_remaining) / 900,
+                                y: r.output
+                            }))
                         }]
                     };
                 }
