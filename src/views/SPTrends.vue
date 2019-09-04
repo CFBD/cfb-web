@@ -148,6 +148,24 @@
                     title: {
                         display: true,
                         text: ''
+                    },
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Rating'
+                            }
+                        }],
+                        xAxes: [{
+                            type: 'linear',
+                            ticks: {
+                                stepSize: 10
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Year'
+                            }
+                        }]
                     }
                 }
             }
@@ -205,13 +223,12 @@
                 if (this.results && this.dataPoint && this.team) {
                     this.$ga.event('visualization', 'generation', 'sp-trends');
                     this.scatterOptions.title.text = `Team S&P+ Trends`;
-                    let labels = this.results.filter(r => r.team == this.team.school).map(r => r.year);
-                    let data = this.results.filter(r => r.team == this.team.school).map(r => this.getValueByKey(r, this.dataPoint.split('.')));
-                    let averages = this.results.filter(r => r.team == 'nationalAverages').map(r => this.getValueByKey(r, this.dataPoint.split('.')));
-                    let conferenceAverages = labels.map(l => {
-                        let item = this.conferenceData.find(d => d.year == l);
-                        return item ? this.getValueByKey(item, this.dataPoint.split('.')) : null;
-                    });
+                    let data = this.results.filter(r => r.team == this.team.school).map(r => ({ x: r.year, y: this.getValueByKey(r, this.dataPoint.split('.'))})).filter(r => r.y);
+                    let averages = this.results.filter(r => r.team == 'nationalAverages').map(r => ({ x: r.year, y: this.getValueByKey(r, this.dataPoint.split('.'))})).filter(r => r.y);
+                    let conferenceAverages = data.map(l => {
+                        let item = this.conferenceData.find(d => d.year == l.x);
+                        return item ? { x: l.x, y: this.getValueByKey(item, this.dataPoint.split('.')) } : null;
+                    }).filter(l => l && l.y);
 
                     let datasets = [{
                             pointRadius: 5,
@@ -234,7 +251,7 @@
                             borderColor: this.team2.color,
                             fill: false,
                             label: this.team2.school,
-                            data: this.results2.filter(r => r.team == this.team2.school).map(r => this.getValueByKey(r, this.dataPoint.split('.')))
+                            data: this.results2.filter(r => r.team == this.team2.school).map(r => ({ x: r.year, y: this.getValueByKey(r, this.dataPoint.split('.'))})).filter(r => r.y)
                         })
                     }
 
@@ -250,7 +267,6 @@
                     }
 
                     this.scatterData = {
-                        labels: labels,
                         datasets
                     };
                 }
