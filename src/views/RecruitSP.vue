@@ -249,7 +249,12 @@
             reloadData() {
                 if (this.spResults && this.spMetric && this.recruitingResults && this.recruitingMetric) {
                     this.$ga.event('visualization', 'generation', 'recruiting-sp');
-                    this.scatterOptions.title.text = `SP+ and Recruiting`;
+
+                    let options = Object.assign({}, this.scatterOptions);
+                    options.title.text = `${this.year} SP+/Recruiting${this.conference == 'All' ? '' : ` (${this.conference})`}`;
+                    options.scales.yAxes[0].scaleLabel.labelString = this.recruitingMetric;
+                    options.scales.xAxes[0].scaleLabel.labelString = this.dataPoints.find(d => d.value == this.spMetric).text;
+                    this.scatterOptions = options;
 
                     let points = this.spResults.filter(s => this.conference == 'All' || s.conference == this.conference)
                         .map(r => {

@@ -227,7 +227,12 @@
             reloadData() {
                 if (this.results && this.dataPoint1 && this.dataPoint2) {
                     this.$ga.event('visualization', 'generation', 'sp');
-                    this.scatterOptions.title.text = `S&P+`;
+
+                    let options = Object.assign({}, this.scatterOptions);
+                    options.title.text = `${this.year} SP+${this.conference == 'All' ? '' : ` (${this.conference})`}`;
+                    options.scales.yAxes[0].scaleLabel.labelString = this.dataPoints.find(d => d.value == this.dataPoint2).text;
+                    options.scales.xAxes[0].scaleLabel.labelString = this.dataPoints.find(d => d.value == this.dataPoint1).text;
+                    this.scatterOptions = options;
 
                     let points = this.results.filter(r => this.conference == 'All' || r.conference == this.conference).map(r => {
                         let img = new Image();

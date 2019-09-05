@@ -8,6 +8,11 @@
         mixins: [reactiveProp],
         mounted() {
             this.renderChart(this.chartData, this.options);
+        },
+        watch: {
+            options: function () {
+                this.renderChart(this.chartData, this.options);
+            }
         }
     }
 
