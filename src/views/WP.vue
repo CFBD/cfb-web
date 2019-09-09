@@ -130,7 +130,7 @@
                             label: `${homeTeam.school} %`,
                             data: this.results.map(r => ({
                                 x: (3600 - r.time_remaining) / 900,
-                                y: r.output
+                                y: r.homeWinProb * 100
                             }))
                         }]
                     };
