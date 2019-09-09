@@ -33,9 +33,13 @@
     .category-button {
         width: 100%;
         height: 100px;
+        padding: 0;
 
         a {
             color: white;
+            display: block;
+            height: 100px;
+            line-height: 100px;
             &:hover {
                 text-decoration: none;
             }
