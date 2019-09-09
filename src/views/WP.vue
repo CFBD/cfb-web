@@ -109,8 +109,8 @@
                     const home = this.results[0].home;
                     const away = this.results[0].away;
 
-                    const homeTeam = this.teams.find(t => t.id == this.results[0].home_id);
-                    const awayTeam = this.teams.find(t => t.id == this.results[0].away_id);
+                    const homeTeam = this.teams.find(t => t.id == this.results[0].homeId);
+                    const awayTeam = this.teams.find(t => t.id == this.results[0].awayId);
 
                     this.title = `${away} vs ${home}`;
                     this.$ga.event('visualization', 'generation', 'wp-chart');
@@ -129,7 +129,7 @@
                             fill: false,
                             label: `${homeTeam.school} %`,
                             data: this.results.map(r => ({
-                                x: (3600 - r.time_remaining) / 900,
+                                x: (3600 - r.timeRemaining) / 900,
                                 y: r.homeWinProb * 100
                             }))
                         }]
