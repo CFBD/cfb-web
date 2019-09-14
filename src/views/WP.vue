@@ -118,7 +118,7 @@
 
                     let ctx = document.getElementById('line-chart').getContext('2d');
 
-                    let gradient = ctx.createLinearGradient(0,(ctx.canvas.clientHeight * .41),0,(ctx.canvas.clientHeight * .60));
+                    let gradient = ctx.createLinearGradient(0,(ctx.canvas.clientHeight * .31),0,(ctx.canvas.clientHeight * .7));
                     gradient.addColorStop(0, homeTeam.color);
                     gradient.addColorStop(1, awayTeam.color);
 
