@@ -71,12 +71,11 @@
                             type: 'linear',
                             ticks: {
                                 min: 0,
-                                max: 4,
                                 stepSize: 1
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: 'End of Quarter'
+                                labelString: 'Play Number'
                             }
                         }]
                     }
@@ -118,7 +117,8 @@
 
                     let ctx = document.getElementById('line-chart').getContext('2d');
 
-                    let gradient = ctx.createLinearGradient(0,(ctx.canvas.clientHeight * .31),0,(ctx.canvas.clientHeight * .7));
+                    let gradient = ctx.createLinearGradient(0, (ctx.canvas.clientHeight * .0), 0, (ctx.canvas
+                        .clientHeight));
                     gradient.addColorStop(0, homeTeam.color);
                     gradient.addColorStop(1, awayTeam.color);
 
@@ -129,10 +129,44 @@
                             fill: false,
                             label: `${homeTeam.school} %`,
                             data: this.results.map(r => ({
-                                x: (3600 - r.timeRemaining) / 900,
+                                x: r.playNumber,
                                 y: r.homeWinProb * 100
                             }))
                         }]
+                    };
+
+                    this.scatterOptions = {
+                        legend: {
+                            display: true
+                        },
+                        title: {
+                            display: true,
+                            text: ''
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 100
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Win Percentage'
+                                }
+                            }],
+                            xAxes: [{
+                                type: 'linear',
+                                ticks: {
+                                    min: 0,
+                                    max: (this.results.length + 1),
+                                    stepSize: 1
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Play Number'
+                                }
+                            }]
+                        }
                     };
                 }
             }
