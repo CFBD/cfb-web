@@ -65,21 +65,7 @@
         data() {
             return {
                 teams: [],
-                years: [
-                    2006,
-                    2007,
-                    2008,
-                    2009,
-                    2010,
-                    2011,
-                    2012,
-                    2013,
-                    2014,
-                    2015,
-                    2016,
-                    2017,
-                    2018
-                ],
+                years: [],
                 dataPoints: [{
                     value: 'rating',
                     text: 'Overall Rating'
@@ -91,64 +77,84 @@
                     text: 'Defensive Rating'
                 }, {
                     value: 'specialTeams.rating',
-                    text: 'Special Teams Rating'
+                    text: 'Special Teams Rating',
+                    disabled: false
                 }, {
                     value: 'sos',
-                    text: 'Strength of Schedule'
+                    text: 'Strength of Schedule',
+                    disabled: false
                 }, {
                     value: 'secondOrderWins',
-                    text: 'Second Order Wins'
+                    text: 'Second Order Wins',
+                    disabled: false
                 }, {
                     value: 'offense.success',
-                    text: 'Offensive Success'
+                    text: 'Offensive Success',
+                    disabled: false
                 }, {
                     value: 'offense.explosiveness',
-                    text: 'Offensive Explosiveness'
+                    text: 'Offensive Explosiveness',
+                    disabled: false
                 }, {
                     value: 'offense.rushing',
-                    text: 'Rushing Offense'
+                    text: 'Rushing Offense',
+                    disabled: false
                 }, {
                     value: 'offense.passing',
-                    text: 'Passing Offense'
+                    text: 'Passing Offense',
+                    disabled: false
                 }, {
                     value: 'offense.standardDowns',
-                    text: 'Standard Down Offense'
+                    text: 'Standard Down Offense',
+                    disabled: false
                 }, {
                     value: 'offense.passingDowns',
-                    text: 'Passing Down Offense'
+                    text: 'Passing Down Offense',
+                    disabled: false
                 }, {
                     value: 'offense.runRate',
-                    text: 'Run Rate'
+                    text: 'Run Rate',
+                    disabled: false
                 }, {
                     value: 'offense.pace',
-                    text: 'Pace'
+                    text: 'Pace',
+                    disabled: false
                 }, {
                     value: 'defense.success',
-                    text: 'Defensive Success'
+                    text: 'Defensive Success',
+                    disabled: false
                 }, {
                     value: 'defense.explosiveness',
-                    text: 'Defensive Exposiveness'
+                    text: 'Defensive Exposiveness',
+                    disabled: false
                 }, {
                     value: 'defense.rushing',
-                    text: 'Rushing Defense'
+                    text: 'Rushing Defense',
+                    disabled: false
                 }, {
                     value: 'defense.passing',
-                    text: 'Passing Defense'
+                    text: 'Passing Defense',
+                    disabled: false
                 }, {
                     value: 'defense.standardDowns',
-                    text: 'Standard Down Defense'
+                    text: 'Standard Down Defense',
+                    disabled: false
                 }, {
                     value: 'defense.passingDowns',
-                    text: 'Passing Down Defense'
+                    text: 'Passing Down Defense',
+                    disabled: false
                 }, {
                     value: 'defense.havoc.total',
-                    text: 'Total Havoc'
+                    text: 'Total Havoc',
+                    disabled: false
                 }, {
                     value: 'defense.havoc.frontSeven',
-                    text: 'Front 7 Havoc'
+                    text: 'Front 7 Havoc',
+                    disabled: false
                 }, {
                     value: 'defense.havoc.db',
-                    text: 'DB Havoc'
+                    text: 'DB Havoc',
+                    disabled: false
                 }],
                 conferences: [
                     "All",
@@ -202,6 +208,10 @@
             refreshData(year) {
                 if (year) {
                     this.year = year;
+                    for (let dataPoint of this.dataPoints.filter(dp => dp.disabled !== undefined)) {
+                        dataPoint.disabled = year === 2019 || year < 2005;
+                    }
+
                     this.$axios.get('/ratings/sp', {
                         params: {
                             year: this.year
@@ -259,6 +269,11 @@
             }
         },
         created() {
+            this.years = [];
+            for (let year = 2019; year > 1971; year--) {
+                this.years.push(year);
+            }
+
             this.getTeams().then(result => {
                 this.teams = result.data.sort((a, b) => {
                     let index = 0;
