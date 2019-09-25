@@ -1,8 +1,9 @@
 # stage-1: build dist folder
-FROM node:alpine as build
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json", "/usr/src/app/"]
-RUN npm install --silent
+FROM node:10-alpine as build
+RUN mkdir -p /home/node/app/node_modules && mkdir -p /home/node/app/dist
+WORKDIR /home/node/app
+COPY package*.json ./
+RUN npm install
 COPY . .
 RUN npm run build
 
@@ -10,4 +11,4 @@ RUN npm run build
 FROM nginx:alpine
 EXPOSE 80
 COPY default.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+COPY --from=build /home/node/app/dist /usr/share/nginx/html
