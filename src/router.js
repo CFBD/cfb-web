@@ -13,6 +13,7 @@ import PP from './views/PP.vue';
 import RecruitSP from './views/RecruitSP.vue';
 import DataPage from './views/DataPage.vue';
 import WP from './views/WP.vue';
+import MeanPassingPPA from './views/MeanPassingPPA.vue';
 
 Vue.use(Router)
 
@@ -73,6 +74,11 @@ const router = new Router({
             path: '/wp',
             name: 'wp',
             component: WP
+        },
+        {
+            path: '/ppa/passing/mean',
+            name: 'meanPassingPPA',
+            component: MeanPassingPPA
         }
     ]
 });

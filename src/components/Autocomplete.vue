@@ -134,7 +134,7 @@
         watch: {
             items: function (val, oldValue) {
                 // actually compare them
-                if (val.length !== oldValue.length) {
+                if (val.length !== oldValue.length || this.isAsync) {
                     this.results = val;
                     this.isLoading = false;
                 }
