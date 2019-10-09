@@ -34,6 +34,9 @@
                             <router-link to='/wp' class='nav-link text-primary'>Predicted Win %</router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
+                    <b-nav-item href="https://predictions.collegefootballdata.com">
+                        <a href="https://predictions.collegefootballdata.com" class='nav-link'>Pick'em Contest</a>
+                    </b-nav-item>
                     <b-nav-item>
                         <router-link to="/contribute" class='nav-link'>Contribute</router-link>
                     </b-nav-item>
