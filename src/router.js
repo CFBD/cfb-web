@@ -76,8 +76,8 @@ const router = new Router({
             component: WP
         },
         {
-            path: '/ppa/passing/mean',
-            name: 'meanPassingPPA',
+            path: '/ppa/passing/cumulative',
+            name: 'cumulativePassingPPA',
             component: MeanPassingPPA
         }
     ]
