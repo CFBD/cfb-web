@@ -14,6 +14,7 @@ import RecruitSP from './views/RecruitSP.vue';
 import DataPage from './views/DataPage.vue';
 import WP from './views/WP.vue';
 import MeanPassingPPA from './views/MeanPassingPPA.vue';
+import PPAUsage from './views/PPAUsage.vue';
 
 Vue.use(Router)
 
@@ -79,6 +80,11 @@ const router = new Router({
             path: '/ppa/passing/cumulative',
             name: 'cumulativePassingPPA',
             component: MeanPassingPPA
+        },
+        {
+            path: '/ppa/usage',
+            name: 'ppaUsage',
+            component: PPAUsage
         }
     ]
 });

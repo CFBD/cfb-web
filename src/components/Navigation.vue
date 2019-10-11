@@ -36,6 +36,9 @@
                         <b-dropdown-item>
                             <router-link to='/ppa/passing/cumulative' class='nav-link text-primary'>Cumulative Avg PPA</router-link>
                         </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/ppa/usage' class='nav-link text-primary'>Player PPA &amp; Usage</router-link>
+                        </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item href="https://predictions.collegefootballdata.com">
                         <a href="https://predictions.collegefootballdata.com" class='nav-link'>Pick'em Contest</a>
