@@ -1,5 +1,5 @@
 <template>
-    <autocomplete :is-async='true' display-prop='name' @input='queryPlayers' @selection='emitSelection' :items='players' />
+    <autocomplete :clear-on-selection='clearOnSelection' :is-async='true' display-prop='name' @input='queryPlayers' @selection='emitSelection' :items='players' />
 </template>
 
 <script>
@@ -11,6 +11,11 @@
             Autocomplete
         },
         props: {
+            clearOnSelection: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
             position: {
                 type: String,
                 required: false,
@@ -43,6 +48,9 @@
             },
             emitSelection(selectedPlayer) {
                 this.$emit('selection', selectedPlayer);
+                if (this.clearOnSelection) {
+                    this.players = [];
+                }
             }
         }
     }

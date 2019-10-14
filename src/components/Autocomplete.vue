@@ -60,6 +60,11 @@
                 type: String,
                 required: false,
                 default: 'Start typing to get suggestions...'
+            },
+            clearOnSelection: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
         data() {
@@ -99,7 +104,7 @@
                 }).slice(0, this.maxResults);
             },
             setResult(result) {
-                this.search = result && this.displayProp ? result[this.displayProp] : result;
+                this.search = this.clearOnSelection ? null : result && this.displayProp ? result[this.displayProp] : result;
                 this.isOpen = false;
                 this.selected = result && this.valueProp ? result[this.valueProp] : result;
                 this.$emit('selection', this.selected);
