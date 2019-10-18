@@ -14,7 +14,7 @@
                     <b-nav-item>
                         <router-link to='/data' class='nav-link'>Data</router-link>
                     </b-nav-item>
-                    <b-nav-item-dropdown text='Visualizations' class='nav-link'>
+                    <b-nav-item-dropdown text='Charts' class='nav-link'>
                         <b-dropdown-item>
                             <router-link to='/sp' class='nav-link text-primary'>SP+</router-link>
                         </b-dropdown-item>
@@ -22,22 +22,26 @@
                             <router-link to='/sp/trends' class='nav-link text-primary'>SP+ Team Trends</router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
-                            <router-link to='/sp/recruiting' class='nav-link text-primary'>SP+ and Recruiting</router-link>
+                            <router-link to='/sp/recruiting' class='nav-link text-primary'>SP+ and Recruiting
+                            </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
                             <router-link to='/matchup' class='nav-link text-primary'>Matchups</router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
-                            <router-link to='/predictedpoints' class='nav-link text-primary'>Predicted Points</router-link>
+                            <router-link to='/predictedpoints' class='nav-link text-primary'>Predicted Points
+                            </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
                             <router-link to='/wp' class='nav-link text-primary'>Predicted Win %</router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
-                            <router-link to='/ppa/passing/cumulative' class='nav-link text-primary'>Cumulative Avg PPA</router-link>
+                            <router-link to='/ppa/passing/cumulative' class='nav-link text-primary'>Cumulative Avg PPA
+                            </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
-                            <router-link to='/ppa/usage' class='nav-link text-primary'>Player PPA &amp; Usage</router-link>
+                            <router-link to='/ppa/usage' class='nav-link text-primary'>Player PPA &amp; Usage
+                            </router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item href="https://predictions.collegefootballdata.com">
