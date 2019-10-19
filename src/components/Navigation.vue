@@ -43,6 +43,10 @@
                             <router-link to='/ppa/usage' class='nav-link text-primary'>Player PPA &amp; Usage
                             </router-link>
                         </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/metrics/season' class='nav-link text-primary'>Team Metrics
+                            </router-link>
+                        </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item href="https://predictions.collegefootballdata.com">
                         <a href="https://predictions.collegefootballdata.com" class='nav-link'>Pick'em Contest</a>

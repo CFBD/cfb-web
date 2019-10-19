@@ -15,6 +15,7 @@ import DataPage from './views/DataPage.vue';
 import WP from './views/WP.vue';
 import MeanPassingPPA from './views/MeanPassingPPA.vue';
 import PPAUsage from './views/PPAUsage.vue';
+import SeasonMetrics from './views/SeasonMetrics.vue';
 
 Vue.use(Router)
 
@@ -85,6 +86,11 @@ const router = new Router({
             path: '/ppa/usage',
             name: 'ppaUsage',
             component: PPAUsage
+        },
+        {
+            path: '/metrics/season',
+            name: 'seasonMetrics',
+            component: SeasonMetrics
         }
     ]
 });
