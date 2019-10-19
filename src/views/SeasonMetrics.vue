@@ -210,7 +210,7 @@
                 this.reloadData();
             },
             reloadData() {
-                if (this.results && this.dataPoint1.statType && this.dataPoint1.metricType && this.dataPoint1.playFilter && this.dataPoint2.statType && this.dataPoint2.metricType && this.dataPoint2.playFilter) {
+                if (this.results && this.dataPoint1.statType && this.dataPoint1.metricType && this.dataPoint2.statType && this.dataPoint2.metricType) {
                     this.$ga.event('visualization', 'generation', 'season-metrics');
 
                     let points = this.results.filter(r => this.conference == 'All' || r.conference == this.conference).map(r => {
