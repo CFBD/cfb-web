@@ -11,14 +11,7 @@
         <b-row>
             <b-col>
                 <b-card>
-                    <b-row>
-                        <b-col />
-                        <b-col lg='3'>
-                            <b-row class='justify-content-center'><label>Game Id</label></b-row>
-                            <b-form-input type='text' @change='refreshData($event)'></b-form-input>
-                        </b-col>
-                        <b-col />
-                    </b-row>
+                    <game-search :clear-on-selection='true' @selection='refreshData' />
                 </b-card>
             </b-col>
         </b-row>
@@ -35,10 +28,12 @@
 
 <script>
     import WinHistory from '@/components/WinHistory.vue';
+    import GameSearch from '@/components/GameSearch.vue';
 
     export default {
         components: {
-            WinHistory
+            WinHistory,
+            GameSearch
         },
         data() {
             return {
@@ -89,19 +84,17 @@
             getConferences() {
                 return this.$axios.get('/conferences');
             },
-            refreshData(gameId) {
-                if (gameId) {
-                    this.gameId = gameId;
-                    this.$axios.get('/metrics/wp', {
-                        params: {
-                            gameId: this.gameId
-                        }
-                    }).then(results => {
-                        this.results = results.data;
+            refreshData(game) {
+                this.gameId = game.id;
+                this.$axios.get('/metrics/wp', {
+                    params: {
+                        gameId: this.gameId
+                    }
+                }).then(results => {
+                    this.results = results.data;
 
-                        this.reloadData();
-                    });
-                }
+                    this.reloadData();
+                });
             },
             reloadData() {
                 if (this.results && this.results.length) {
