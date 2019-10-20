@@ -54,6 +54,20 @@
             return {
                 title: 'Cumulative Average PPA per Dropback',
                 players: [],
+                lineStyles: [
+                    [],
+                    [5],
+                    [5, 3],
+                    [5, 5, 10],
+                    [5, 10],
+                    [10, 5],
+                    [5, 1, 5],
+                    [10, 5, 10],
+                    [10, 1, 10],
+                    [5, 10, 5],
+                    [5, 10, 10],
+                    [5, 10, 15]
+                ],
                 chartData: {
                     datasets: []
                 },
@@ -102,6 +116,7 @@
                         let data = Object.assign({}, this.chartData);
                         data.datasets.push({
                             pointRadius: 0,
+                            borderDash: this.lineStyles[(this.players.length - 1) % 12],
                             borderColor: player.teamColor,
                             fill: false,
                             label: player.name,
@@ -120,6 +135,10 @@
                 let data = Object.assign({}, this.chartData);
                 data.datasets.splice(index, 1);
                 this.players.splice(index, 1);
+
+                for (let i = 0; i < this.players.length; i++) {
+                    data.datasets[i].borderDash = this.lineStyles[i];
+                }
                 this.chartData = data;
             }
         }
