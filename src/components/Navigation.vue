@@ -14,6 +14,9 @@
                     <b-nav-item>
                         <router-link to='/data' class='nav-link'>Data</router-link>
                     </b-nav-item>
+                    <b-nav-item>
+                        <router-link to='/boxscore' class='nav-link'>Box Scores</router-link>
+                    </b-nav-item>
                     <b-nav-item-dropdown text='Charts' class='nav-link'>
                         <b-dropdown-item>
                             <router-link to='/sp' class='nav-link text-primary'>SP+</router-link>

@@ -16,6 +16,7 @@ import WP from './views/WP.vue';
 import MeanPassingPPA from './views/MeanPassingPPA.vue';
 import PPAUsage from './views/PPAUsage.vue';
 import SeasonMetrics from './views/SeasonMetrics.vue';
+import BoxScore from './views/BoxScore.vue';
 
 Vue.use(Router)
 
@@ -91,6 +92,11 @@ const router = new Router({
             path: '/metrics/season',
             name: 'seasonMetrics',
             component: SeasonMetrics
+        },
+        {
+            path: '/boxscore',
+            name: 'boxscore',
+            component: BoxScore
         }
     ]
 });
