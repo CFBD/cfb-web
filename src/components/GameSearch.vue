@@ -60,6 +60,11 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            onlyCompleted: {
+                type: Boolean,
+                required: false,
+                default: true
             }
         },
         data() {
@@ -127,7 +132,7 @@
                         homeScore: r.home_points,
                         awayTeam: r.away_team,
                         awayScore: r.away_points
-                    }));
+                    })).filter(g => this.onlyCompleted == false || g.homeScore);
                 });
             },
             emitSelection(selectedGame) {
