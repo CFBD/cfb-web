@@ -108,6 +108,22 @@
                 }, {
                     value: 'explosiveness',
                     text: 'Explosiveness'
+                }, {
+                    value: 'powerSuccess',
+                    text: 'Power Success',
+                    disabled: false
+                }, {
+                    value: 'stuffRate',
+                    text: 'Stuff Rate',
+                    disabled: false
+                }, {
+                    value: 'secondLevelYards',
+                    text: 'Second Level Yards',
+                    disabled: false
+                }, {
+                    value: 'openFieldYards',
+                    text: 'Open Field Yards',
+                    disabled: false
                 }],
                 metricTypes2: [{
                     value: 'rate',
@@ -122,6 +138,22 @@
                 }, {
                     value: 'explosiveness',
                     text: 'Explosiveness'
+                }, {
+                    value: 'powerSuccess',
+                    text: 'Power Success',
+                    disabled: false
+                }, {
+                    value: 'stuffRate',
+                    text: 'Stuff Rate',
+                    disabled: false
+                }, {
+                    value: 'secondLevelYards',
+                    text: 'Second Level Yards',
+                    disabled: false
+                }, {
+                    value: 'openFieldYards',
+                    text: 'Open Field Yards',
+                    disabled: false
                 }],
                 conferences: [
                     "All",
@@ -186,6 +218,10 @@
             updatePlayFilter1(key) {
                 this.dataPoint1.playFilter = key;
                 this.metricTypes1[0].disabled = key == '' ? true : false;
+                this.metricTypes1[4].disabled = key == '' ? false : true;
+                this.metricTypes1[5].disabled = key == '' ? false : true;
+                this.metricTypes1[6].disabled = key == '' ? false : true;
+                this.metricTypes1[7].disabled = key == '' ? false : true;
                 this.reloadData();
             },
             updateMetricType1(key) {
@@ -199,6 +235,10 @@
             updatePlayFilter2(key) {
                 this.dataPoint2.playFilter = key;
                 this.metricTypes2[0].disabled = key == '' ? true : false;
+                this.metricTypes2[4].disabled = key == '' ? false : true;
+                this.metricTypes2[5].disabled = key == '' ? false : true;
+                this.metricTypes2[6].disabled = key == '' ? false : true;
+                this.metricTypes2[7].disabled = key == '' ? false : true;
                 this.reloadData();
             },
             updateMetricType2(key) {
