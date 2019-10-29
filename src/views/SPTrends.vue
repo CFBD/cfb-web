@@ -257,7 +257,7 @@
 
                     if (!(this.team2 && this.results2) || (this.team2 && this.team.conference == this.team2.conference)) {
                         datasets.push({
-                            borderDash: [5, 10],
+                            borderDash: [10, 5],
                             pointRadius: 0,
                             borderColor: '#a9e7e8',
                             fill: false,
