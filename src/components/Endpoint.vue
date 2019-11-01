@@ -380,7 +380,7 @@
             }
         },
         created() {
-            if (this.endpoint) {
+            if (this.endpoint && this.endpoint.path && this.endpoint.path.get && this.endpoint.path.get.parameters) {
                 for (let parameter of this.endpoint.path.get.parameters) {
                     let value = parameter.default ? parameter.default : null;
                     this.queryParams.push({
