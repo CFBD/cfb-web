@@ -17,10 +17,17 @@
         </b-row>
         <b-row v-if='game && gameData'>
             <b-col>
-                <b-card :title='`${game.homeTeam} ${game.homeScore}, ${game.awayTeam} ${game.awayScore}`' sub-title='Note: Garbage time is filtered from player stats' class='box-score-card'>
+                <b-card :title='`${game.homeTeam} ${game.homeScore}, ${game.awayTeam} ${game.awayScore}`'
+                    sub-title='Note: Garbage time is filtered from player stats' class='box-score-card'>
                     <b-row>
                         <b-col lg='6' class='team-column'>
                             <h5>Team Metrics</h5>
+                            <hr>
+                            <b-row class='justify-content-center'>
+                                <h6><strong>Rushing</strong></h6>
+                                <b-table :items='rushingMetrics' :fields='rushingFields' small responsive>
+                                </b-table>
+                            </b-row>
                             <hr>
                             <b-row class='justify-content-center'>
                                 <h6><strong>Predicted Points Added</strong></h6>
@@ -137,7 +144,7 @@
                 }, {
                     key: 'quarter1',
                     label: '1'
-                },{
+                }, {
                     key: 'quarter2',
                     label: '2'
                 }, {
@@ -162,7 +169,7 @@
                     key: 'quarter1',
                     label: '1',
                     sortable: true
-                },{
+                }, {
                     key: 'quarter2',
                     label: '2',
                     sortable: true
@@ -339,9 +346,58 @@
                     rushing: d.cumulative.rushing,
                     passing: d.cumulative.passing
                 }));
+            },
+            rushingFields() {
+                if (!this.gameData) {
+                    return [];
+                }
+
+                return [{
+                    key: 'metric',
+                    label: '',
+                    class: 'text-left'
+                }, {
+                    key: 'team1',
+                    label: this.gameData.teams.rushing[0].team
+                }, {
+                    key: 'team2',
+                    label: this.gameData.teams.rushing[1].team
+                }];
+            },
+            rushingMetrics() {
+                if (!this.gameData) {
+                    return [];
+                }
+
+                return [{
+                    metric: 'Power Success',
+                    team1: this.gameData.teams.rushing[0].powerSuccess,
+                    team2: this.gameData.teams.rushing[1].powerSuccess
+                }, {
+                    metric: 'Stuff Rate',
+                    team1: this.gameData.teams.rushing[0].stuffRate,
+                    team2: this.gameData.teams.rushing[1].stuffRate
+                }, {
+                    metric: 'Second Level Yards',
+                    team1: this.gameData.teams.rushing[0].secondLevelYards,
+                    team2: this.gameData.teams.rushing[1].secondLevelYards
+                }, {
+                    metric: 'Second Level Yards per Rush',
+                    team1: this.gameData.teams.rushing[0].secondLevelYardsAverage,
+                    team2: this.gameData.teams.rushing[1].secondLevelYardsAverage
+                }, {
+                    metric: 'Open Field Yards',
+                    team1: this.gameData.teams.rushing[0].openFieldYards,
+                    team2: this.gameData.teams.rushing[1].openFieldYards
+                }, {
+                    metric: 'Open Field Yards per Rush',
+                    team1: this.gameData.teams.rushing[0].openFieldYardsAverage,
+                    team2: this.gameData.teams.rushing[1].openFieldYardsAverage
+                }]
             }
         }
     }
+
 </script>
 
 <style lang='scss'>
@@ -354,4 +410,5 @@
             width: 90%;
         }
     }
+
 </style>
