@@ -216,9 +216,10 @@
                             datasets: [{
                                 labels: this.tooltips,
                                 pointRadius: 5,
+                                pointBorderWidth: 3,
                                 pointBorderColor: playerData.map(r => r
                                     .team.color),
-                                pointBackgroundColor: playerData.map(r => r.team.color),
+                                pointBackgroundColor: playerData.map(r => r.team.alt_color),
                                 data: playerData.map(r => ({
                                     x: r.ppa,
                                     y: r.usage,

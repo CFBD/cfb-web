@@ -41,7 +41,13 @@
             <hr class='my-4'>
             <pacman-loader class='loader' color='#17a2b8'></pacman-loader>
         </div>
-        <div v-if='items.length > 0 && !loading'>
+        <div v-if='!loading && error' align='center'>
+            <hr class='my-4'>
+            <b-alert variant="warning" show>
+                Invalid query. Trying specifying another filter option and try again.
+            </b-alert>
+        </div>
+        <div v-if='items.length > 0 && !loading && !error'>
             <hr class='my-4'>
             <div class='results-grid'>
                 <h3 class='results-title'>Results Preview</h3>
@@ -101,6 +107,7 @@
                 totalRows: 0,
                 selected: ',',
                 loading: false,
+                error: false,
                 options: [{
                         value: ',',
                         text: 'Comma (,)'
@@ -134,6 +141,7 @@
                 this.$axios.get(this.endpoint.key, {
                     params: params
                 }).then(response => {
+                    this.error = false;
                     this.results = response.data;
                     let flattened = this.flattentData(this.endpoint.key, response.data)
                         .map(f => {
@@ -147,6 +155,8 @@
 
                     this.currentPage = 1;
                     this.totalRows = this.items.length;
+                }).catch(err => {
+                    this.error = true;
                 }).finally(() => {
                     this.loading = false;
                 });
