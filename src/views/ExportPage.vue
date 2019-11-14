@@ -1,10 +1,39 @@
 <template>
     <b-container id='ExportContainer' class='page-container pt-3'>
-            <h3>Data Search</h3>
-            <p class='muted'>What data are you trying to find?</p>
-            <autocomplete :items='endpoints' displayProp='summary' valueProp='key' @selection='selectPath' />
-            <hr class='my-4'>
-        <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes' v-if='endpoint'></endpoint>
+        <h3>Data Search</h3>
+        <p class='muted'>What data are you trying to find?</p>
+        <b-row>
+            <b-col />
+            <b-col lg='4'>
+                <autocomplete :items='endpoints' displayProp='summary' valueProp='key' @selection='selectPath' />
+            </b-col>
+            <b-col />
+        </b-row>
+        <b-row>
+            <b-col />
+            <b-col>
+                <b-button @click="toggleCategories">{{ collapsed ? "View Everything" : "Collapse"}}</b-button>
+            </b-col>
+            <b-col />
+        </b-row>
+        <b-row class='ml-3 mr-3' v-if='!collapsed'>
+            <b-col lg='3' v-for='category in categories' :key='category'>
+                <b-row>
+                    {{ category | capitalize }}
+                </b-row>
+                <b-row>
+                    <ul>
+                        <li class='text-left' v-for='endpoint in endpoints.filter(e => e.category == category)'
+                            :key='endpoint.key'>
+                            <b-link @click='selectPath(endpoint.key)'>{{ endpoint.summary }}</b-link>
+                        </li>
+                    </ul>
+                </b-row>
+            </b-col>
+        </b-row>
+        <hr class='my-4'>
+        <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes'
+            v-if='endpoint'></endpoint>
     </b-container>
 </template>
 
@@ -19,21 +48,25 @@
         },
         data() {
             return {
+                collapsed: false,
                 endpoints: [],
                 endpoint: null,
                 teams: [],
                 conferences: [],
                 playTypes: [],
-                paths: []
+                paths: [],
+                categories: []
             }
         },
         methods: {
             setData(data) {
                 this.paths = Object.keys(data.paths);
+                this.categories = Array.from(new Set(this.paths.map(p => data.paths[p].get.tags[0])));
                 let endpoints = this.paths
                     .map(p => {
                         return {
                             path: data.paths[p],
+                            category: data.paths[p].get.tags[0],
                             summary: data.paths[p].get.summary,
                             key: p
                         }
@@ -44,7 +77,10 @@
                 this.endpoint = this.endpoints.find(e => e.key === `/${path}`);
             },
             selectPath(path) {
-                this.$router.push({ path: `/exporter${path}`});
+                this.collapsed = true;
+                this.$router.push({
+                    path: `/exporter${path}`
+                });
             },
             getDocs() {
                 return this.$axios.get('/api-docs.json');
@@ -57,6 +93,9 @@
             },
             getPlayTypes() {
                 return this.$axios.get('/play/types');
+            },
+            toggleCategories() {
+                this.collapsed = !this.collapsed;
             }
         },
         created() {
@@ -95,10 +134,12 @@
             }
         }
     }
+
 </script>
 
 <style lang='scss'>
     #ExportContainer {
         background: rgba(255, 255, 255, .9);
     }
+
 </style>
