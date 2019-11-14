@@ -64,6 +64,28 @@
                 this.setData(result.data);
                 this.updatePath(this.$route.params.path);
             });
+
+            this.getTeams().then(result => {
+                this.teams = result
+                    .data
+                    .filter(t => t.conference)
+                    .map(t => t.school);
+            });
+
+            this.getConferences().then(result => {
+                this.conferences = result
+                    .data
+                    .map(c => {
+                        return {
+                            name: c.name,
+                            abbreviation: c.abbreviation
+                        }
+                    });
+            });
+
+            this.getPlayTypes().then(result => {
+                this.playTypes = result.data;
+            });
         },
         watch: {
             '$route': function (to, from) {
