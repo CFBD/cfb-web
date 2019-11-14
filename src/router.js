@@ -17,6 +17,7 @@ import MeanPassingPPA from './views/MeanPassingPPA.vue';
 import PPAUsage from './views/PPAUsage.vue';
 import SeasonMetrics from './views/SeasonMetrics.vue';
 import BoxScore from './views/BoxScore.vue';
+import ExportPage from './views/ExportPage.vue';
 
 Vue.use(Router)
 
@@ -36,6 +37,12 @@ const router = new Router({
             path: '/category/:name',
             name: 'category',
             component: Category,
+            props: true
+        },
+        {
+            path: '/exporter/:path([\\w\\/]+)?',
+            name: 'exporter',
+            component: ExportPage,
             props: true
         },
         {

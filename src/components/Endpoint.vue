@@ -54,7 +54,8 @@
                 <b-row v-if="endpoint.key === '/game/box/advanced'">
                     <b-col />
                     <b-col>
-                        <b-form-select v-model="boxSelected" :options="boxOptions" @change="updateBoxSelected"></b-form-select>
+                        <b-form-select v-model="boxSelected" :options="boxOptions" @change="updateBoxSelected">
+                        </b-form-select>
                     </b-col>
                     <b-col />
                 </b-row>
@@ -328,7 +329,8 @@
                             });
                         } else {
                             flattened = data.players.usage.map(p => {
-                                let ppa = data.players.ppa.find(s => p.player == s.player && p.team == s.team && p.position == s.position);
+                                let ppa = data.players.ppa.find(s => p.player == s.player && p.team == s.team &&
+                                    p.position == s.position);
                                 return {
                                     player: p.player,
                                     team: p.team,
@@ -397,6 +399,25 @@
                         parameter,
                         value
                     });
+                }
+            }
+        },
+        watch: {
+            endpoint: function (to, from) {
+                if (to.key != from.key) {
+                    this.queryParams = [];
+                    this.results = [];
+                    this.items = [];
+                    if (to && to.path && to.path.get && to.path.get
+                        .parameters) {
+                        for (let parameter of to.path.get.parameters) {
+                            let value = parameter.default ? parameter.default : null;
+                            this.queryParams.push({
+                                parameter,
+                                value
+                            });
+                        }
+                    }
                 }
             }
         }

@@ -12,7 +12,7 @@
                         <router-link to="/" class='nav-link'>Home</router-link>
                     </b-nav-item>
                     <b-nav-item>
-                        <router-link to='/data' class='nav-link'>Data</router-link>
+                        <router-link to='/exporter' class='nav-link'>Data</router-link>
                     </b-nav-item>
                     <b-nav-item>
                         <router-link to='/boxscore' class='nav-link'>Box Scores</router-link>
