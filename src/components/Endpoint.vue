@@ -51,7 +51,7 @@
             <hr class='my-4'>
             <div class='results-grid'>
                 <h3 class='results-title'>Results Preview</h3>
-                <b-row>
+                <b-row v-if="endpoint.key === '/game/box/advanced'">
                     <b-col />
                     <b-col>
                         <b-form-select v-model="boxSelected" :options="boxOptions" @change="updateBoxSelected"></b-form-select>
