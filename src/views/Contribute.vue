@@ -1,5 +1,5 @@
 <template>
-    <b-container id='ContributeContainer page-container'>
+    <b-container id='ContributeContainer' class='page-container'>
         <b-card class='title-card'>
             <b-row>
                 <b-col>
@@ -9,47 +9,51 @@
             </b-row>
         </b-card>
         <b-row>
-            <b-col>
-                <b-card title='Participate' sub-title="Join the community">
-                    <font-awesome-icon class="contribute-icon text-danger" :icon="['fab', 'reddit-alien']" size='3x'>
-                    </font-awesome-icon>
-                    <p>This project all got started on <a href='https://old.reddit.com/r/cfbanalysis'>r/CFBAnalysis</a>,
-                        a community on reddit for CFB analytics enthusiasts of all levels and types</p>
-                    <font-awesome-icon class="contribute-icon blurple" :icon="['fab', 'discord']" size='3x'>
-                    </font-awesome-icon>
-                    <p>r/CFBAnalysis also has its own <a href="https://discord.gg/Eb3ex5a" target='_blank'>Discord
-                            community</a>, enabling collaboration on an even deeper level. Everyone is welcome to join!
-                    </p>
-                </b-card>
+            <b-col lg='6'>
+                <b-row>
+                    <b-card title='Participate' sub-title="Join the community">
+                        <font-awesome-icon class="contribute-icon text-danger" :icon="['fab', 'reddit-alien']"
+                            size='3x'>
+                        </font-awesome-icon>
+                        <p>This project all got started on <a
+                                href='https://old.reddit.com/r/cfbanalysis'>r/CFBAnalysis</a>,
+                            a community on reddit for CFB analytics enthusiasts of all levels and types</p>
+                        <font-awesome-icon class="contribute-icon blurple" :icon="['fab', 'discord']" size='3x'>
+                        </font-awesome-icon>
+                        <p>r/CFBAnalysis also has its own <a href="https://discord.gg/Eb3ex5a" target='_blank'>Discord
+                                community</a>, enabling collaboration on an even deeper level. Everyone is welcome to
+                            join!
+                        </p>
+                    </b-card>
+                </b-row>
+                <b-row>
+                    <b-card title='Find an issue?' sub-title="Please let me know" class='mt-4'>
+                        <font-awesome-icon class="contribute-icon text-info" icon='broom' size='3x'></font-awesome-icon>
+                        <p>This is currently a one person operation, so it can be hard to keep up with things. If you
+                            find
+                            an issue, please feel free to reach out to me on reddit (u/BlueSCar), in the Discord chat,
+                            on
+                            Twitter, or <a href='mailto:admin@collegefootballdata.com' target='_blank'>shoot me an
+                                email</a>
+                        </p>
+                    </b-card>
+                </b-row>
             </b-col>
-            <b-col>
-                <b-card title='Suggestions?' sub-title="Check out our Taiga board">
-                    <font-awesome-icon class="contribute-icon text-warning" icon='lightbulb' size='3x'>
-                    </font-awesome-icon>
-                    <p>New sources of data and areas of functionality are constantly being explored. The API went live
-                        in September 2018 and things have been moving rabidly since then. Check out the <a
-                            href='https://tree.taiga.io/project/bluescar-college-football-data-api'
-                            target='_blank'>Taiga board</a> to see whats in the works and feel free to post suggestions
-                        of your own.</p>
-                </b-card>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <b-card title='Find an issue?' sub-title="Please let me know">
-                    <font-awesome-icon class="contribute-icon text-info" icon='broom' size='3x'></font-awesome-icon>
-                    <p>This is currently a one person operation, so it can be hard to keep up with things. If you find
-                        an issue, please feel free to reach out to me on reddit (r/BlueSCar), in the Discord chat, on
-                        Twitter, or <a href='mailto:admin@collegefootballdata.com' target='_blank'>shoot me an email</a>
-                    </p>
-                </b-card>
-            </b-col>
-            <b-col>
-                <b-card title="Donate" sub-title="Become a Patron">
-                    <font-awesome-icon class="contribute-icon text-danger" :icon="['fab', 'patreon']" size='3x'></font-awesome-icon>
-                    <p>This data, API, and website will always be open and free.  That said, maybe you want to help with server costs, buy me a beer or coffee, or just show your appreciation with a financial contribution.  You can become a Patron by checking out our <a href='https://www.patreon.com/collegefootballdata'>Patreon page</a>.</p>
-                    <p>Your contribution will be very much appreciated.  While everyone's input is appreciated and considered, Patron input and feature requests will be heavily considered.  There may also be opportunity to share more of what's in the works</p>
-                </b-card>
+            <b-col lg='6'>
+                <b-row>
+                    <b-card title="Donate" sub-title="Become a Patron" class='right-contrib-column'>
+                        <font-awesome-icon class="contribute-icon text-danger" :icon="['fab', 'patreon']" size='3x'>
+                        </font-awesome-icon>
+                        <p>This data, API, and website will always be open and free. That said, maybe you want to help
+                            with
+                            server costs, buy me a beer or coffee, or just show your appreciation with a financial
+                            contribution. You can become a Patron by checking out our <a
+                                href='https://www.patreon.com/collegefootballdata'>Patreon page</a>.</p>
+                        <p>Your contribution will be very much appreciated. While everyone's input is appreciated and
+                            considered, Patron input and feature requests will be heavily considered. There may also be
+                            opportunity to share more of what's in the works</p>
+                    </b-card>
+                </b-row>
             </b-col>
         </b-row>
     </b-container>
@@ -64,10 +68,12 @@
 
 <style lang="scss">
     #ContributeContainer {
-        margin-bottom: 30px;
-
         .contribute-icon {
             margin: 35px 0;
+        }
+
+        .right-contrib-column {
+            margin-left: 2em;
         }
     }
 

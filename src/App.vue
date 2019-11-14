@@ -18,7 +18,6 @@
 
 
 <style lang="scss">
-
     body {
         background: url('./assets/bg.jpg') no-repeat scroll;
         background-attachment: fixed;
@@ -43,8 +42,7 @@
 
     .page-container {
         margin-top: 2em;
-        padding-bottom: 2em;
-        margin-bottom: 500px;
+        padding-bottom: 500px;
 
         .title-card {
             .row {
