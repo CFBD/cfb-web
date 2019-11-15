@@ -86,6 +86,13 @@
             },
             refreshData(game) {
                 this.gameId = game.id;
+                if (this.$route.params.id != this.gameId) {
+                    this.$router.push({
+                        path: `/wp/${this.gameId}`
+                    });
+                    return;
+                }
+
                 this.$axios.get('/metrics/wp', {
                     params: {
                         gameId: this.gameId
@@ -182,7 +189,22 @@
 
                     return index;
                 });
+
+                if (this.$route.params.id) {
+                    this.refreshData({
+                        id: this.$route.params.id
+                    });
+                }
             });
+        },
+        watch: {
+            '$route': function(to, from) {
+                if (to.params.id && to.params.id !== from.params.id) {
+                    this.refreshData({
+                        id: to.params.id
+                    });
+                }
+            }
         }
     }
 

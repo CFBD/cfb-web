@@ -81,7 +81,7 @@ const router = new Router({
             component: DataPage
         },
         {
-            path: '/wp',
+            path: '/wp/:id(\\d+)?',
             name: 'wp',
             component: WP
         },
