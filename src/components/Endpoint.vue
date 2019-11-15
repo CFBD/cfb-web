@@ -94,7 +94,8 @@
             endpoint: Object,
             conferences: Array,
             teams: Array,
-            playTypes: Array
+            playTypes: Array,
+            query: Object
         },
         data() {
             return {
@@ -138,6 +139,8 @@
                         params[qp.parameter.name] = qp.value;
                     }
                 }
+
+                this.$emit('query', params);
 
                 this.$axios.get(this.endpoint.key, {
                     params: params
@@ -395,6 +398,11 @@
             if (this.endpoint && this.endpoint.path && this.endpoint.path.get && this.endpoint.path.get.parameters) {
                 for (let parameter of this.endpoint.path.get.parameters) {
                     let value = parameter.default ? parameter.default : null;
+                    let queryParam = this.query[parameter.name];
+                    if (queryParam) {
+                        value = queryParam;
+                    }
+
                     this.queryParams.push({
                         parameter,
                         value
@@ -412,6 +420,28 @@
                         .parameters) {
                         for (let parameter of to.path.get.parameters) {
                             let value = parameter.default ? parameter.default : null;
+                            this.queryParams.push({
+                                parameter,
+                                value
+                            });
+                        }
+                    }
+                }
+            },
+            query: function (to, from) {
+                if (to != from) {
+                    this.queryParams = [];
+                    this.results = [];
+                    this.items = [];
+                    if (this.endpoint && this.endpoint.path && this.endpoint.path.get && this.endpoint.path.get
+                        .parameters) {
+                        for (let parameter of this.endpoint.path.get.parameters) {
+                            let value = parameter.default ? parameter.default : null;
+                            let queryParam = to[parameter.name];
+                            if (queryParam) {
+                                value = queryParam;
+                            }
+
                             this.queryParams.push({
                                 parameter,
                                 value

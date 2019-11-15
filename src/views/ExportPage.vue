@@ -32,7 +32,7 @@
             </b-col>
         </b-row>
         <hr class='my-4'>
-        <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes'
+        <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes' :query='query' @query='updateQuery'
             v-if='endpoint'></endpoint>
     </b-container>
 </template>
@@ -55,7 +55,8 @@
                 conferences: [],
                 playTypes: [],
                 paths: [],
-                categories: []
+                categories: [],
+                query: {}
             }
         },
         methods: {
@@ -96,9 +97,15 @@
             },
             toggleCategories() {
                 this.collapsed = !this.collapsed;
+            },
+            updateQuery(params) {
+                this.$router.push({
+                    query: params
+                })
             }
         },
         created() {
+            this.query = this.$route.query;
             this.getDocs().then(result => {
                 this.setData(result.data);
                 this.updatePath(this.$route.params.path);
@@ -130,6 +137,10 @@
             '$route': function (to, from) {
                 if (to.params.path !== from.params.path) {
                     this.updatePath(to.params.path);
+                }
+
+                if (to.query !== from.query) {
+                    this.query = to.query;
                 }
             }
         }
