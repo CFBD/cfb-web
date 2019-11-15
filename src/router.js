@@ -101,7 +101,7 @@ const router = new Router({
             component: SeasonMetrics
         },
         {
-            path: '/boxscore',
+            path: '/boxscore/:id(\\d+)?',
             name: 'boxscore',
             component: BoxScore
         }

@@ -17,7 +17,7 @@
         </b-row>
         <b-row v-if='game && gameData'>
             <b-col>
-                <b-card :title='`${game.homeTeam} ${game.homeScore}, ${game.awayTeam} ${game.awayScore}`'
+                <b-card :title='`${game.home_team} ${game.home_points}, ${game.away_team} ${game.away_points}`'
                     sub-title='Note: Garbage time is filtered from player stats' class='box-score-card'>
                     <b-row>
                         <b-col lg='6' class='team-column'>
@@ -83,12 +83,12 @@
                                 <h6><strong>Usage</strong></h6>
                             </b-row>
                             <b-row class='justify-content-center mt-2'>
-                                <label class='muted'>{{ this.game.homeTeam }}</label>
+                                <label class='muted'>{{ this.game.home_team }}</label>
                                 <b-table :items='homeTeamUsage' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
                             <b-row class='justify-content-center mt-2'>
-                                <label class='muted'>{{ this.game.awayTeam }}</label>
+                                <label class='muted'>{{ this.game.away_team }}</label>
                                 <b-table :items='awayTeamUsage' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
@@ -97,12 +97,12 @@
                                 <h6><strong>PPA (Avg)</strong></h6>
                             </b-row>
                             <b-row class='justify-content-center mt-2'>
-                                <label class='muted'>{{ this.game.homeTeam }}</label>
+                                <label class='muted'>{{ this.game.home_team }}</label>
                                 <b-table :items='homeTeamAvgPPA' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
                             <b-row class='justify-content-center mt-2'>
-                                <label class='muted'>{{ this.game.awayTeam }}</label>
+                                <label class='muted'>{{ this.game.away_team }}</label>
                                 <b-table :items='awayTeamAvgPPA' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
@@ -111,12 +111,12 @@
                                 <h6><strong>PPA (Cum.)</strong></h6>
                             </b-row>
                             <b-row class='justify-content-center mt-2'>
-                                <label class='muted'>{{ this.game.homeTeam }}</label>
+                                <label class='muted'>{{ this.game.home_team }}</label>
                                 <b-table :items='homeTeamCumPPA' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
                             <b-row class='justify-content-center mt-2'>
-                                <label class='muted'>{{ this.game.awayTeam }}</label>
+                                <label class='muted'>{{ this.game.away_team }}</label>
                                 <b-table :items='awayTeamCumPPA' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
@@ -194,6 +194,12 @@
         },
         methods: {
             selectGame(game) {
+                if (game.id != this.$route.params.id) {
+                    this.$router.push({
+                        path: `/boxscore/${game.id}`
+                    });
+                    return;
+                }
                 this.game = game;
                 this.$axios.get('/game/box/advanced', {
                     params: {
@@ -201,6 +207,17 @@
                     }
                 }).then(result => {
                     this.gameData = result.data;
+                });
+            },
+            loadGame(id) {
+                this.$axios.get('/games', {
+                    params: {
+                        id
+                    }
+                }).then(result => {
+                    if (result.data && result.data.length) {
+                        this.selectGame(result.data[0]);
+                    }
                 });
             }
         },
@@ -276,7 +293,7 @@
                 }));
             },
             homeTeamUsage() {
-                return this.gameData.players.usage.filter(p => p.team == this.game.homeTeam).map(d => ({
+                return this.gameData.players.usage.filter(p => p.team == this.game.home_team).map(d => ({
                     player: d.player,
                     quarter1: `${Math.round(d.quarter1 * 100)}%`,
                     quarter2: `${Math.round(d.quarter2 * 100)}%`,
@@ -288,7 +305,7 @@
                 }));
             },
             awayTeamUsage() {
-                return this.gameData.players.usage.filter(p => p.team == this.game.awayTeam).map(d => ({
+                return this.gameData.players.usage.filter(p => p.team == this.game.away_team).map(d => ({
                     player: d.player,
                     quarter1: `${Math.round(d.quarter1 * 100)}%`,
                     quarter2: `${Math.round(d.quarter2 * 100)}%`,
@@ -300,7 +317,7 @@
                 }));
             },
             homeTeamAvgPPA() {
-                return this.gameData.players.ppa.filter(p => p.team == this.game.homeTeam).map(d => ({
+                return this.gameData.players.ppa.filter(p => p.team == this.game.home_team).map(d => ({
                     player: d.player,
                     quarter1: d.average.quarter1,
                     quarter2: d.average.quarter2,
@@ -312,7 +329,7 @@
                 }));
             },
             awayTeamAvgPPA() {
-                return this.gameData.players.ppa.filter(p => p.team == this.game.awayTeam).map(d => ({
+                return this.gameData.players.ppa.filter(p => p.team == this.game.away_team).map(d => ({
                     player: d.player,
                     quarter1: d.average.quarter1,
                     quarter2: d.average.quarter2,
@@ -324,7 +341,7 @@
                 }));
             },
             homeTeamCumPPA() {
-                return this.gameData.players.ppa.filter(p => p.team == this.game.homeTeam).map(d => ({
+                return this.gameData.players.ppa.filter(p => p.team == this.game.home_team).map(d => ({
                     player: d.player,
                     quarter1: d.cumulative.quarter1,
                     quarter2: d.cumulative.quarter2,
@@ -336,7 +353,7 @@
                 }));
             },
             awayTeamCumPPA() {
-                return this.gameData.players.ppa.filter(p => p.team == this.game.awayTeam).map(d => ({
+                return this.gameData.players.ppa.filter(p => p.team == this.game.away_team).map(d => ({
                     player: d.player,
                     quarter1: d.cumulative.quarter1,
                     quarter2: d.cumulative.quarter2,
@@ -394,6 +411,18 @@
                     team1: this.gameData.teams.rushing[0].openFieldYardsAverage,
                     team2: this.gameData.teams.rushing[1].openFieldYardsAverage
                 }]
+            }
+        },
+        created() {
+            if (this.$route.params.id) {
+                this.loadGame(this.$route.params.id);
+            }
+        },
+        watch: {
+            '$route': function(to, from) {
+                if (to.params.id && to.params.id !== from.params.id) {
+                    this.loadGame(to.params.id);
+                }
             }
         }
     }
