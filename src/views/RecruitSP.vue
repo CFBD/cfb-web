@@ -251,9 +251,11 @@
                     this.$ga.event('visualization', 'generation', 'recruiting-sp');
 
                     let options = Object.assign({}, this.scatterOptions);
-                    options.title.text = `${this.year} SP+/Recruiting${this.conference == 'All' ? '' : ` (${this.conference})`}`;
+                    options.title.text =
+                        `${this.year} SP+/Recruiting${this.conference == 'All' ? '' : ` (${this.conference})`}`;
                     options.scales.yAxes[0].scaleLabel.labelString = this.recruitingMetric;
-                    options.scales.xAxes[0].scaleLabel.labelString = this.dataPoints.find(d => d.value == this.spMetric).text;
+                    options.scales.xAxes[0].scaleLabel.labelString = this.dataPoints.find(d => d.value == this.spMetric)
+                        .text;
                     this.scatterOptions = options;
 
                     let points = this.spResults.filter(s => this.conference == 'All' || s.conference == this.conference)
@@ -267,11 +269,14 @@
                         datasets: [{
                             pointStyle: points,
                             data: this.spResults.filter(s => this.conference == 'All' || s.conference ==
-                                this.conference).map(r => ({
-                                x: this.getValueByKey(r, this.spMetric.split('.')),
-                                y: this.recruitingResults.find(rr => rr.team == r.team && rr
-                                    .positionGroup == this.recruitingMetric).averageRating
-                            }))
+                                this.conference).map(r => {
+                                let metric = this.recruitingResults.find(rr => rr.team == r.team &&
+                                    rr.positionGroup == this.recruitingMetric);
+                                return {
+                                    x: this.getValueByKey(r, this.spMetric.split('.')),
+                                    y: metric ? metric.averageRating : null
+                                };
+                            })
                         }]
                     };
                 }

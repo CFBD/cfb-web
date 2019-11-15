@@ -398,9 +398,12 @@
             if (this.endpoint && this.endpoint.path && this.endpoint.path.get && this.endpoint.path.get.parameters) {
                 for (let parameter of this.endpoint.path.get.parameters) {
                     let value = parameter.default ? parameter.default : null;
-                    let queryParam = this.query[parameter.name];
-                    if (queryParam) {
-                        value = queryParam;
+
+                    if (this.query) {
+                        let queryParam = this.query[parameter.name];
+                        if (queryParam) {
+                            value = queryParam;
+                        }
                     }
 
                     this.queryParams.push({
