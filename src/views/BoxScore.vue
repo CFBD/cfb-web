@@ -30,6 +30,12 @@
                             </b-row>
                             <hr>
                             <b-row class='justify-content-center'>
+                                <h6><strong>Defensive Havoc</strong></h6>
+                                <b-table :items='havocMetrics' :fields='havocFields' small responsive>
+                                </b-table>
+                            </b-row>
+                            <hr>
+                            <b-row class='justify-content-center'>
                                 <h6><strong>Predicted Points Added</strong></h6>
                             </b-row>
                             <b-row class='justify-content-center mt-2'>
@@ -411,6 +417,42 @@
                     team1: this.gameData.teams.rushing[0].openFieldYardsAverage,
                     team2: this.gameData.teams.rushing[1].openFieldYardsAverage
                 }]
+            },
+            havocFields() {
+                if (!this.gameData) {
+                    return [];
+                }
+
+                return [{
+                    key: 'metric',
+                    label: '',
+                    class: 'text-left'
+                }, {
+                    key: 'team1',
+                    label: this.gameData.teams.havoc[0].team
+                }, {
+                    key: 'team2',
+                    label: this.gameData.teams.havoc[1].team
+                }];
+            },
+            havocMetrics() {
+                 if (!this.gameData) {
+                    return [];
+                }
+
+                return [{
+                    metric: 'Total',
+                    team1: this.gameData.teams.havoc[0].total,
+                    team2: this.gameData.teams.havoc[1].total
+                }, {
+                    metric: 'Front Seven',
+                    team1: this.gameData.teams.havoc[0].frontSeven,
+                    team2: this.gameData.teams.havoc[1].frontSeven
+                }, {
+                    metric: 'DB',
+                    team1: this.gameData.teams.havoc[0].db,
+                    team2: this.gameData.teams.havoc[1].db
+                }]
             }
         },
         created() {
@@ -419,7 +461,7 @@
             }
         },
         watch: {
-            '$route': function(to, from) {
+            '$route': function (to, from) {
                 if (to.params.id && to.params.id !== from.params.id) {
                     this.loadGame(to.params.id);
                 }
