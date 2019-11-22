@@ -48,6 +48,18 @@
                         </b-col>
                         <b-col />
                     </b-row>
+                    <b-row>
+                        <b-col />
+                        <b-col lg='3'>
+                            <b-row class='justify-content-center'><label>Start Week</label></b-row>
+                            <b-form-input type='number' v-model='startWeek' @change='updateStartWeek'></b-form-input>
+                        </b-col>
+                        <b-col lg='3'>
+                            <b-row class='justify-content-center'><label>End Week</label></b-row>
+                            <b-form-input type='number' v-model='endWeek' @change='updateEndWeek'></b-form-input>
+                        </b-col>
+                        <b-col />
+                    </b-row>
                 </b-card>
             </b-col>
         </b-row>
@@ -70,6 +82,8 @@
         },
         data() {
             return {
+                startWeek: null,
+                endWeek: null,
                 teams: [],
                 years: [],
                 statTypes: [{
@@ -124,6 +138,10 @@
                     value: 'openFieldYards',
                     text: 'Open Field Yards',
                     disabled: false
+                }, {
+                    value: 'pointsPerOpportunity',
+                    text: 'Pts/Scoring Opportunity',
+                    disabled: false
                 }],
                 metricTypes2: [{
                     value: 'rate',
@@ -153,6 +171,10 @@
                 }, {
                     value: 'openFieldYards',
                     text: 'Open Field Yards',
+                    disabled: false
+                }, {
+                    value: 'pointsPerOpportunity',
+                    text: 'Pts/Scoring Opportunity',
                     disabled: false
                 }],
                 conferences: [
@@ -222,6 +244,7 @@
                 this.metricTypes1[5].disabled = key == '' ? false : true;
                 this.metricTypes1[6].disabled = key == '' ? false : true;
                 this.metricTypes1[7].disabled = key == '' ? false : true;
+                this.metricTypes1[8].disabled = key == '' ? false : true;
                 this.reloadData();
             },
             updateMetricType1(key) {
@@ -239,6 +262,7 @@
                 this.metricTypes2[5].disabled = key == '' ? false : true;
                 this.metricTypes2[6].disabled = key == '' ? false : true;
                 this.metricTypes2[7].disabled = key == '' ? false : true;
+                this.metricTypes2[8].disabled = key == '' ? false : true;
                 this.reloadData();
             },
             updateMetricType2(key) {
@@ -248,6 +272,14 @@
             updateConferenceFilter(key) {
                 this.conference = key;
                 this.reloadData();
+            },
+            updateStartWeek(week) {
+                this.startWeek = week;
+                this.refreshData();
+            },
+            updateEndWeek(week) {
+                this.endWeek = week;
+                this.refreshData();
             },
             reloadData() {
                 if (this.results && this.dataPoint1.statType && this.dataPoint1.metricType && this.dataPoint2.statType && this.dataPoint2.metricType) {
@@ -281,6 +313,19 @@
                 let newObj = obj[first];
 
                 return keys.length ? this.getValueByKey(newObj, keys) : newObj;
+            },
+            refreshData() {
+                this.$axios.get('/stats/season/advanced', {
+                    params: {
+                        year: 2019,
+                        excludeGarbageTime: true,
+                        startWeek: this.startWeek,
+                        endWeek: this.endWeek
+                    }
+                }).then(results => {
+                    this.results = results.data.filter(d => this.teams.find(t => t.school === d.team));
+                    this.reloadData();
+                });
             }
         },
         created() {
@@ -302,14 +347,7 @@
                     return index;
                 });
 
-                this.$axios.get('/stats/season/advanced', {
-                    params: {
-                        year: 2019,
-                        excludeGarbageTime: true
-                    }
-                }).then(results => {
-                    this.results = results.data.filter(d => this.teams.find(t => t.school === d.team));
-                });
+                this.refreshData();
             });
         }
     }
