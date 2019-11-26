@@ -83,79 +83,79 @@
                 }, {
                     value: 'sos',
                     text: 'Strength of Schedule',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'secondOrderWins',
                     text: 'Second Order Wins',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'offense.success',
                     text: 'Offensive Success',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'offense.explosiveness',
                     text: 'Offensive Explosiveness',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'offense.rushing',
                     text: 'Rushing Offense',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'offense.passing',
                     text: 'Passing Offense',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'offense.standardDowns',
                     text: 'Standard Down Offense',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'offense.passingDowns',
                     text: 'Passing Down Offense',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'offense.runRate',
                     text: 'Run Rate',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'offense.pace',
                     text: 'Pace',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.success',
                     text: 'Defensive Success',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.explosiveness',
                     text: 'Defensive Exposiveness',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.rushing',
                     text: 'Rushing Defense',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.passing',
                     text: 'Passing Defense',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.standardDowns',
                     text: 'Standard Down Defense',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.passingDowns',
                     text: 'Passing Down Defense',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.havoc.total',
                     text: 'Total Havoc',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.havoc.frontSeven',
                     text: 'Front 7 Havoc',
-                    disabled: false
+                    disabled: true
                 }, {
                     value: 'defense.havoc.db',
                     text: 'DB Havoc',
-                    disabled: false
+                    disabled: true
                 }],
                 conferences: [
                     "All",
@@ -173,7 +173,7 @@
                 ],
                 conference: 'All',
                 results: null,
-                year: null,
+                year: 2019,
                 dataPoint1: null,
                 dataPoint2: null,
                 scatterData: [],
@@ -210,7 +210,7 @@
                 if (year) {
                     this.year = year;
                     for (let dataPoint of this.dataPoints.filter(dp => dp.disabled !== undefined)) {
-                        dataPoint.disabled = year === 2019 || year < 2005;
+                        dataPoint.disabled = (year === 2019 && dataPoint.value != 'specialTeams.rating') || year < 2005;
                     }
 
                     this.$axios.get('/ratings/sp', {
@@ -292,6 +292,15 @@
 
                     return index;
                 });
+
+                this.$axios.get('/ratings/sp', {
+                        params: {
+                            year: this.year
+                        }
+                    }).then(results => {
+                        this.results = results.data.filter(r => r.team != 'nationalAverages');
+                        this.reloadData();
+                    });
             });
         }
     }

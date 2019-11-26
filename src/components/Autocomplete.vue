@@ -79,8 +79,13 @@
         },
         methods: {
             onChange() {
+                if (!this.isOpen){
+                    this.isOpen = true;
+                }
+
                 // Let's warn the parent that a change was made
                 this.$emit('input', this.search);
+                
                 // Is the data given by an outside ajax request?
                 if (this.isAsync) {
                     this.isLoading = true;
@@ -104,7 +109,7 @@
                 }).slice(0, this.maxResults);
             },
             setResult(result) {
-                this.search = this.clearOnSelection ? null : result && this.displayProp ? result[this.displayProp] : result;
+                this.search = this.clearOnSelection ? '' : result && this.displayProp ? result[this.displayProp] : result;
                 this.isOpen = false;
                 this.selected = result && this.valueProp ? result[this.valueProp] : result;
                 this.$emit('selection', this.selected);

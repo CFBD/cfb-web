@@ -18,6 +18,7 @@
         <b-row>
             <b-col>
                 <b-card :title='title'>
+                    <b-link v-if='gameId' :to='`/boxscore/${gameId}`'>View advanced box score</b-link>
                     <win-history :height='300' :chart-data='scatterData' :options='scatterOptions'>
                     </win-history>
                 </b-card>
@@ -111,7 +112,9 @@
                     const homeTeam = this.teams.find(t => t.id == this.results[0].homeId);
                     const awayTeam = this.teams.find(t => t.id == this.results[0].awayId);
 
-                    this.title = `${away} vs ${home}`;
+                    let last = this.results[this.results.length - 1];
+
+                    this.title = `${away} ${last.awayScore}, ${home} ${last.homeScore}`;
                     this.$ga.event('visualization', 'generation', 'wp-chart');
                     this.scatterOptions.title.text = `Predicted Win Probability`;
 
@@ -119,8 +122,8 @@
 
                     let gradient = ctx.createLinearGradient(0, (ctx.canvas.clientHeight * .0), 0, (ctx.canvas
                         .clientHeight));
-                    gradient.addColorStop(0, homeTeam.color);
-                    gradient.addColorStop(1, awayTeam.color);
+                    gradient.addColorStop(.4, homeTeam.color);
+                    gradient.addColorStop(.59, awayTeam.color);
 
                     this.scatterData = {
                         datasets: [{

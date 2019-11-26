@@ -19,7 +19,6 @@
                                 <option :value="null">Please select a type</option>
                             </b-form-select>
                             <b-form-select v-model="dataPoint1.playFilter" :options='playFilters' @change="updatePlayFilter1">
-                                <option :value="null">Please select a play filter</option>
                             </b-form-select>
                             <b-form-select v-model="dataPoint1.metricType" :options='metricTypes1' @change="updateMetricType1">
                                 <option :value="null">Please select a metric</option>
@@ -31,7 +30,6 @@
                                 <option :value="null">Please select a type</option>
                             </b-form-select>
                             <b-form-select v-model="dataPoint2.playFilter" :options='playFilters' @change="updatePlayFilter2">
-                                <option :value="null">Please select a play filter</option>
                             </b-form-select>
                             <b-form-select v-model="dataPoint2.metricType" :options='metricTypes2' @change="updateMetricType2">
                                 <option :value="null">Please select a metric</option>
@@ -194,12 +192,12 @@
                 conference: 'All',
                 dataPoint1: {
                     statType: null,
-                    playFilter: null,
+                    playFilter: '',
                     metricType: null
                 },
                 dataPoint2: {
                     statType: null,
-                    playFilter: null,
+                    playFilter: '',
                     metricType: null
                 },
                 results: null,
@@ -355,5 +353,4 @@
 </script>
 
 <style lang='scss'>
-
 </style>
