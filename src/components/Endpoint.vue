@@ -11,10 +11,10 @@
                 <b-col />
             </b-row>
             <b-row>
-                <b-col sm="4" v-for='qp in this.queryParams' :key='qp.parameter.name'>
-                    <b-form-row>
-                        <b-col sm="4"><label for="input-default">{{qp.parameter.name | capitalize }}</label></b-col>
-                        <b-col sm="8">
+                <b-col sm="3" v-for='qp in this.queryParams' :key='qp.parameter.name'>
+                    <b-row class='justify-content-center'>
+                        <label for="input-default">{{qp.parameter.name | capitalize }}</label>
+                    </b-row>
                             <autocomplete v-if="isTeamParameter(qp.parameter.name)" :items='teams'
                                 v-on:selection='qp.value = $event' :placeholder="qp.parameter.description"
                                 :is-required='qp.parameter.required'></autocomplete>
@@ -31,11 +31,9 @@
                             <b-form-input v-else :placeholder='qp.parameter.description'
                                 :required='qp.parameter.required' :type='getType(qp.parameter.type)' v-model="qp.value">
                             </b-form-input>
-                        </b-col>
-                    </b-form-row>
                 </b-col>
             </b-row>
-            <b-button type="submit" variant="primary" size='md' align='right'>Query</b-button>
+            <b-button type="submit" variant="primary" size='md' class='mt-5'>Query</b-button>
         </b-form>
         <div v-if='loading' align='center'>
             <hr class='my-4'>

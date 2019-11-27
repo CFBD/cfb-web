@@ -19,8 +19,10 @@
             <b-col>
                 <b-card :title='`${game.home_team} ${game.home_points}, ${game.away_team} ${game.away_points}`'
                     sub-title='Note: Garbage time is filtered from player stats' class='box-score-card'>
+                    <b-link :to='`/wp/${game.id}`'>View win probability chart</b-link>
                     <b-row>
-                        <b-col lg='6' class='team-column'>
+                        <b-col v-if='!hasPlayerData' />
+                        <b-col :lg='hasPlayerData ? 6 : 9' class='team-column'>
                             <h5>Team Metrics</h5>
                             <hr>
                             <b-row class='justify-content-center'>
@@ -35,12 +37,12 @@
                                 </b-table>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-if='this.game.season > 2015'>
                                 <h6><strong>Defensive Havoc</strong></h6>
                                 <b-table :items='havocMetrics' :fields='havocFields' small responsive>
                                 </b-table>
                             </b-row>
-                            <hr>
+                            <hr v-if='this.game.season > 2015'>
                             <b-row class='justify-content-center'>
                                 <h6><strong>Predicted Points Added</strong></h6>
                             </b-row>
@@ -88,7 +90,7 @@
                                 </b-table>
                             </b-row>
                         </b-col>
-                        <b-col lg='6' class='player-column'>
+                        <b-col lg='6' class='player-column' v-if='hasPlayerData'>
                             <h5>Player Metrics</h5>
                             <hr>
                             <b-row class='justify-content-center'>
@@ -133,6 +135,7 @@
                                 </b-table>
                             </b-row>
                         </b-col>
+                        <b-col v-if='!hasPlayerData' />
                     </b-row>
                 </b-card>
             </b-col>
@@ -495,6 +498,9 @@
                     team1: this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity,
                     team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity
                 }]
+            },
+            hasPlayerData() {
+                return this.gameData && this.gameData.players.ppa.length ? true : false;
             }
         },
         created() {

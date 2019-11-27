@@ -19,6 +19,24 @@
                     </b-nav-item>
                     <b-nav-item-dropdown text='Charts' class='nav-link'>
                         <b-dropdown-item>
+                            <router-link to='/metrics/season' class='nav-link text-primary'>Team Metrics
+                            </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/ppa/passing/cumulative' class='nav-link text-primary'>Passing Trends
+                            </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/ppa/usage' class='nav-link text-primary'>Player Efficiency
+                            </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/wp' class='nav-link text-primary'>Win Probability</router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/matchup' class='nav-link text-primary'>Historical Matchups</router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
                             <router-link to='/sp' class='nav-link text-primary'>SP+</router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
@@ -29,25 +47,7 @@
                             </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
-                            <router-link to='/matchup' class='nav-link text-primary'>Matchups</router-link>
-                        </b-dropdown-item>
-                        <b-dropdown-item>
                             <router-link to='/predictedpoints' class='nav-link text-primary'>Predicted Points
-                            </router-link>
-                        </b-dropdown-item>
-                        <b-dropdown-item>
-                            <router-link to='/wp' class='nav-link text-primary'>Predicted Win %</router-link>
-                        </b-dropdown-item>
-                        <b-dropdown-item>
-                            <router-link to='/ppa/passing/cumulative' class='nav-link text-primary'>Cumulative Avg PPA
-                            </router-link>
-                        </b-dropdown-item>
-                        <b-dropdown-item>
-                            <router-link to='/ppa/usage' class='nav-link text-primary'>Player PPA &amp; Usage
-                            </router-link>
-                        </b-dropdown-item>
-                        <b-dropdown-item>
-                            <router-link to='/metrics/season' class='nav-link text-primary'>Team Metrics
                             </router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>

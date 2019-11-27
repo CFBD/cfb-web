@@ -3,8 +3,8 @@
         <b-card>
             <b-row>
                 <b-col>
-                    <h1>Cumulative Average PPA per Dropback</h1>
-                    <p>Select a QB to start generating charts</p>
+                    <h1>QB Passing Trends</h1>
+                    <p>Select a QB to start generating passing efficiency charts</p>
                 </b-col>
             </b-row>
             <b-row>

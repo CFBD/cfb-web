@@ -109,8 +109,8 @@
                         text: "MWC"
                     },
                     {
-                        value: "Pac-12",
-                        text: "PAC"
+                        value: "PAC",
+                        text: "Pac-12"
                     },
                     {
                         value: "SEC",
