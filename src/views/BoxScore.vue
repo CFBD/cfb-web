@@ -26,6 +26,17 @@
                             <h5>Team Metrics</h5>
                             <hr>
                             <b-row class='justify-content-center'>
+                                <b-col>
+                                    <b-row class='justify-content-center'>
+                                        <h6><strong>Post Game Win Probability</strong></h6>
+                                    </b-row>
+                                    <b-row class='justify-content-center'>
+                                        <p>{{winProbability}}</p>
+                                    </b-row>
+                                </b-col>
+                            </b-row>
+                            <hr>
+                            <b-row class='justify-content-center'>
                                 <h6><strong>Scoring Opportunities</strong></h6>
                                 <b-table :items='scoringMetrics' :fields='scoringFields' small responsive>
                                 </b-table>
@@ -501,6 +512,13 @@
             },
             hasPlayerData() {
                 return this.gameData && this.gameData.players.ppa.length ? true : false;
+            },
+            winProbability() {
+                if (this.game.away_post_win_prob > this.game.home_post_win_prob) {
+                    return `${this.game.away_team} ${Math.round(this.game.away_post_win_prob * 100)}%`;
+                } else {
+                    return `${this.game.home_team} ${Math.round(this.game.home_post_win_prob * 100)}%`;
+                }
             }
         },
         created() {
