@@ -24,6 +24,12 @@
                             <h5>Team Metrics</h5>
                             <hr>
                             <b-row class='justify-content-center'>
+                                <h6><strong>Scoring Opportunities</strong></h6>
+                                <b-table :items='scoringMetrics' :fields='scoringFields' small responsive>
+                                </b-table>
+                            </b-row>
+                            <hr>
+                            <b-row class='justify-content-center'>
                                 <h6><strong>Rushing</strong></h6>
                                 <b-table :items='rushingMetrics' :fields='rushingFields' small responsive>
                                 </b-table>
@@ -452,6 +458,42 @@
                     metric: 'DB',
                     team1: this.gameData.teams.havoc[0].db,
                     team2: this.gameData.teams.havoc[1].db
+                }]
+            },
+            scoringFields() {
+                if (!this.gameData) {
+                    return [];
+                }
+
+                return [{
+                    key: 'metric',
+                    label: '',
+                    class: 'text-left'
+                }, {
+                    key: 'team1',
+                    label: this.gameData.teams.scoringOpportunities[0].team
+                }, {
+                    key: 'team2',
+                    label: this.gameData.teams.scoringOpportunities[1].team
+                }];
+            },
+            scoringMetrics() {
+                if (!this.gameData) {
+                    return [];
+                }
+
+                return [{
+                    metric: 'Opportunities',
+                    team1: this.gameData.teams.scoringOpportunities[0].opportunities,
+                    team2: this.gameData.teams.scoringOpportunities[1].opportunities
+                }, {
+                    metric: 'Points',
+                    team1: this.gameData.teams.scoringOpportunities[0].points,
+                    team2: this.gameData.teams.scoringOpportunities[1].points
+                }, {
+                    metric: 'Points Per Opportunity',
+                    team1: this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity,
+                    team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity
                 }]
             }
         },
