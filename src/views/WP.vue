@@ -18,7 +18,12 @@
         <b-row>
             <b-col>
                 <b-card :title='title'>
-                    <b-link v-if='gameId' :to='`/boxscore/${gameId}`'>View advanced box score</b-link>
+                    <b-row class='justify-content-center'>
+                        <b-link v-if='gameId' :to='`/boxscore/${gameId}`'>View advanced box score</b-link>
+                    </b-row>
+                    <b-row v-if='gameId' class='justify-content-center mt-3'>
+                        <b-button @click='toggleSpread' :pressed.sync='spreadAdjustment' variant='info'>Include spread adjustment</b-button>
+                    </b-row>
                     <win-history :height='300' :chart-data='scatterData' :options='scatterOptions'>
                     </win-history>
                 </b-card>
@@ -42,8 +47,10 @@
                 title: '',
                 gameId: null,
                 results: null,
+                spreadAdjustment: true,
                 scatterData: [],
                 conferenceData: [],
+                tooltips: [],
                 scatterOptions: {
                     legend: {
                         display: true
@@ -74,6 +81,13 @@
                                 labelString: 'Play Number'
                             }
                         }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return data.datasets[0].labels[tooltipItem.index];
+                            }
+                        }
                     }
                 }
             }
@@ -84,6 +98,18 @@
             },
             getConferences() {
                 return this.$axios.get('/conferences');
+            },
+            toggleSpread() {
+                this.$axios.get('/metrics/wp', {
+                    params: {
+                        gameId: this.gameId,
+                        adjustForSpread: this.spreadAdjustment
+                    }
+                }).then(results => {
+                    this.results = results.data;
+
+                    this.reloadData();
+                });
             },
             refreshData(game) {
                 this.gameId = game.id;
@@ -96,7 +122,8 @@
 
                 this.$axios.get('/metrics/wp', {
                     params: {
-                        gameId: this.gameId
+                        gameId: this.gameId,
+                        adjustForSpread: this.spreadAdjustment
                     }
                 }).then(results => {
                     this.results = results.data;
@@ -125,15 +152,20 @@
                     gradient.addColorStop(.4, homeTeam.color);
                     gradient.addColorStop(.59, awayTeam.color);
 
+                    this.tooltips = this.results.map(p => p.playText);
+
                     this.scatterData = {
                         datasets: [{
+                            labels: this.tooltips,
                             pointRadius: 0,
+                            pointHitRadius: 10,
                             borderColor: gradient,
                             fill: false,
                             label: `${homeTeam.school} %`,
                             data: this.results.map(r => ({
                                 x: r.playNumber,
-                                y: r.homeWinProb * 100
+                                y: r.homeWinProb * 100,
+                                tooltips: this.tooltips
                             }))
                         }]
                     };
@@ -169,6 +201,13 @@
                                     labelString: 'Play Number'
                                 }
                             }]
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function (tooltipItem, data) {
+                                    return data.datasets[0].labels[tooltipItem.index];
+                                }
+                            }
                         }
                     };
                 }
@@ -201,7 +240,7 @@
             });
         },
         watch: {
-            '$route': function(to, from) {
+            '$route': function (to, from) {
                 if (to.params.id && to.params.id !== from.params.id) {
                     this.refreshData({
                         id: to.params.id
