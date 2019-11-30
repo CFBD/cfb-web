@@ -220,20 +220,18 @@
         },
         methods: {
             selectGame(game) {
-                if (game.id != this.$route.params.id) {
                     this.$router.push({
                         path: `/boxscore/${game.id}`
                     });
-                    return;
-                }
-                this.game = game;
-                this.$axios.get('/game/box/advanced', {
-                    params: {
-                        gameId: this.game.id
-                    }
-                }).then(result => {
-                    this.gameData = result.data;
-                });
+
+                    this.game = game;
+                    this.$axios.get('/game/box/advanced', {
+                        params: {
+                            gameId: this.game.id
+                        }
+                    }).then(result => {
+                        this.gameData = result.data;
+                    });
             },
             loadGame(id) {
                 this.$axios.get('/games', {
@@ -421,6 +419,14 @@
                     team1: this.gameData.teams.rushing[0].stuffRate,
                     team2: this.gameData.teams.rushing[1].stuffRate
                 }, {
+                    metric: 'Line Yards',
+                    team1: this.gameData.teams.rushing[0].lineYards,
+                    team2: this.gameData.teams.rushing[1].lineYards
+                }, {
+                    metric: 'Line Yards per Rush',
+                    team1: this.gameData.teams.rushing[0].lineYardsAverage,
+                    team2: this.gameData.teams.rushing[1].lineYardsAverage
+                }, {
                     metric: 'Second Level Yards',
                     team1: this.gameData.teams.rushing[0].secondLevelYards,
                     team2: this.gameData.teams.rushing[1].secondLevelYards
@@ -456,7 +462,7 @@
                 }];
             },
             havocMetrics() {
-                 if (!this.gameData) {
+                if (!this.gameData) {
                     return [];
                 }
 
