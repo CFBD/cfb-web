@@ -129,6 +129,10 @@
                     text: 'Stuff Rate',
                     disabled: false
                 }, {
+                    value: 'lineYards',
+                    text: 'Line Yards',
+                    disabled: false
+                }, {
                     value: 'secondLevelYards',
                     text: 'Second Level Yards',
                     disabled: false
@@ -161,6 +165,10 @@
                 }, {
                     value: 'stuffRate',
                     text: 'Stuff Rate',
+                    disabled: false
+                }, {
+                    value: 'lineYards',
+                    text: 'Line Yards',
                     disabled: false
                 }, {
                     value: 'secondLevelYards',
