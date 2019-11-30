@@ -220,18 +220,7 @@
         },
         methods: {
             selectGame(game) {
-                    this.$router.push({
-                        path: `/boxscore/${game.id}`
-                    });
-
-                    this.game = game;
-                    this.$axios.get('/game/box/advanced', {
-                        params: {
-                            gameId: this.game.id
-                        }
-                    }).then(result => {
-                        this.gameData = result.data;
-                    });
+                this.loadGame(game.id);
             },
             loadGame(id) {
                 this.$axios.get('/games', {
@@ -240,7 +229,19 @@
                     }
                 }).then(result => {
                     if (result.data && result.data.length) {
-                        this.selectGame(result.data[0]);
+                        this.game = result.data[0];
+
+                        this.$router.push({
+                            path: `/boxscore/${this.game.id}`
+                        });
+
+                        this.$axios.get('/game/box/advanced', {
+                            params: {
+                                gameId: this.game.id
+                            }
+                        }).then(result => {
+                            this.gameData = result.data;
+                        });
                     }
                 });
             }
