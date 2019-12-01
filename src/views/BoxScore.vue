@@ -244,6 +244,27 @@
                         });
                     }
                 });
+            },
+            getPPAColor(ppa) {
+                return ppa <= 0 ? 'danger' : ppa >= 0.4 ? 'success' : null;
+            },
+            getRushPPAColor(ppa) {
+                return ppa <= 0 ? 'danger' : ppa >= 0.3 ? 'success' : null;
+            },
+            getPassPPAColor(ppa) {
+                return ppa <= 0.1 ? 'danger' : ppa >= 0.5 ? 'success' : null;
+            },
+            getSuccessColor(rate) {
+                return rate < 0.3 ? 'danger' : rate >= 0.5 ? 'success' : null;
+            },
+            getSuccessStandardColor(rate) {
+                return rate < 0.35 ? 'danger' : rate >= 0.55 ? 'success' : null;
+            },
+            getSuccessPassingColor(rate) {
+                return rate < 0.2 ? 'danger' : rate >= 0.4 ? 'success' : null;
+            },
+            getExplosivenessColor(ppa) {
+                return ppa < 1 ? 'danger' : ppa >= 1.5 ? 'success' : null;
             }
         },
         computed: {
@@ -254,7 +275,14 @@
                     quarter2: d.overall.quarter2,
                     quarter3: d.overall.quarter3,
                     quarter4: d.overall.quarter4,
-                    total: d.overall.total
+                    total: d.overall.total,
+                    _cellVariants: {
+                        quarter1: this.getPPAColor(d.overall.quarter1),
+                        quarter2: this.getPPAColor(d.overall.quarter2),
+                        quarter3: this.getPPAColor(d.overall.quarter3),
+                        quarter4: this.getPPAColor(d.overall.quarter4),
+                        total: this.getPPAColor(d.overall.total)
+                    }
                 }));
             },
             passingTeamPPA() {
@@ -264,7 +292,14 @@
                     quarter2: d.passing.quarter2,
                     quarter3: d.passing.quarter3,
                     quarter4: d.passing.quarter4,
-                    total: d.passing.total
+                    total: d.passing.total,
+                    _cellVariants: {
+                        quarter1: this.getPassPPAColor(d.passing.quarter1),
+                        quarter2: this.getPassPPAColor(d.passing.quarter2),
+                        quarter3: this.getPassPPAColor(d.passing.quarter3),
+                        quarter4: this.getPassPPAColor(d.passing.quarter4),
+                        total: this.getPassPPAColor(d.passing.total)
+                    }
                 }));
             },
             rushingTeamPPA() {
@@ -274,7 +309,14 @@
                     quarter2: d.rushing.quarter2,
                     quarter3: d.rushing.quarter3,
                     quarter4: d.rushing.quarter4,
-                    total: d.rushing.total
+                    total: d.rushing.total,
+                    _cellVariants: {
+                        quarter1: this.getRushPPAColor(d.rushing.quarter1),
+                        quarter2: this.getRushPPAColor(d.rushing.quarter2),
+                        quarter3: this.getRushPPAColor(d.rushing.quarter3),
+                        quarter4: this.getRushPPAColor(d.rushing.quarter4),
+                        total: this.getRushPPAColor(d.rushing.total)
+                    }
                 }));
             },
             overallTeamSuccess() {
@@ -284,7 +326,14 @@
                     quarter2: `${Math.round(d.overall.quarter2 * 100)}%`,
                     quarter3: `${Math.round(d.overall.quarter3 * 100)}%`,
                     quarter4: `${Math.round(d.overall.quarter4 * 100)}%`,
-                    total: `${Math.round(d.overall.total * 100)}%`
+                    total: `${Math.round(d.overall.total * 100)}%`,
+                    _cellVariants: {
+                        quarter1: this.getSuccessColor(d.overall.quarter1),
+                        quarter2: this.getSuccessColor(d.overall.quarter2),
+                        quarter3: this.getSuccessColor(d.overall.quarter3),
+                        quarter4: this.getSuccessColor(d.overall.quarter4),
+                        total: this.getSuccessColor(d.overall.total)
+                    }
                 }));
             },
             standardTeamSuccess() {
@@ -294,7 +343,14 @@
                     quarter2: `${Math.round(d.standardDowns.quarter2 * 100)}%`,
                     quarter3: `${Math.round(d.standardDowns.quarter3 * 100)}%`,
                     quarter4: `${Math.round(d.standardDowns.quarter4 * 100)}%`,
-                    total: `${Math.round(d.standardDowns.total * 100)}%`
+                    total: `${Math.round(d.standardDowns.total * 100)}%`,
+                    _cellVariants: {
+                        quarter1: this.getSuccessStandardColor(d.standardDowns.quarter1),
+                        quarter2: this.getSuccessStandardColor(d.standardDowns.quarter2),
+                        quarter3: this.getSuccessStandardColor(d.standardDowns.quarter3),
+                        quarter4: this.getSuccessStandardColor(d.standardDowns.quarter4),
+                        total: this.getSuccessStandardColor(d.standardDowns.total)
+                    }
                 }));
             },
             passingTeamSuccess() {
@@ -304,7 +360,14 @@
                     quarter2: `${Math.round(d.passingDowns.quarter2 * 100)}%`,
                     quarter3: `${Math.round(d.passingDowns.quarter3 * 100)}%`,
                     quarter4: `${Math.round(d.passingDowns.quarter4 * 100)}%`,
-                    total: `${Math.round(d.passingDowns.total * 100)}%`
+                    total: `${Math.round(d.passingDowns.total * 100)}%`,
+                    _cellVariants: {
+                        quarter1: this.getSuccessPassingColor(d.passingDowns.quarter1),
+                        quarter2: this.getSuccessPassingColor(d.passingDowns.quarter2),
+                        quarter3: this.getSuccessPassingColor(d.passingDowns.quarter3),
+                        quarter4: this.getSuccessPassingColor(d.passingDowns.quarter4),
+                        total: this.getSuccessPassingColor(d.passingDowns.total)
+                    }
                 }));
             },
             explosiveness() {
@@ -314,7 +377,14 @@
                     quarter2: d.overall.quarter2,
                     quarter3: d.overall.quarter3,
                     quarter4: d.overall.quarter4,
-                    total: d.overall.total
+                    total: d.overall.total,
+                    _cellVariants: {
+                        quarter1: this.getExplosivenessColor(d.overall.quarter1),
+                        quarter2: this.getExplosivenessColor(d.overall.quarter2),
+                        quarter3: this.getExplosivenessColor(d.overall.quarter3),
+                        quarter4: this.getExplosivenessColor(d.overall.quarter4),
+                        total: this.getExplosivenessColor(d.overall.total),
+                    }
                 }));
             },
             homeTeamUsage() {
@@ -350,7 +420,16 @@
                     quarter4: d.average.quarter4,
                     total: d.average.total,
                     rushing: d.average.rushing,
-                    passing: d.average.passing
+                    passing: d.average.passing,
+                    _cellVariants: {
+                        quarter1: d.average.quarter1 < 0 ? 'danger' : d.average.quarter1 >= 0.5 ? 'success' : null,
+                        quarter2: d.average.quarter2 < 0 ? 'danger' : d.average.quarter2 >= 0.5 ? 'success' : null,
+                        quarter3: d.average.quarter3 < 0 ? 'danger' : d.average.quarter3 >= 0.5 ? 'success' : null,
+                        quarter4: d.average.quarter4 < 0 ? 'danger' : d.average.quarter4 >= 0.5 ? 'success' : null,
+                        total: d.average.total < 0 ? 'danger' : d.average.total >= 0.5 ? 'success' : null,
+                        rushing: d.average.rushing < 0 ? 'danger' : d.average.rushing >= 0.5 ? 'success' : null,
+                        passing: d.average.passing < 0 ? 'danger' : d.average.passing >= 0.5 ? 'success' : null,
+                    }
                 }));
             },
             awayTeamAvgPPA() {
@@ -362,7 +441,16 @@
                     quarter4: d.average.quarter4,
                     total: d.average.total,
                     rushing: d.average.rushing,
-                    passing: d.average.passing
+                    passing: d.average.passing,
+                    _cellVariants: {
+                        quarter1: d.average.quarter1 < 0 ? 'danger' : d.average.quarter1 >= 0.5 ? 'success' : null,
+                        quarter2: d.average.quarter2 < 0 ? 'danger' : d.average.quarter2 >= 0.5 ? 'success' : null,
+                        quarter3: d.average.quarter3 < 0 ? 'danger' : d.average.quarter3 >= 0.5 ? 'success' : null,
+                        quarter4: d.average.quarter4 < 0 ? 'danger' : d.average.quarter4 >= 0.5 ? 'success' : null,
+                        total: d.average.total < 0 ? 'danger' : d.average.total >= 0.5 ? 'success' : null,
+                        rushing: d.average.rushing < 0 ? 'danger' : d.average.rushing >= 0.5 ? 'success' : null,
+                        passing: d.average.passing < 0 ? 'danger' : d.average.passing >= 0.5 ? 'success' : null,
+                    }
                 }));
             },
             homeTeamCumPPA() {
@@ -374,7 +462,16 @@
                     quarter4: d.cumulative.quarter4,
                     total: d.cumulative.total,
                     rushing: d.cumulative.rushing,
-                    passing: d.cumulative.passing
+                    passing: d.cumulative.passing,
+                    _cellVariants: {
+                        quarter1: d.cumulative.quarter1 < 0 ? 'danger' : d.cumulative.quarter1 >= 2.5 ? 'success' : null,
+                        quarter2: d.cumulative.quarter2 < 0 ? 'danger' : d.cumulative.quarter2 >= 2.5 ? 'success' : null,
+                        quarter3: d.cumulative.quarter3 < 0 ? 'danger' : d.cumulative.quarter3 >= 2.5 ? 'success' : null,
+                        quarter4: d.cumulative.quarter4 < 0 ? 'danger' : d.cumulative.quarter4 >= 2.5 ? 'success' : null,
+                        total: d.cumulative.total < 0 ? 'danger' : d.cumulative.total >= 10 ? 'success' : null,
+                        rushing: d.cumulative.rushing < 0 ? 'danger' : d.cumulative.rushing >= 10 ? 'success' : null,
+                        passing: d.cumulative.passing < 0 ? 'danger' : d.cumulative.passing >= 10 ? 'success' : null,
+                    }
                 }));
             },
             awayTeamCumPPA() {
@@ -386,7 +483,16 @@
                     quarter4: d.cumulative.quarter4,
                     total: d.cumulative.total,
                     rushing: d.cumulative.rushing,
-                    passing: d.cumulative.passing
+                    passing: d.cumulative.passing,
+                    _cellVariants: {
+                        quarter1: d.cumulative.quarter1 < 0 ? 'danger' : d.cumulative.quarter1 >= 2.5 ? 'success' : null,
+                        quarter2: d.cumulative.quarter2 < 0 ? 'danger' : d.cumulative.quarter2 >= 2.5 ? 'success' : null,
+                        quarter3: d.cumulative.quarter3 < 0 ? 'danger' : d.cumulative.quarter3 >= 2.5 ? 'success' : null,
+                        quarter4: d.cumulative.quarter4 < 0 ? 'danger' : d.cumulative.quarter4 >= 2.5 ? 'success' : null,
+                        total: d.cumulative.total < 0 ? 'danger' : d.cumulative.total >= 10 ? 'success' : null,
+                        rushing: d.cumulative.rushing < 0 ? 'danger' : d.cumulative.rushing >= 10 ? 'success' : null,
+                        passing: d.cumulative.passing < 0 ? 'danger' : d.cumulative.passing >= 10 ? 'success' : null,
+                    }
                 }));
             },
             rushingFields() {
@@ -418,7 +524,11 @@
                 }, {
                     metric: 'Stuff Rate',
                     team1: this.gameData.teams.rushing[0].stuffRate,
-                    team2: this.gameData.teams.rushing[1].stuffRate
+                    team2: this.gameData.teams.rushing[1].stuffRate,
+                    _cellVariants: {
+                        team1: this.gameData.teams.rushing[0].stuffRate < 0.15 ? 'success' : this.gameData.teams.rushing[0].stuffRate >= 0.3 ? 'danger' : null,
+                        team2: this.gameData.teams.rushing[1].stuffRate < 0.15 ? 'success' : this.gameData.teams.rushing[1].stuffRate >= 0.3 ? 'danger' : null
+                    }
                 }, {
                     metric: 'Line Yards',
                     team1: this.gameData.teams.rushing[0].lineYards,
@@ -426,7 +536,11 @@
                 }, {
                     metric: 'Line Yards per Rush',
                     team1: this.gameData.teams.rushing[0].lineYardsAverage,
-                    team2: this.gameData.teams.rushing[1].lineYardsAverage
+                    team2: this.gameData.teams.rushing[1].lineYardsAverage,
+                    _cellVariants: {
+                        team1: this.gameData.teams.rushing[0].lineYardsAverage < 2.5 ? 'danger' : this.gameData.teams.rushing[0].lineYardsAverage >= 3.5 ? 'success' : null,
+                        team2: this.gameData.teams.rushing[1].lineYardsAverage < 2.5 ? 'danger' : this.gameData.teams.rushing[1].lineYardsAverage >= 3.5 ? 'success' : null
+                    }
                 }, {
                     metric: 'Second Level Yards',
                     team1: this.gameData.teams.rushing[0].secondLevelYards,
@@ -434,7 +548,11 @@
                 }, {
                     metric: 'Second Level Yards per Rush',
                     team1: this.gameData.teams.rushing[0].secondLevelYardsAverage,
-                    team2: this.gameData.teams.rushing[1].secondLevelYardsAverage
+                    team2: this.gameData.teams.rushing[1].secondLevelYardsAverage,
+                    _cellVariants: {
+                        team1: this.gameData.teams.rushing[0].secondLevelYardsAverage < 0.7 ? 'danger' : this.gameData.teams.rushing[0].secondLevelYardsAverage >= 1.5 ? 'success' : null,
+                        team2: this.gameData.teams.rushing[1].secondLevelYardsAverage < 0.7 ? 'danger' : this.gameData.teams.rushing[1].secondLevelYardsAverage >= 1.5 ? 'success' : null
+                    }
                 }, {
                     metric: 'Open Field Yards',
                     team1: this.gameData.teams.rushing[0].openFieldYards,
@@ -442,7 +560,11 @@
                 }, {
                     metric: 'Open Field Yards per Rush',
                     team1: this.gameData.teams.rushing[0].openFieldYardsAverage,
-                    team2: this.gameData.teams.rushing[1].openFieldYardsAverage
+                    team2: this.gameData.teams.rushing[1].openFieldYardsAverage,
+                    _cellVariants: {
+                        team1: this.gameData.teams.rushing[0].openFieldYardsAverage < 1 ? 'danger' : this.gameData.teams.rushing[0].openFieldYardsAverage >= 2 ? 'success' : null,
+                        team2: this.gameData.teams.rushing[1].openFieldYardsAverage < 1 ? 'danger' : this.gameData.teams.rushing[1].openFieldYardsAverage >= 2 ? 'success' : null
+                    }
                 }]
             },
             havocFields() {
@@ -470,15 +592,27 @@
                 return [{
                     metric: 'Total',
                     team1: this.gameData.teams.havoc[0].total,
-                    team2: this.gameData.teams.havoc[1].total
+                    team2: this.gameData.teams.havoc[1].total,
+                    _cellVariants: {
+                        team1: this.gameData.teams.havoc[0].total < .1 ? 'danger' : this.gameData.teams.havoc[0].total >= .25 ? 'success' : null,
+                        team2: this.gameData.teams.havoc[1].total < .1 ? 'danger' : this.gameData.teams.havoc[1].total >= .25 ? 'success' : null
+                    }
                 }, {
                     metric: 'Front Seven',
                     team1: this.gameData.teams.havoc[0].frontSeven,
-                    team2: this.gameData.teams.havoc[1].frontSeven
+                    team2: this.gameData.teams.havoc[1].frontSeven,
+                    _cellVariants: {
+                        team1: this.gameData.teams.havoc[0].frontSeven < .07 ? 'danger' : this.gameData.teams.havoc[0].frontSeven >= .15 ? 'success' : null,
+                        team2: this.gameData.teams.havoc[1].frontSeven < .07 ? 'danger' : this.gameData.teams.havoc[1].frontSeven >= .15 ? 'success' : null
+                    }
                 }, {
                     metric: 'DB',
                     team1: this.gameData.teams.havoc[0].db,
-                    team2: this.gameData.teams.havoc[1].db
+                    team2: this.gameData.teams.havoc[1].db,
+                    _cellVariants: {
+                        team1: this.gameData.teams.havoc[0].db < .04 ? 'danger' : this.gameData.teams.havoc[0].db >= .1 ? 'success' : null,
+                        team2: this.gameData.teams.havoc[1].db < .04 ? 'danger' : this.gameData.teams.havoc[1].db >= .1 ? 'success' : null
+                    }
                 }]
             },
             scoringFields() {
@@ -514,7 +648,11 @@
                 }, {
                     metric: 'Points Per Opportunity',
                     team1: this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity,
-                    team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity
+                    team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity,
+                    _cellVariants: {
+                        team1: this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity < 3 ? 'danger' : this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity >= 4 ? 'success' : null,
+                        team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity < 3 ? 'danger' : this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity >= 4 ? 'success' : null
+                    }
                 }]
             },
             hasPlayerData() {
