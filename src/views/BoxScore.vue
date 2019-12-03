@@ -43,6 +43,12 @@
                             </b-row>
                             <hr>
                             <b-row class='justify-content-center'>
+                                <h6><strong>Field Position</strong></h6>
+                                <b-table :items='fieldPosition' :fields='fieldPositionFields' small responsive>
+                                </b-table>
+                            </b-row>
+                            <hr>
+                            <b-row class='justify-content-center'>
                                 <h6><strong>Rushing</strong></h6>
                                 <b-table :items='rushingMetrics' :fields='rushingFields' small responsive>
                                 </b-table>
@@ -652,6 +658,46 @@
                     _cellVariants: {
                         team1: this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity < 3 ? 'danger' : this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity >= 4 ? 'success' : null,
                         team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity < 3 ? 'danger' : this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity >= 4 ? 'success' : null
+                    }
+                }]
+            },
+            fieldPositionFields() {
+                if (!this.gameData) {
+                    return [];
+                }
+
+                return [{
+                    key: 'metric',
+                    label: '',
+                    class: 'text-left'
+                }, {
+                    key: 'team1',
+                    label: this.gameData.teams.fieldPosition[0].team
+                }, {
+                    key: 'team2',
+                    label: this.gameData.teams.fieldPosition[1].team
+                }];
+            },
+            fieldPosition() {
+                if (!this.gameData) {
+                    return [];
+                }
+
+                return [{
+                    metric: 'Average Start',
+                    team1: this.gameData.teams.fieldPosition[0].averageStart,
+                    team2: this.gameData.teams.fieldPosition[1].averageStart,
+                    _cellVariants: {
+                        team1: this.gameData.teams.fieldPosition[0].averageStart > 75 ? 'danger' : this.gameData.teams.fieldPosition[0].averageStart < 67 ? 'success' : null,
+                        team2: this.gameData.teams.fieldPosition[1].averageStart > 75 ? 'danger' : this.gameData.teams.fieldPosition[1].averageStart < 67 ? 'success' : null
+                    }
+                }, {
+                    metric: 'Average Expected Points',
+                    team1: this.gameData.teams.fieldPosition[0].averageStartingPredictedPoints,
+                    team2: this.gameData.teams.fieldPosition[1].averageStartingPredictedPoints,
+                    _cellVariants: {
+                        team1: this.gameData.teams.fieldPosition[0].averageStartingPredictedPoints > 1.75 ? 'success' : this.gameData.teams.fieldPosition[0].averageStartingPredictedPoints < 1 ? 'danger' : null,
+                        team2: this.gameData.teams.fieldPosition[1].averageStartingPredictedPoints > 1.75 ? 'success' : this.gameData.teams.fieldPosition[1].averageStartingPredictedPoints < 1 ? 'danger' : null
                     }
                 }]
             },
