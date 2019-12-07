@@ -10,6 +10,14 @@
             <b-row>
                 <b-col />
                 <b-col lg='4'>
+                    <b-row>
+                        <b-col lg='6'>
+                            <label>Rolling plays?</label>
+                        </b-col>
+                        <b-col lg='6'>
+                            <b-form-input type='number' min='0' v-model="rollingPlays" @change="updateRollingPlays"></b-form-input>
+                        </b-col>
+                    </b-row>
                     <b-row v-for='player in players' :key='player.id'>
                         <b-col lg='2'>
                             <b-button variant='danger' size='sm' @click='removePlayer(player)'>X</b-button>
@@ -18,7 +26,7 @@
                             {{ player.name }}
                         </b-col>
                     </b-row>
-                    <b-row class='mt-4'>
+                    <b-row>
                         <b-col lg='4'>
                             Add player:
                         </b-col>
@@ -53,6 +61,7 @@
         data() {
             return {
                 title: 'Cumulative Average PPA per Dropback',
+                rollingPlays: null,
                 players: [],
                 lineStyles: [
                     [],
@@ -104,19 +113,22 @@
         methods: {
             addPlayer(player) {
                 if (player) {
-                    this.players.push(player)
-
-                    this.$axios.get('/player/ppa/passing', {
+                    this.players.push(player);
+                    this.$ga.event('visualization', 'generation', 'mean-pass-ppa-chart');
+                    this.loadPlayer(player);
+                }
+            },
+            loadPlayer(player) {
+                return this.$axios.get('/player/ppa/passing', {
                         params: {
-                            id: player.id
+                            id: player.id,
+                            rollingPlays: this.rollingPlays
                         }
                     }).then(results => {
-                        this.$ga.event('visualization', 'generation', 'mean-pass-ppa-chart');
-
                         let data = Object.assign({}, this.chartData);
                         data.datasets.push({
                             pointRadius: 0,
-                            borderDash: this.lineStyles[(this.players.length - 1) % 12],
+                            borderDash: this.lineStyles[this.players.indexOf(player) % 12],
                             borderColor: player.teamColor,
                             fill: false,
                             label: player.name,
@@ -128,7 +140,6 @@
 
                         this.chartData = data;
                     });
-                }
             },
             removePlayer(player) {
                 let index = this.players.indexOf(player);
@@ -140,6 +151,14 @@
                     data.datasets[i].borderDash = this.lineStyles[i];
                 }
                 this.chartData = data;
+            },
+            updateRollingPlays(plays) {
+                this.rollingPlays = plays;
+                this.chartData.datasets = [];
+
+                for (let player of this.players) {
+                    this.loadPlayer(player);
+                }
             }
         }
     }

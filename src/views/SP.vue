@@ -3,7 +3,7 @@
         <b-card>
             <b-row>
                 <b-col>
-                    <h1>S&amp;P+ Visualizations</h1>
+                    <h1>SP+ Visualizations</h1>
                     <p class='muted'>SP+ is a rating system created by Bill Connelly (<a href='https://twitter.com/ESPN_BillC'>@ESPN_BillC</a>) that are meant to be a predictive comparison of teams. For a more detailed explanation, <a href='https://www.sbnation.com/college-football/2017/10/13/16457830/college-football-advanced-stats-analytics-rankings'>see this article</a>.</p>
                     <p class='lead'>Select a year and two data points to begin generating visualizations.</p>
                 </b-col>
