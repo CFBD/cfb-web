@@ -142,10 +142,9 @@
                     });
             },
             removePlayer(player) {
-                let index = this.players.indexOf(player);
                 let data = Object.assign({}, this.chartData);
-                data.datasets.splice(index, 1);
-                this.players.splice(index, 1);
+                data.datasets = data.datasets.filter(d => d.label != player.name);
+                this.players = this.players.filter(p => p.id != player.id);
 
                 for (let i = 0; i < this.players.length; i++) {
                     data.datasets[i].borderDash = this.lineStyles[i];
