@@ -25,7 +25,7 @@
                         <b-col :lg='hasPlayerData ? 6 : 9' class='team-column'>
                             <h5>Team Metrics</h5>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.winExpectancy.content }" :title="popovers.winExpectancy.title">
                                 <b-col>
                                     <b-row class='justify-content-center'>
                                         <h6><strong>Post Game Win Probability</strong></h6>
@@ -36,72 +36,72 @@
                                 </b-col>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.opportunities.content }" :title="popovers.opportunities.title">
                                 <h6><strong>Scoring Opportunities</strong></h6>
                                 <b-table :items='scoringMetrics' :fields='scoringFields' small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.fieldPosition.content }" :title="popovers.fieldPosition.title">
                                 <h6><strong>Field Position</strong></h6>
                                 <b-table :items='fieldPosition' :fields='fieldPositionFields' small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.rushing.content }" :title="popovers.rushing.title">
                                 <h6><strong>Rushing</strong></h6>
                                 <b-table :items='rushingMetrics' :fields='rushingFields' small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center' v-if='this.game.season > 2015'>
+                            <b-row class='justify-content-center' v-if='this.game.season > 2015' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.havoc.content }" :title="popovers.havoc.title">
                                 <h6><strong>Defensive Havoc</strong></h6>
                                 <b-table :items='havocMetrics' :fields='havocFields' small responsive>
                                 </b-table>
                             </b-row>
                             <hr v-if='this.game.season > 2015'>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <h6><strong>Predicted Points Added</strong></h6>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <label class='muted'>Overall</label>
                                 <b-table :items='overallTeamPPA' :fields='quarterFieldsTeam' small responsive>
                                 </b-table>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <label class='muted'>Passing</label>
                                 <b-table :items='passingTeamPPA' :fields='quarterFieldsTeam' small responsive>
                                 </b-table>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <label class='muted'>Rushing</label>
                                 <b-table :items='rushingTeamPPA' :fields='quarterFieldsTeam' small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.success.content }" :title="popovers.success.title">
                                 <h6><strong>Success Rate</strong></h6>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.success.content }" :title="popovers.success.title">
                                 <label class='muted'>Overall</label>
                                 <b-table :items='overallTeamSuccess' :fields='quarterFieldsTeam' small responsive>
                                 </b-table>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.success.content }" :title="popovers.success.title">
                                 <label class='muted'>Standard Downs</label>
                                 <b-table :items='standardTeamSuccess' :fields='quarterFieldsTeam' small responsive>
                                 </b-table>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.success.content }" :title="popovers.success.title">
                                 <label class='muted'>Passing Downs</label>
                                 <b-table :items='passingTeamSuccess' :fields='quarterFieldsTeam' small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.explosiveness.content }" :title="popovers.explosiveness.title">
                                 <h6><strong>Explosiveness</strong></h6>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.explosiveness.content }" :title="popovers.explosiveness.title">
                                 <label class='muted'>Overall</label>
                                 <b-table :items='explosiveness' :fields='quarterFieldsTeam' small responsive>
                                 </b-table>
@@ -110,43 +110,43 @@
                         <b-col lg='6' class='player-column' v-if='hasPlayerData'>
                             <h5>Player Metrics</h5>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.usage.content }" :title="popovers.usage.title">
                                 <h6><strong>Usage</strong></h6>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.usage.content }" :title="popovers.usage.title">
                                 <label class='muted'>{{ this.game.home_team }}</label>
                                 <b-table :items='homeTeamUsage' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.usage.content }" :title="popovers.usage.title">
                                 <label class='muted'>{{ this.game.away_team }}</label>
                                 <b-table :items='awayTeamUsage' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <h6><strong>PPA (Avg)</strong></h6>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <label class='muted'>{{ this.game.home_team }}</label>
                                 <b-table :items='homeTeamAvgPPA' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <label class='muted'>{{ this.game.away_team }}</label>
                                 <b-table :items='awayTeamAvgPPA' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
-                            <b-row class='justify-content-center'>
+                            <b-row class='justify-content-center' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.ppaCum.content }" :title="popovers.ppaCum.title">
                                 <h6><strong>PPA (Cum.)</strong></h6>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.ppaCum.content }" :title="popovers.ppaCum.title">
                                 <label class='muted'>{{ this.game.home_team }}</label>
                                 <b-table :items='homeTeamCumPPA' :fields='playerFields' small responsive>
                                 </b-table>
                             </b-row>
-                            <b-row class='justify-content-center mt-2'>
+                            <b-row class='justify-content-center mt-2' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.ppaCum.content }" :title="popovers.ppaCum.title">
                                 <label class='muted'>{{ this.game.away_team }}</label>
                                 <b-table :items='awayTeamCumPPA' :fields='playerFields' small responsive>
                                 </b-table>
@@ -221,7 +221,49 @@
                     key: 'passing',
                     label: 'Pass',
                     sortable: true
-                }]
+                }],
+                popovers: {
+                    winExpectancy: {
+                        title: 'Win Expectancy',
+                        content: 'Measures the win expectancy if the game were to be played again with each team attain the same stats'
+                    },
+                    opportunities: {
+                        title: 'Scoring Opportunities',
+                        content: 'Analyzes drives in which the offense advanced the ball to our past the opponent\'s 40 yard line'
+                    },
+                    fieldPosition: {
+                        title: 'Field Position',
+                        content: 'Average starting field position in number of yards from opponent\'s goal line as well as average starting expected points'
+                    },
+                    rushing: {
+                        title: 'Rushing',
+                        content: 'Various rushing based metrics, some of which attempt to measure the effectiveness of the offensive line while others measure the performance of the team\'s backs'
+                    },
+                    havoc: {
+                        title: 'Havoc',
+                        content: 'Measures the percentage of plays in which the defensive generated a havoc event, such as a TFL, pass deflection, or turnover'
+                    },
+                    ppa: {
+                        title: 'Predicted Points Added',
+                        content: 'EPA metric that measures expected points added on an average play'
+                    },
+                    success: {
+                        title: 'Success Rate',
+                        content: 'A play is considered to by successful if it is a first down and at least 50% of yards to go are attained, or if it is 2nd down and at least 70% or yards to go are attained, or if it is a 3rd or 4th down that is converted for a first down or score'
+                    },
+                    explosiveness: {
+                        title: 'Explosiveness',
+                        content: 'Explosiveness measures the average expected points added on successful plays'
+                    },
+                    usage: {
+                        title: 'Usage',
+                        content: 'Usage measures the percentage of plays in which a player was involved, such as as a passer, a rusher, or a receiving target'
+                    },
+                    ppaCum: {
+                        title: 'Predicted Points Added - Cumulative',
+                        content: 'Cumulative PPA measures the sum of expected points added across all plays in which a player was involved'
+                    }
+                }
             };
         },
         methods: {
@@ -428,13 +470,19 @@
                     rushing: d.average.rushing,
                     passing: d.average.passing,
                     _cellVariants: {
-                        quarter1: d.average.quarter1 < 0 ? 'danger' : d.average.quarter1 >= 0.5 ? 'success' : null,
-                        quarter2: d.average.quarter2 < 0 ? 'danger' : d.average.quarter2 >= 0.5 ? 'success' : null,
-                        quarter3: d.average.quarter3 < 0 ? 'danger' : d.average.quarter3 >= 0.5 ? 'success' : null,
-                        quarter4: d.average.quarter4 < 0 ? 'danger' : d.average.quarter4 >= 0.5 ? 'success' : null,
+                        quarter1: d.average.quarter1 < 0 ? 'danger' : d.average.quarter1 >= 0.5 ?
+                            'success' : null,
+                        quarter2: d.average.quarter2 < 0 ? 'danger' : d.average.quarter2 >= 0.5 ?
+                            'success' : null,
+                        quarter3: d.average.quarter3 < 0 ? 'danger' : d.average.quarter3 >= 0.5 ?
+                            'success' : null,
+                        quarter4: d.average.quarter4 < 0 ? 'danger' : d.average.quarter4 >= 0.5 ?
+                            'success' : null,
                         total: d.average.total < 0 ? 'danger' : d.average.total >= 0.5 ? 'success' : null,
-                        rushing: d.average.rushing < 0 ? 'danger' : d.average.rushing >= 0.5 ? 'success' : null,
-                        passing: d.average.passing < 0 ? 'danger' : d.average.passing >= 0.5 ? 'success' : null,
+                        rushing: d.average.rushing < 0 ? 'danger' : d.average.rushing >= 0.5 ? 'success' :
+                            null,
+                        passing: d.average.passing < 0 ? 'danger' : d.average.passing >= 0.5 ? 'success' :
+                            null,
                     }
                 }));
             },
@@ -449,13 +497,19 @@
                     rushing: d.average.rushing,
                     passing: d.average.passing,
                     _cellVariants: {
-                        quarter1: d.average.quarter1 < 0 ? 'danger' : d.average.quarter1 >= 0.5 ? 'success' : null,
-                        quarter2: d.average.quarter2 < 0 ? 'danger' : d.average.quarter2 >= 0.5 ? 'success' : null,
-                        quarter3: d.average.quarter3 < 0 ? 'danger' : d.average.quarter3 >= 0.5 ? 'success' : null,
-                        quarter4: d.average.quarter4 < 0 ? 'danger' : d.average.quarter4 >= 0.5 ? 'success' : null,
+                        quarter1: d.average.quarter1 < 0 ? 'danger' : d.average.quarter1 >= 0.5 ?
+                            'success' : null,
+                        quarter2: d.average.quarter2 < 0 ? 'danger' : d.average.quarter2 >= 0.5 ?
+                            'success' : null,
+                        quarter3: d.average.quarter3 < 0 ? 'danger' : d.average.quarter3 >= 0.5 ?
+                            'success' : null,
+                        quarter4: d.average.quarter4 < 0 ? 'danger' : d.average.quarter4 >= 0.5 ?
+                            'success' : null,
                         total: d.average.total < 0 ? 'danger' : d.average.total >= 0.5 ? 'success' : null,
-                        rushing: d.average.rushing < 0 ? 'danger' : d.average.rushing >= 0.5 ? 'success' : null,
-                        passing: d.average.passing < 0 ? 'danger' : d.average.passing >= 0.5 ? 'success' : null,
+                        rushing: d.average.rushing < 0 ? 'danger' : d.average.rushing >= 0.5 ? 'success' :
+                            null,
+                        passing: d.average.passing < 0 ? 'danger' : d.average.passing >= 0.5 ? 'success' :
+                            null,
                     }
                 }));
             },
@@ -470,13 +524,20 @@
                     rushing: d.cumulative.rushing,
                     passing: d.cumulative.passing,
                     _cellVariants: {
-                        quarter1: d.cumulative.quarter1 < 0 ? 'danger' : d.cumulative.quarter1 >= 2.5 ? 'success' : null,
-                        quarter2: d.cumulative.quarter2 < 0 ? 'danger' : d.cumulative.quarter2 >= 2.5 ? 'success' : null,
-                        quarter3: d.cumulative.quarter3 < 0 ? 'danger' : d.cumulative.quarter3 >= 2.5 ? 'success' : null,
-                        quarter4: d.cumulative.quarter4 < 0 ? 'danger' : d.cumulative.quarter4 >= 2.5 ? 'success' : null,
-                        total: d.cumulative.total < 0 ? 'danger' : d.cumulative.total >= 10 ? 'success' : null,
-                        rushing: d.cumulative.rushing < 0 ? 'danger' : d.cumulative.rushing >= 10 ? 'success' : null,
-                        passing: d.cumulative.passing < 0 ? 'danger' : d.cumulative.passing >= 10 ? 'success' : null,
+                        quarter1: d.cumulative.quarter1 < 0 ? 'danger' : d.cumulative.quarter1 >= 2.5 ?
+                            'success' : null,
+                        quarter2: d.cumulative.quarter2 < 0 ? 'danger' : d.cumulative.quarter2 >= 2.5 ?
+                            'success' : null,
+                        quarter3: d.cumulative.quarter3 < 0 ? 'danger' : d.cumulative.quarter3 >= 2.5 ?
+                            'success' : null,
+                        quarter4: d.cumulative.quarter4 < 0 ? 'danger' : d.cumulative.quarter4 >= 2.5 ?
+                            'success' : null,
+                        total: d.cumulative.total < 0 ? 'danger' : d.cumulative.total >= 10 ? 'success' :
+                            null,
+                        rushing: d.cumulative.rushing < 0 ? 'danger' : d.cumulative.rushing >= 10 ?
+                            'success' : null,
+                        passing: d.cumulative.passing < 0 ? 'danger' : d.cumulative.passing >= 10 ?
+                            'success' : null,
                     }
                 }));
             },
@@ -491,13 +552,20 @@
                     rushing: d.cumulative.rushing,
                     passing: d.cumulative.passing,
                     _cellVariants: {
-                        quarter1: d.cumulative.quarter1 < 0 ? 'danger' : d.cumulative.quarter1 >= 2.5 ? 'success' : null,
-                        quarter2: d.cumulative.quarter2 < 0 ? 'danger' : d.cumulative.quarter2 >= 2.5 ? 'success' : null,
-                        quarter3: d.cumulative.quarter3 < 0 ? 'danger' : d.cumulative.quarter3 >= 2.5 ? 'success' : null,
-                        quarter4: d.cumulative.quarter4 < 0 ? 'danger' : d.cumulative.quarter4 >= 2.5 ? 'success' : null,
-                        total: d.cumulative.total < 0 ? 'danger' : d.cumulative.total >= 10 ? 'success' : null,
-                        rushing: d.cumulative.rushing < 0 ? 'danger' : d.cumulative.rushing >= 10 ? 'success' : null,
-                        passing: d.cumulative.passing < 0 ? 'danger' : d.cumulative.passing >= 10 ? 'success' : null,
+                        quarter1: d.cumulative.quarter1 < 0 ? 'danger' : d.cumulative.quarter1 >= 2.5 ?
+                            'success' : null,
+                        quarter2: d.cumulative.quarter2 < 0 ? 'danger' : d.cumulative.quarter2 >= 2.5 ?
+                            'success' : null,
+                        quarter3: d.cumulative.quarter3 < 0 ? 'danger' : d.cumulative.quarter3 >= 2.5 ?
+                            'success' : null,
+                        quarter4: d.cumulative.quarter4 < 0 ? 'danger' : d.cumulative.quarter4 >= 2.5 ?
+                            'success' : null,
+                        total: d.cumulative.total < 0 ? 'danger' : d.cumulative.total >= 10 ? 'success' :
+                            null,
+                        rushing: d.cumulative.rushing < 0 ? 'danger' : d.cumulative.rushing >= 10 ?
+                            'success' : null,
+                        passing: d.cumulative.passing < 0 ? 'danger' : d.cumulative.passing >= 10 ?
+                            'success' : null,
                     }
                 }));
             },
@@ -532,8 +600,10 @@
                     team1: this.gameData.teams.rushing[0].stuffRate,
                     team2: this.gameData.teams.rushing[1].stuffRate,
                     _cellVariants: {
-                        team1: this.gameData.teams.rushing[0].stuffRate < 0.15 ? 'success' : this.gameData.teams.rushing[0].stuffRate >= 0.3 ? 'danger' : null,
-                        team2: this.gameData.teams.rushing[1].stuffRate < 0.15 ? 'success' : this.gameData.teams.rushing[1].stuffRate >= 0.3 ? 'danger' : null
+                        team1: this.gameData.teams.rushing[0].stuffRate < 0.15 ? 'success' : this.gameData.teams
+                            .rushing[0].stuffRate >= 0.3 ? 'danger' : null,
+                        team2: this.gameData.teams.rushing[1].stuffRate < 0.15 ? 'success' : this.gameData.teams
+                            .rushing[1].stuffRate >= 0.3 ? 'danger' : null
                     }
                 }, {
                     metric: 'Line Yards',
@@ -544,8 +614,10 @@
                     team1: this.gameData.teams.rushing[0].lineYardsAverage,
                     team2: this.gameData.teams.rushing[1].lineYardsAverage,
                     _cellVariants: {
-                        team1: this.gameData.teams.rushing[0].lineYardsAverage < 2.5 ? 'danger' : this.gameData.teams.rushing[0].lineYardsAverage >= 3.5 ? 'success' : null,
-                        team2: this.gameData.teams.rushing[1].lineYardsAverage < 2.5 ? 'danger' : this.gameData.teams.rushing[1].lineYardsAverage >= 3.5 ? 'success' : null
+                        team1: this.gameData.teams.rushing[0].lineYardsAverage < 2.5 ? 'danger' : this.gameData
+                            .teams.rushing[0].lineYardsAverage >= 3.5 ? 'success' : null,
+                        team2: this.gameData.teams.rushing[1].lineYardsAverage < 2.5 ? 'danger' : this.gameData
+                            .teams.rushing[1].lineYardsAverage >= 3.5 ? 'success' : null
                     }
                 }, {
                     metric: 'Second Level Yards',
@@ -556,8 +628,10 @@
                     team1: this.gameData.teams.rushing[0].secondLevelYardsAverage,
                     team2: this.gameData.teams.rushing[1].secondLevelYardsAverage,
                     _cellVariants: {
-                        team1: this.gameData.teams.rushing[0].secondLevelYardsAverage < 0.7 ? 'danger' : this.gameData.teams.rushing[0].secondLevelYardsAverage >= 1.5 ? 'success' : null,
-                        team2: this.gameData.teams.rushing[1].secondLevelYardsAverage < 0.7 ? 'danger' : this.gameData.teams.rushing[1].secondLevelYardsAverage >= 1.5 ? 'success' : null
+                        team1: this.gameData.teams.rushing[0].secondLevelYardsAverage < 0.7 ? 'danger' : this
+                            .gameData.teams.rushing[0].secondLevelYardsAverage >= 1.5 ? 'success' : null,
+                        team2: this.gameData.teams.rushing[1].secondLevelYardsAverage < 0.7 ? 'danger' : this
+                            .gameData.teams.rushing[1].secondLevelYardsAverage >= 1.5 ? 'success' : null
                     }
                 }, {
                     metric: 'Open Field Yards',
@@ -568,8 +642,10 @@
                     team1: this.gameData.teams.rushing[0].openFieldYardsAverage,
                     team2: this.gameData.teams.rushing[1].openFieldYardsAverage,
                     _cellVariants: {
-                        team1: this.gameData.teams.rushing[0].openFieldYardsAverage < 1 ? 'danger' : this.gameData.teams.rushing[0].openFieldYardsAverage >= 2 ? 'success' : null,
-                        team2: this.gameData.teams.rushing[1].openFieldYardsAverage < 1 ? 'danger' : this.gameData.teams.rushing[1].openFieldYardsAverage >= 2 ? 'success' : null
+                        team1: this.gameData.teams.rushing[0].openFieldYardsAverage < 1 ? 'danger' : this
+                            .gameData.teams.rushing[0].openFieldYardsAverage >= 2 ? 'success' : null,
+                        team2: this.gameData.teams.rushing[1].openFieldYardsAverage < 1 ? 'danger' : this
+                            .gameData.teams.rushing[1].openFieldYardsAverage >= 2 ? 'success' : null
                     }
                 }]
             },
@@ -600,24 +676,30 @@
                     team1: this.gameData.teams.havoc[0].total,
                     team2: this.gameData.teams.havoc[1].total,
                     _cellVariants: {
-                        team1: this.gameData.teams.havoc[0].total < .1 ? 'danger' : this.gameData.teams.havoc[0].total >= .25 ? 'success' : null,
-                        team2: this.gameData.teams.havoc[1].total < .1 ? 'danger' : this.gameData.teams.havoc[1].total >= .25 ? 'success' : null
+                        team1: this.gameData.teams.havoc[0].total < .1 ? 'danger' : this.gameData.teams.havoc[0]
+                            .total >= .25 ? 'success' : null,
+                        team2: this.gameData.teams.havoc[1].total < .1 ? 'danger' : this.gameData.teams.havoc[1]
+                            .total >= .25 ? 'success' : null
                     }
                 }, {
                     metric: 'Front Seven',
                     team1: this.gameData.teams.havoc[0].frontSeven,
                     team2: this.gameData.teams.havoc[1].frontSeven,
                     _cellVariants: {
-                        team1: this.gameData.teams.havoc[0].frontSeven < .07 ? 'danger' : this.gameData.teams.havoc[0].frontSeven >= .15 ? 'success' : null,
-                        team2: this.gameData.teams.havoc[1].frontSeven < .07 ? 'danger' : this.gameData.teams.havoc[1].frontSeven >= .15 ? 'success' : null
+                        team1: this.gameData.teams.havoc[0].frontSeven < .07 ? 'danger' : this.gameData.teams
+                            .havoc[0].frontSeven >= .15 ? 'success' : null,
+                        team2: this.gameData.teams.havoc[1].frontSeven < .07 ? 'danger' : this.gameData.teams
+                            .havoc[1].frontSeven >= .15 ? 'success' : null
                     }
                 }, {
                     metric: 'DB',
                     team1: this.gameData.teams.havoc[0].db,
                     team2: this.gameData.teams.havoc[1].db,
                     _cellVariants: {
-                        team1: this.gameData.teams.havoc[0].db < .04 ? 'danger' : this.gameData.teams.havoc[0].db >= .1 ? 'success' : null,
-                        team2: this.gameData.teams.havoc[1].db < .04 ? 'danger' : this.gameData.teams.havoc[1].db >= .1 ? 'success' : null
+                        team1: this.gameData.teams.havoc[0].db < .04 ? 'danger' : this.gameData.teams.havoc[0]
+                            .db >= .1 ? 'success' : null,
+                        team2: this.gameData.teams.havoc[1].db < .04 ? 'danger' : this.gameData.teams.havoc[1]
+                            .db >= .1 ? 'success' : null
                     }
                 }]
             },
@@ -656,8 +738,12 @@
                     team1: this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity,
                     team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity,
                     _cellVariants: {
-                        team1: this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity < 3 ? 'danger' : this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity >= 4 ? 'success' : null,
-                        team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity < 3 ? 'danger' : this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity >= 4 ? 'success' : null
+                        team1: this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity < 3 ? 'danger' :
+                            this.gameData.teams.scoringOpportunities[0].pointsPerOpportunity >= 4 ? 'success' :
+                            null,
+                        team2: this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity < 3 ? 'danger' :
+                            this.gameData.teams.scoringOpportunities[1].pointsPerOpportunity >= 4 ? 'success' :
+                            null
                     }
                 }]
             },
@@ -688,16 +774,22 @@
                     team1: this.gameData.teams.fieldPosition[0].averageStart,
                     team2: this.gameData.teams.fieldPosition[1].averageStart,
                     _cellVariants: {
-                        team1: this.gameData.teams.fieldPosition[0].averageStart > 75 ? 'danger' : this.gameData.teams.fieldPosition[0].averageStart < 67 ? 'success' : null,
-                        team2: this.gameData.teams.fieldPosition[1].averageStart > 75 ? 'danger' : this.gameData.teams.fieldPosition[1].averageStart < 67 ? 'success' : null
+                        team1: this.gameData.teams.fieldPosition[0].averageStart > 75 ? 'danger' : this.gameData
+                            .teams.fieldPosition[0].averageStart < 67 ? 'success' : null,
+                        team2: this.gameData.teams.fieldPosition[1].averageStart > 75 ? 'danger' : this.gameData
+                            .teams.fieldPosition[1].averageStart < 67 ? 'success' : null
                     }
                 }, {
                     metric: 'Average Expected Points',
                     team1: this.gameData.teams.fieldPosition[0].averageStartingPredictedPoints,
                     team2: this.gameData.teams.fieldPosition[1].averageStartingPredictedPoints,
                     _cellVariants: {
-                        team1: this.gameData.teams.fieldPosition[0].averageStartingPredictedPoints > 1.75 ? 'success' : this.gameData.teams.fieldPosition[0].averageStartingPredictedPoints < 1 ? 'danger' : null,
-                        team2: this.gameData.teams.fieldPosition[1].averageStartingPredictedPoints > 1.75 ? 'success' : this.gameData.teams.fieldPosition[1].averageStartingPredictedPoints < 1 ? 'danger' : null
+                        team1: this.gameData.teams.fieldPosition[0].averageStartingPredictedPoints > 1.75 ?
+                            'success' : this.gameData.teams.fieldPosition[0].averageStartingPredictedPoints <
+                            1 ? 'danger' : null,
+                        team2: this.gameData.teams.fieldPosition[1].averageStartingPredictedPoints > 1.75 ?
+                            'success' : this.gameData.teams.fieldPosition[1].averageStartingPredictedPoints <
+                            1 ? 'danger' : null
                     }
                 }]
             },
