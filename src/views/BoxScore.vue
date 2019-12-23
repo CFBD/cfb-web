@@ -229,7 +229,7 @@
                     },
                     opportunities: {
                         title: 'Scoring Opportunities',
-                        content: 'Analyzes drives in which the offense advanced the ball to our past the opponent\'s 40 yard line'
+                        content: 'Analyzes drives in which the offense advanced the ball to out past the opponent\'s 40 yard line'
                     },
                     fieldPosition: {
                         title: 'Field Position',
