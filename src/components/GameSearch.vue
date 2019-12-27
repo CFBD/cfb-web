@@ -132,7 +132,7 @@
                         homeScore: r.home_points,
                         awayTeam: r.away_team,
                         awayScore: r.away_points
-                    })).filter(g => this.onlyCompleted == false || g.homeScore);
+                    })).filter(g => this.onlyCompleted == false || g.homeScore || g.awayScore);
                 });
             },
             emitSelection(selectedGame) {
