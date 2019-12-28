@@ -52,6 +52,9 @@
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item>
+                        <a href='https://blog.collegefootballdata.com' class='nav-link' target='_blank'>Blog</a>
+                    </b-nav-item>
+                    <b-nav-item>
                         <router-link to="/contribute" class='nav-link'>Contribute</router-link>
                     </b-nav-item>
                     <b-nav-item>
