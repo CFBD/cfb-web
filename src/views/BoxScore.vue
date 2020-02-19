@@ -25,13 +25,21 @@
                         <b-col :lg='hasPlayerData ? 6 : 9' class='team-column'>
                             <h5>Team Metrics</h5>
                             <hr>
-                            <b-row class='justify-content-center' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.winExpectancy.content }" :title="popovers.winExpectancy.title">
-                                <b-col>
+                            <b-row class='justify-content-center'>
+                                <b-col lg='6' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.winExpectancy.content }" :title="popovers.winExpectancy.title">
                                     <b-row class='justify-content-center'>
-                                        <h6><strong>Post Game Win Probability</strong></h6>
+                                        <h6><strong>Post Game Win %</strong></h6>
                                     </b-row>
                                     <b-row class='justify-content-center'>
                                         <p>{{winProbability}}</p>
+                                    </b-row>
+                                </b-col>
+                                <b-col lg='6' v-b-popover.hover.righttop="{ variant: 'primary', content: popovers.excitementIndex.content }" :title="popovers.excitementIndex.title">
+                                    <b-row class='justify-content-center'>
+                                        <h6><strong>Excitement Index</strong></h6>
+                                    </b-row>
+                                    <b-row class='justify-content-center'>
+                                        <p>{{Math.round(game.excitement_index * 10) / 10}}</p>
                                     </b-row>
                                 </b-col>
                             </b-row>
@@ -226,6 +234,10 @@
                     winExpectancy: {
                         title: 'Win Expectancy',
                         content: 'Measures the win expectancy if the game were to be played again with each team attain the same stats'
+                    },
+                    excitementIndex: {
+                        title: 'Excitement Index',
+                        content: 'Measures the overall excitement of the game based on swings in in-game win probability. An average game scores around 4.0. There is no upper limit on score, but more exciting games will generally finish at 6.0 or higher.'
                     },
                     opportunities: {
                         title: 'Scoring Opportunities',
