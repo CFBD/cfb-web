@@ -11,7 +11,7 @@ import App from './App.vue';
 import router from './router';
 
 Vue.config.productionTip = false;
-Vue.config.devtools = process.env.ENABLE_DEV_TOOLS == 'true';
+Vue.config.devtools = process.env.ENABLE_DEV_TOOLS;
 
 Vue.filter('capitalize', function (value) {
     if (!value) return ''

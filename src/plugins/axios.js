@@ -6,7 +6,7 @@ import axios from "axios";
 // Full config:  https://github.com/axios/axios#request-config
 
 let config = {
-  baseURL: process.env.AXIOS_BASE_URL,
+  baseURL: process.env.AXIOS_BASE_URL || 'https://api.collegefootballdata.com',
   timeout: 60 * 1000
 };
 
