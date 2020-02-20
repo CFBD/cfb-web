@@ -15,9 +15,9 @@ on:
 
 env:
   IMAGE_NAME: cfb-web
-  AXIOS_BASE_URL=https://api.collegefootballdata.com
-  ENABLE_DEV_TOOLS=false
-  SHOW_ADS=true
+  AXIOS_BASE_URL: https://api.collegefootballdata.com
+  ENABLE_DEV_TOOLS: false
+  SHOW_ADS: true
 jobs:
   # Run tests.
   # See also https://docs.docker.com/docker-hub/builds/automated-testing/
