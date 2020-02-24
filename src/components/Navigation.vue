@@ -58,7 +58,7 @@
                         <router-link to="/contribute" class='nav-link'>Contribute</router-link>
                     </b-nav-item>
                     <b-nav-item>
-                        <router-link to="/about" class='nav-link'>About</router-link>
+                        <router-link to="/Glossary" class='nav-link'>Glossary</router-link>
                     </b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class='ml-auto'>

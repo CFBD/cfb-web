@@ -4,7 +4,6 @@ import VueAnalytics from 'vue-analytics';
 
 import Home from './views/Home.vue';
 import Category from './views/Category.vue';
-import About from './views/About.vue';
 import Contribute from './views/Contribute.vue';
 import Matchup from './views/Matchup.vue';
 import SP from './views/SP.vue';
@@ -18,6 +17,7 @@ import PPAUsage from './views/PPAUsage.vue';
 import SeasonMetrics from './views/SeasonMetrics.vue';
 import BoxScore from './views/BoxScore.vue';
 import ExportPage from './views/ExportPage.vue';
+import Glossary from './views/Glossary.vue';
 
 Vue.use(Router)
 
@@ -27,11 +27,6 @@ const router = new Router({
             path: '/',
             name: 'home',
             component: Home
-        },
-        {
-            path: '/about',
-            name: 'about',
-            component: About
         },
         {
             path: '/category/:name',
@@ -104,6 +99,11 @@ const router = new Router({
             path: '/boxscore/:id(\\d+)?',
             name: 'boxscore',
             component: BoxScore
+        },
+        {
+            path: '/glossary',
+            name: 'glossary',
+            component: Glossary
         }
     ]
 });
