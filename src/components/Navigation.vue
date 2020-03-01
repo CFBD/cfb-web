@@ -51,7 +51,7 @@
                             </router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
-                    <b-nav-item>
+                    <b-nav-item href='https://blog.collegefootballdata.com' target='_blank'>
                         <a href='https://blog.collegefootballdata.com' class='nav-link' target='_blank'>Blog</a>
                     </b-nav-item>
                     <b-nav-item>
