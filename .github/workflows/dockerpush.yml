@@ -55,7 +55,7 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_ID=docker.pkg.github.com/bluescar/cfb-web/$IMAGE_NAME
+          IMAGE_ID=docker.pkg.github.com/cfbd/cfb-web/$IMAGE_NAME
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           # Strip "v" prefix from tag name
@@ -78,5 +78,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         script: |
           cd /docker/cfb
-          docker pull docker.pkg.github.com/bluescar/cfb-web/cfb-web
+          docker pull docker.pkg.github.com/cfbd/cfb-web/cfb-web
           docker-compose up -d
