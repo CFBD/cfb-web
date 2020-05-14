@@ -26,6 +26,8 @@
                                 displayProp='text' valueProp='id' v-on:selection='qp.value = $event'
                                 :placeholder="qp.parameter.description" :is-required='qp.parameter.required'>
                             </autocomplete>
+                            <autocomplete v-else-if="qp.parameter.name == 'statTypeId'" :items='playStatTypes' displayProp='name' valueProp='id' v-on:selection='qp.value = $event' :placeholder='qp.parameter.description' :is-required='qp.parameter.required'>
+                            </autocomplete>
                             <b-form-select v-else-if="qp.parameter.name == 'seasonType'" v-model="qp.value"
                                 :options="['regular', 'postseason', 'both']" class="mb-3" />
                             <b-form-input v-else :placeholder='qp.parameter.description'
@@ -93,6 +95,7 @@
             conferences: Array,
             teams: Array,
             playTypes: Array,
+            playStatTypes: Array,
             query: Object
         },
         data() {
