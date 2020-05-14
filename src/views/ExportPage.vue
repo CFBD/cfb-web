@@ -32,7 +32,7 @@
             </b-col>
         </b-row>
         <hr class='my-4'>
-        <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes' :query='query' @query='updateQuery'
+        <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes' :play-stat-types='playStatTypes' :query='query' @query='updateQuery'
             v-if='endpoint'></endpoint>
     </b-container>
 </template>
@@ -95,6 +95,9 @@
             getPlayTypes() {
                 return this.$axios.get('/play/types');
             },
+            getPlayStatTypes() {
+                return this.$axios.get('/play/stat/types');
+            },
             toggleCategories() {
                 this.collapsed = !this.collapsed;
             },
@@ -131,6 +134,10 @@
 
             this.getPlayTypes().then(result => {
                 this.playTypes = result.data;
+            });
+
+            this.getPlayStatTypes().then(result => {
+                this.playStatTypes = result.data;
             });
         },
         watch: {
