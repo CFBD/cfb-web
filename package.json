@@ -19,7 +19,7 @@
     "ajv": "^6.6.2",
     "bootstrap-vue": "^2.0.4",
     "chart.js": "^2.7.3",
-    "vue": "^2.5.17",
+    "vue": "^2.6.11",
     "vue-analytics": "^5.16.1",
     "vue-chartjs": "^3.4.0",
     "vue-json-csv": "^1.1.0",
@@ -42,7 +42,7 @@
     "vue-cli-plugin-bootstrap-vue": "^0.6.0",
     "vue-cli-plugin-docker-nginx": "^1.0.1",
     "vue-cli-plugin-fontawesome": "^0.1.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
