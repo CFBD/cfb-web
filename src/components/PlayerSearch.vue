@@ -25,6 +25,11 @@
                 type: String,
                 required: false,
                 default: null
+            },
+            year: {
+                type: Number,
+                required: false,
+                default: null
             }
         },
         data() {
@@ -39,6 +44,7 @@
                         params: {
                             position: this.position,
                             school: this.school,
+                            year: this.year,
                             searchTerm
                         }
                     }).then(result => {

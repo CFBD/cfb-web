@@ -12,6 +12,14 @@
                 <b-col lg='4'>
                     <b-row>
                         <b-col lg='6'>
+                            <label>Season?</label>
+                        </b-col>
+                        <b-col lg='6'>
+                            <b-form-input type='number' min='0' v-model="season" @change="updateSeason"></b-form-input>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col lg='6'>
                             <label>Rolling plays?</label>
                         </b-col>
                         <b-col lg='6'>
@@ -31,7 +39,7 @@
                             Add player:
                         </b-col>
                         <b-col lg='8'>
-                            <player-search :clear-on-selection='true' position='QB' @selection='addPlayer' />
+                            <player-search :year='year' :clear-on-selection='true' position='QB' @selection='addPlayer' />
                         </b-col>
                     </b-row>
                 </b-col>
@@ -62,6 +70,7 @@
             return {
                 title: 'Cumulative Average PPA per Dropback',
                 rollingPlays: null,
+                year: null,
                 players: [],
                 lineStyles: [
                     [],
@@ -122,7 +131,8 @@
                 return this.$axios.get('/player/ppa/passing', {
                         params: {
                             id: player.id,
-                            rollingPlays: this.rollingPlays
+                            rollingPlays: this.rollingPlays,
+                            year: this.year
                         }
                     }).then(results => {
                         let data = Object.assign({}, this.chartData);
@@ -158,6 +168,10 @@
                 for (let player of this.players) {
                     this.loadPlayer(player);
                 }
+            },
+            updateSeason(season) {
+                this.year = season;
+                this.players = [];
             }
         }
     }
