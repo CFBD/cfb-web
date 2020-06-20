@@ -171,6 +171,9 @@
             },
             updateSeason(season) {
                 this.year = season;
+                for (let player of this.players) {
+                    this.removePlayer(player);
+                }
                 this.players = [];
             }
         }
