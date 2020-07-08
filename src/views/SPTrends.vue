@@ -173,7 +173,7 @@
         },
         methods: {
             getTeams() {
-                return this.$axios.get('/teams');
+                return this.$axios.get('/teams/fbs');
             },
             getConferences() {
                 return this.$axios.get('/conferences');
