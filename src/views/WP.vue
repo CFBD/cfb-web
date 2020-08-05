@@ -21,9 +21,6 @@
                     <b-row class='justify-content-center'>
                         <b-link v-if='gameId' :to='`/boxscore/${gameId}`'>View advanced box score</b-link>
                     </b-row>
-                    <b-row v-if='gameId' class='justify-content-center mt-3'>
-                        <b-button @click='toggleSpread' :pressed.sync='spreadAdjustment' variant='info'>Include spread adjustment</b-button>
-                    </b-row>
                     <win-history :height='300' :chart-data='scatterData' :options='scatterOptions'>
                     </win-history>
                 </b-card>
@@ -47,7 +44,6 @@
                 title: '',
                 gameId: null,
                 results: null,
-                spreadAdjustment: true,
                 scatterData: [],
                 conferenceData: [],
                 tooltips: [],
@@ -102,8 +98,7 @@
             toggleSpread() {
                 this.$axios.get('/metrics/wp', {
                     params: {
-                        gameId: this.gameId,
-                        adjustForSpread: this.spreadAdjustment
+                        gameId: this.gameId
                     }
                 }).then(results => {
                     this.results = results.data;
@@ -122,8 +117,7 @@
 
                 this.$axios.get('/metrics/wp', {
                     params: {
-                        gameId: this.gameId,
-                        adjustForSpread: this.spreadAdjustment
+                        gameId: this.gameId
                     }
                 }).then(results => {
                     this.results = results.data;
