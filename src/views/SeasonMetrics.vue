@@ -14,6 +14,16 @@
                     <b-row>
                         <b-col />
                         <b-col lg='3'>
+                            <b-row class='justify-content-center'><label>Year</label></b-row>
+                            <b-form-select v-model="year" :options='years' @change="updateYear">
+                                <option :value="null">Please select a year</option>
+                            </b-form-select>
+                        </b-col>
+                        <b-col />
+                    </b-row>
+                    <b-row>
+                        <b-col />
+                        <b-col lg='3'>
                             <b-row class='justify-content-center'><label>Data Point 1</label></b-row>
                             <b-form-select v-model="dataPoint1.statType" :options='statTypes' @change="updateStatType1">
                                 <option :value="null">Please select a type</option>
@@ -84,6 +94,7 @@
                 endWeek: null,
                 teams: [],
                 years: [],
+                year: 2020,
                 statTypes: [{
                     value: 'offense',
                     text: 'Offense'
@@ -287,6 +298,10 @@
                 this.endWeek = week;
                 this.refreshData();
             },
+            updateYear(year) {
+                this.year = year;
+                this.refreshData();
+            },
             reloadData() {
                 if (this.results && this.dataPoint1.statType && this.dataPoint1.metricType && this.dataPoint2.statType && this.dataPoint2.metricType) {
                     this.$ga.event('visualization', 'generation', 'season-metrics');
@@ -323,7 +338,7 @@
             refreshData() {
                 this.$axios.get('/stats/season/advanced', {
                     params: {
-                        year: 2019,
+                        year: this.year,
                         excludeGarbageTime: true,
                         startWeek: this.startWeek,
                         endWeek: this.endWeek
@@ -335,6 +350,11 @@
             }
         },
         created() {
+            this.years = [];
+            for (let year = 2020; year > 2013; year--) {
+                this.years.push(year);
+            }
+
             this.getTeams().then(result => {
                 this.teams = result.data.sort((a, b) => {
                     let index = 0;

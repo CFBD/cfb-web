@@ -13,12 +13,22 @@
                     <b-row>
                         <b-col />
                         <b-col lg='3'>
+                            <b-row class='justify-content-center'><label>Year</label></b-row>
+                            <b-form-select v-model="year" :options='years' @change="updateYear">
+                                <option :value="null">Please select a year</option>
+                            </b-form-select>
+                        </b-col>
+                        <b-col />
+                    </b-row>
+                    <b-row>
+                        <b-col />
+                        <b-col lg='3'>
                             <b-row class='justify-content-center'><label>Position</label></b-row>
                             <b-form-select v-model='position' :options='positions' @change='updatePosition'>
                             </b-form-select>
                         </b-col>
                         <b-col lg='3'>
-                            <b-row><label>Min. Play Threshold</label></b-row>
+                            <b-row class='justify-content-center'><label>Min. Play Threshold</label></b-row>
                             <b-form-input v-model='threshold' @change='updateThreshold' type='number'></b-form-input>
                         </b-col>
                         <b-col lg='3'>
@@ -61,6 +71,8 @@
         data() {
             return {
                 loading: false,
+                years: [],
+                year: 2020,
                 threshold: 100,
                 position: 'QB',
                 positions: [
@@ -157,6 +169,10 @@
             }
         },
         methods: {
+            updateYear(year) {
+                this.year = year;
+                this.reloadData();
+            },
             getTeams() {
                 return this.$axios.get('/teams');
             },
@@ -176,7 +192,7 @@
                 this.loading = true;
                 this.$axios.get('/player/usage', {
                     params: {
-                        year: 2019,
+                        year: this.year,
                         conference: this.conference == 'All' ? '' : this.conference,
                         position: this.position,
                         excludeGarbageTime: true
@@ -184,7 +200,7 @@
                 }).then(usageResults => {
                     this.$axios.get('/ppa/players/season', {
                         params: {
-                            year: 2019,
+                            year: 2020,
                             conference: this.conference == 'All' ? '' : this.conference,
                             position: this.position,
                             threshold: this.threshold,
@@ -234,6 +250,11 @@
             }
         },
         created() {
+            this.years = [];
+            for (let year = 2020; year > 2013; year--) {
+                this.years.push(year);
+            }
+            
             this.getTeams().then(result => {
                 this.teams = result.data;
                 this.reloadData();

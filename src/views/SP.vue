@@ -173,7 +173,7 @@
                 ],
                 conference: 'All',
                 results: null,
-                year: 2019,
+                year: 2020,
                 dataPoint1: null,
                 dataPoint2: null,
                 scatterData: [],
@@ -210,7 +210,7 @@
                 if (year) {
                     this.year = year;
                     for (let dataPoint of this.dataPoints.filter(dp => dp.disabled !== undefined)) {
-                        dataPoint.disabled = (year === 2019 && dataPoint.value != 'specialTeams.rating') || year < 2005;
+                        dataPoint.disabled = (year === 2019 && dataPoint.value != 'specialTeams.rating') || year < 2005 || year === 2020;
                     }
 
                     this.$axios.get('/ratings/sp', {
@@ -271,7 +271,7 @@
         },
         created() {
             this.years = [];
-            for (let year = 2019; year > 1971; year--) {
+            for (let year = 2020; year > 1971; year--) {
                 this.years.push(year);
             }
 

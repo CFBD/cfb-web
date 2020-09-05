@@ -17,12 +17,13 @@
     "@sentry/browser": "^5.9.0",
     "@sentry/integrations": "^5.8.0",
     "ajv": "^6.6.2",
+    "axios": "^0.20.0",
     "bootstrap-vue": "^2.0.4",
     "chart.js": "^2.7.3",
     "vue": "^2.5.17",
     "vue-analytics": "^5.16.1",
     "vue-chartjs": "^3.4.0",
-    "vue-json-csv": "^1.1.0",
+    "vue-json-csv": "^1.2.11",
     "vue-router": "^3.1.6"
   },
   "devDependencies": {
@@ -31,7 +32,6 @@
     "@vue/cli-plugin-eslint": "^3.2.0",
     "@vue/cli-service": "^3.2.2",
     "@vue/eslint-config-standard": "^4.0.0",
-    "axios": "^0.18.1",
     "babel-eslint": "^10.0.1",
     "dotenv-webpack": "^1.5.7",
     "eslint": "^5.16.0",
