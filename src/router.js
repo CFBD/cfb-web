@@ -10,7 +10,6 @@ import SP from './views/SP.vue';
 import SPTrends from './views/SPTrends.vue';
 import PP from './views/PP.vue';
 import RecruitSP from './views/RecruitSP.vue';
-import DataPage from './views/DataPage.vue';
 import WP from './views/WP.vue';
 import MeanPassingPPA from './views/MeanPassingPPA.vue';
 import PPAUsage from './views/PPAUsage.vue';
@@ -69,11 +68,6 @@ const router = new Router({
             path: '/sp/recruiting',
             name: 'recruitingSP',
             component: RecruitSP
-        },
-        {
-            path: '/data',
-            name: 'dataPage',
-            component: DataPage
         },
         {
             path: '/wp/:id(\\d+)?',

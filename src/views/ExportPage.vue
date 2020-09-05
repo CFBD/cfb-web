@@ -1,5 +1,5 @@
 <template>
-    <b-container id='ExportContainer' class='page-container pt-3'>
+    <div id='ExportContainer' class='pt-3 ml-3 mr-3 pb-3'>
         <h3>Data Search</h3>
         <p class='muted'>What data are you trying to find?</p>
         <b-row>
@@ -34,7 +34,7 @@
         <hr class='my-4'>
         <endpoint :endpoint='endpoint' :teams='teams' :conferences='conferences' :play-types='playTypes' :play-stat-types='playStatTypes' :query='query' @query='updateQuery'
             v-if='endpoint'></endpoint>
-    </b-container>
+    </div>
 </template>
 
 <script>
