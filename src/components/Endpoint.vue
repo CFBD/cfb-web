@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='ml-3 mr-3'>
         <b-form @submit="onSubmit">
             <b-row class='text-justify-center'>
                 <b-col />
