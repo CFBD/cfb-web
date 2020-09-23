@@ -200,7 +200,7 @@
                 }).then(usageResults => {
                     this.$axios.get('/ppa/players/season', {
                         params: {
-                            year: 2020,
+                            year: this.year,
                             conference: this.conference == 'All' ? '' : this.conference,
                             position: this.position,
                             threshold: this.threshold,

@@ -106,7 +106,7 @@
                 boxOptions: ['Teams', 'Players'],
                 boxSelected: 'Teams',
                 currentPage: 1,
-                perPage: 50,
+                perPage: 25,
                 totalRows: 0,
                 selected: ',',
                 loading: false,
