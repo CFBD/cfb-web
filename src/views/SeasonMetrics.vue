@@ -155,6 +155,18 @@
                     value: 'pointsPerOpportunity',
                     text: 'Pts/Scoring Opportunity',
                     disabled: false
+                }, {
+                    value: 'havoc.total',
+                    text: 'Total Havoc',
+                    disabled: false
+                },{
+                    value: 'havoc.frontSeven',
+                    text: 'Front 7 Havoc',
+                    disabled: false
+                }, {
+                    value: 'havoc.db',
+                    text: 'DB Havoc',
+                    disabled: false
                 }],
                 metricTypes2: [{
                     value: 'rate',
@@ -192,6 +204,18 @@
                 }, {
                     value: 'pointsPerOpportunity',
                     text: 'Pts/Scoring Opportunity',
+                    disabled: false
+                }, {
+                    value: 'havoc.total',
+                    text: 'Total Havoc',
+                    disabled: false
+                }, {
+                    value: 'havoc.frontSeven',
+                    text: 'Front 7 Havoc',
+                    disabled: false
+                }, {
+                    value: 'havoc.db',
+                    text: 'DB Havoc',
                     disabled: false
                 }],
                 conferences: [
@@ -262,6 +286,10 @@
                 this.metricTypes1[6].disabled = key == '' ? false : true;
                 this.metricTypes1[7].disabled = key == '' ? false : true;
                 this.metricTypes1[8].disabled = key == '' ? false : true;
+                this.metricTypes1[9].disabled = key == '' ? false : true;
+                this.metricTypes1[10].disabled = key == '' ? false : true;
+                this.metricTypes1[11].disabled = key == '' ? false : true;
+                this.metricTypes1[12].disabled = key == '' ? false : true;
                 this.reloadData();
             },
             updateMetricType1(key) {
@@ -280,6 +308,10 @@
                 this.metricTypes2[6].disabled = key == '' ? false : true;
                 this.metricTypes2[7].disabled = key == '' ? false : true;
                 this.metricTypes2[8].disabled = key == '' ? false : true;
+                this.metricTypes2[9].disabled = key == '' ? false : true;
+                this.metricTypes2[10].disabled = key == '' ? false : true;
+                this.metricTypes2[11].disabled = key == '' ? false : true;
+                this.metricTypes2[12].disabled = key == '' ? false : true;
                 this.reloadData();
             },
             updateMetricType2(key) {
