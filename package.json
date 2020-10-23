@@ -19,7 +19,7 @@
     "@vue/component-compiler-utils": "^3.2.0",
     "ajv": "^6.6.2",
     "axios": "^0.20.0",
-    "bootstrap-vue": "^2.0.4",
+    "bootstrap-vue": "^2.18.1",
     "chart.js": "^2.7.3",
     "vue": "^2.6.11",
     "vue-analytics": "^5.16.1",
