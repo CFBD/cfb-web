@@ -19,7 +19,8 @@
 
 <style lang="scss">
     body {
-        background: url('./assets/bg.jpg') no-repeat scroll;
+        background: url('./assets/bg.jpg') scroll;
+        background-repeat: repeat-x;
         background-attachment: fixed;
     }
 
