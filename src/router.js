@@ -17,6 +17,7 @@ import SeasonMetrics from './views/SeasonMetrics.vue';
 import BoxScore from './views/BoxScore.vue';
 import ExportPage from './views/ExportPage.vue';
 import Glossary from './views/Glossary.vue';
+import KeyPage from './views/KeyPage.vue';
 
 Vue.use(Router)
 
@@ -98,6 +99,11 @@ const router = new Router({
             path: '/glossary',
             name: 'glossary',
             component: Glossary
+        },
+        {
+            path: '/key',
+            name: 'key',
+            component: KeyPage
         }
     ]
 });
