@@ -13,12 +13,25 @@
                 </b-col>
             </b-row>
             <hr />
+            <b-row class='mb-5'>
+                <b-col />
+                <b-col>
+                    <router-link class='brand-link text-warning' to="/key">
+                        <b-row class='justify-content-center'>
+                            <font-awesome-icon :icon="['fas', 'key']" size='4x'>
+                            </font-awesome-icon>
+                        </b-row>
+                        <b-row class='justify-content-center'>Register for a free API key</b-row>
+                    </router-link>
+                </b-col>
+                <b-col />
+            </b-row>
             <b-row>
                 <b-col />
                 <b-col>
                     <a class='brand-link text-info' href='https://twitter.com/cfb_data' target="_blank">
                         <b-row class='justify-content-center'>
-                            <font-awesome-icon class="text-info" :icon="['fab', 'twitter']" size='4x'>
+                            <font-awesome-icon class="text-info" :icon="['fab', 'twitter']" size='2x'>
                             </font-awesome-icon>
                         </b-row>
                         <b-row class='justify-content-center'>Follow us on Twitter</b-row>
@@ -28,7 +41,7 @@
                     <a class='brand-link text-danger' href="https://www.patreon.com/collegefootballdata"
                         target="_blank">
                         <b-row class='justify-content-center'>
-                            <font-awesome-icon :icon="['fab', 'patreon']" size='4x'>
+                            <font-awesome-icon :icon="['fab', 'patreon']" size='2x'>
                             </font-awesome-icon>
                         </b-row>
                         <b-row class='justify-content-center'>Become a Patron</b-row>
@@ -37,7 +50,7 @@
                 <b-col>
                     <a class='blurple' href="https://discord.gg/Eb3ex5a" target="_blank">
                         <b-row class='justify-content-center'>
-                            <font-awesome-icon :icon="['fab', 'discord']" size='4x'>
+                            <font-awesome-icon :icon="['fab', 'discord']" size='2x'>
                             </font-awesome-icon>
                         </b-row>
                         <b-row class='justify-content-center'>Join us on Discord</b-row>
