@@ -13,7 +13,7 @@
                 </b-col>
             </b-row>
             <hr />
-            <b-row class='mb-5'>
+            <!-- <b-row class='mb-5'>
                 <b-col />
                 <b-col>
                     <router-link class='brand-link text-warning' to="/key">
@@ -25,7 +25,7 @@
                     </router-link>
                 </b-col>
                 <b-col />
-            </b-row>
+            </b-row> -->
             <b-row>
                 <b-col />
                 <b-col>
