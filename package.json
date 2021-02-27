@@ -18,7 +18,7 @@
     "@sentry/integrations": "^5.8.0",
     "@vue/component-compiler-utils": "^3.2.0",
     "ajv": "^6.6.2",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "bootstrap-vue": "^2.0.4",
     "chart.js": "^2.7.3",
     "vue": "^2.6.11",
