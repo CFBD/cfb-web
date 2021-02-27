@@ -13,7 +13,7 @@
                 </b-col>
             </b-row>
             <hr />
-            <b-row class='mb-5'>
+            <b-row class='mt-4 mb-4'>
                 <b-col />
                 <b-col>
                     <router-link class='brand-link text-warning' to="/key">
@@ -26,6 +26,56 @@
                 </b-col>
                 <b-col />
             </b-row>
+        </b-card>
+        <b-card class='mt-4'>
+            <b-row>
+                <b-col />
+                <b-col sm='8'>
+                    <h5>Official CFBD API client libraries</h5>
+                </b-col>
+                <b-col />
+            </b-row>
+            <hr />
+            <b-row class='mt-3 mb-4'>
+                <b-col />
+                <b-col>
+                    <a class='brand-link text-warning' href='https://pypi.org/project/cfbd/' target="_blank">
+                        <b-row class='justify-content-center'>
+                            <font-awesome-icon :icon="['fab', 'python']" size='3x'>
+                            </font-awesome-icon>
+                        </b-row>
+                        <b-row class='justify-content-center'>Python</b-row>
+                    </a>
+                </b-col>
+                <b-col>
+                    <a class='brand-link text-success' href="https://www.npmjs.com/package/cfb.js" target="_blank">
+                        <b-row class='justify-content-center'>
+                            <font-awesome-icon :icon="['fab', 'node-js']" size='3x'>
+                            </font-awesome-icon>
+                        </b-row>
+                        <b-row class='justify-content-center'>NodeJS</b-row>
+                    </a>
+                </b-col>
+                <b-col>
+                    <a class='blurple' href="https://www.nuget.org/packages/CFBSharp/" target="_blank">
+                        <b-row class='justify-content-center'>
+                            <img src='dotnet-logo.svg' height='48px' width='42px' />
+                        </b-row>
+                        <b-row class='justify-content-center'>C#</b-row>
+                    </a>
+                </b-col>
+                <b-col />
+            </b-row>
+        </b-card>
+        <b-card class='mt-4'>
+            <b-row>
+                <b-col />
+                <b-col>
+                    <h5>CFBD on Social Media</h5>
+                </b-col>
+                <b-col />
+            </b-row>
+            <hr />
             <b-row>
                 <b-col />
                 <b-col>
@@ -44,7 +94,7 @@
                             <font-awesome-icon :icon="['fab', 'patreon']" size='2x'>
                             </font-awesome-icon>
                         </b-row>
-                        <b-row class='justify-content-center'>Become a Patron</b-row>
+                        <b-row class='justify-content-center'>Subscribe on Patreon</b-row>
                     </a>
                 </b-col>
                 <b-col>
