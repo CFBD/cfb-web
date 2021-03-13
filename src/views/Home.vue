@@ -13,6 +13,13 @@
                 </b-col>
             </b-row>
             <hr />
+            <b-row>
+                <b-col />
+                <b-col>
+                    <b-alert show variant="warning">API keys will be required starting April 1st</b-alert>
+                </b-col>
+                <b-col />
+            </b-row>
             <b-row class='mt-4 mb-4'>
                 <b-col />
                 <b-col>
