@@ -74,6 +74,7 @@
                 <b-col />
             </b-row>
         </b-card>
+        <blog />
         <b-card class='mt-4'>
             <b-row>
                 <b-col />
@@ -170,11 +171,12 @@
 
 <script>
     // @ is an alias to /src
+    import Blog from '../components/Blog.vue';
 
     export default {
         name: 'home',
         components: {
-
+            Blog
         }
     }
 
