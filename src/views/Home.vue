@@ -34,89 +34,96 @@
                 <b-col />
             </b-row>
         </b-card>
-        <b-card class='mt-4'>
-            <b-row>
-                <b-col />
-                <b-col sm='8'>
-                    <h5>Official CFBD API client libraries</h5>
-                </b-col>
-                <b-col />
-            </b-row>
-            <hr />
-            <b-row class='mt-3 mb-4'>
-                <b-col />
-                <b-col>
-                    <a class='brand-link text-warning' href='https://pypi.org/project/cfbd/' target="_blank">
-                        <b-row class='justify-content-center'>
-                            <font-awesome-icon :icon="['fab', 'python']" size='3x'>
-                            </font-awesome-icon>
-                        </b-row>
-                        <b-row class='justify-content-center'>Python</b-row>
-                    </a>
-                </b-col>
-                <b-col>
-                    <a class='brand-link text-success' href="https://www.npmjs.com/package/cfb.js" target="_blank">
-                        <b-row class='justify-content-center'>
-                            <font-awesome-icon :icon="['fab', 'node-js']" size='3x'>
-                            </font-awesome-icon>
-                        </b-row>
-                        <b-row class='justify-content-center'>NodeJS</b-row>
-                    </a>
-                </b-col>
-                <b-col>
-                    <a class='blurple' href="https://www.nuget.org/packages/CFBSharp/" target="_blank">
-                        <b-row class='justify-content-center'>
-                            <img src='dotnet-logo.svg' height='48px' width='42px' />
-                        </b-row>
-                        <b-row class='justify-content-center'>C#</b-row>
-                    </a>
-                </b-col>
-                <b-col />
-            </b-row>
-        </b-card>
+        <b-row class='mb-4'>
+            <b-col lg='6'>
+                <b-card class='mt-4'>
+                    <b-row>
+                        <b-col />
+                        <b-col sm='8'>
+                            <h5>Official CFBD API client libraries</h5>
+                        </b-col>
+                        <b-col />
+                    </b-row>
+                    <hr />
+                    <b-row class='mt-3 mb-4'>
+                        <b-col />
+                        <b-col>
+                            <a class='brand-link text-warning' href='https://pypi.org/project/cfbd/' target="_blank">
+                                <b-row class='justify-content-center'>
+                                    <font-awesome-icon :icon="['fab', 'python']" size='3x'>
+                                    </font-awesome-icon>
+                                </b-row>
+                                <b-row class='justify-content-center'>Python</b-row>
+                            </a>
+                        </b-col>
+                        <b-col>
+                            <a class='brand-link text-success' href="https://www.npmjs.com/package/cfb.js"
+                                target="_blank">
+                                <b-row class='justify-content-center'>
+                                    <font-awesome-icon :icon="['fab', 'node-js']" size='3x'>
+                                    </font-awesome-icon>
+                                </b-row>
+                                <b-row class='justify-content-center'>NodeJS</b-row>
+                            </a>
+                        </b-col>
+                        <b-col>
+                            <a class='blurple' href="https://www.nuget.org/packages/CFBSharp/" target="_blank">
+                                <b-row class='justify-content-center'>
+                                    <img src='dotnet-logo.svg' height='48px' width='42px' />
+                                </b-row>
+                                <b-row class='justify-content-center'>C#</b-row>
+                            </a>
+                        </b-col>
+                        <b-col />
+                    </b-row>
+                </b-card>
+            </b-col>
+            <b-col lg='6'>
+                <b-card class='mt-4'>
+                    <b-row>
+                        <b-col />
+                        <b-col sm='8'>
+                            <h5>CFBD on Social Media</h5>
+                        </b-col>
+                        <b-col />
+                    </b-row>
+                    <hr />
+                    <b-row>
+                        <b-col />
+                        <b-col>
+                            <a class='brand-link text-info' href='https://twitter.com/cfb_data' target="_blank">
+                                <b-row class='justify-content-center'>
+                                    <font-awesome-icon class="text-info" :icon="['fab', 'twitter']" size='2x'>
+                                    </font-awesome-icon>
+                                </b-row>
+                                <b-row class='justify-content-center'>Twitter</b-row>
+                            </a>
+                        </b-col>
+                        <b-col>
+                            <a class='brand-link text-danger' href="https://www.patreon.com/collegefootballdata"
+                                target="_blank">
+                                <b-row class='justify-content-center'>
+                                    <font-awesome-icon :icon="['fab', 'patreon']" size='2x'>
+                                    </font-awesome-icon>
+                                </b-row>
+                                <b-row class='justify-content-center'>Patreon</b-row>
+                            </a>
+                        </b-col>
+                        <b-col>
+                            <a class='blurple' href="https://discord.gg/Eb3ex5a" target="_blank">
+                                <b-row class='justify-content-center'>
+                                    <font-awesome-icon :icon="['fab', 'discord']" size='2x'>
+                                    </font-awesome-icon>
+                                </b-row>
+                                <b-row class='justify-content-center'>Discord</b-row>
+                            </a>
+                        </b-col>
+                        <b-col />
+                    </b-row>
+                </b-card>
+            </b-col>
+        </b-row>
         <blog />
-        <b-card class='mt-4'>
-            <b-row>
-                <b-col />
-                <b-col>
-                    <h5>CFBD on Social Media</h5>
-                </b-col>
-                <b-col />
-            </b-row>
-            <hr />
-            <b-row>
-                <b-col />
-                <b-col>
-                    <a class='brand-link text-info' href='https://twitter.com/cfb_data' target="_blank">
-                        <b-row class='justify-content-center'>
-                            <font-awesome-icon class="text-info" :icon="['fab', 'twitter']" size='2x'>
-                            </font-awesome-icon>
-                        </b-row>
-                        <b-row class='justify-content-center'>Follow us on Twitter</b-row>
-                    </a>
-                </b-col>
-                <b-col>
-                    <a class='brand-link text-danger' href="https://www.patreon.com/collegefootballdata"
-                        target="_blank">
-                        <b-row class='justify-content-center'>
-                            <font-awesome-icon :icon="['fab', 'patreon']" size='2x'>
-                            </font-awesome-icon>
-                        </b-row>
-                        <b-row class='justify-content-center'>Subscribe on Patreon</b-row>
-                    </a>
-                </b-col>
-                <b-col>
-                    <a class='blurple' href="https://discord.gg/Eb3ex5a" target="_blank">
-                        <b-row class='justify-content-center'>
-                            <font-awesome-icon :icon="['fab', 'discord']" size='2x'>
-                            </font-awesome-icon>
-                        </b-row>
-                        <b-row class='justify-content-center'>Join us on Discord</b-row>
-                    </a>
-                </b-col>
-                <b-col />
-            </b-row>
-        </b-card>
         <b-row class='home-details'>
             <b-col>
                 <b-card>
