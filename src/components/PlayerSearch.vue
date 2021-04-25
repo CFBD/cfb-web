@@ -1,5 +1,5 @@
 <template>
-    <autocomplete :clear-on-selection='clearOnSelection' :is-async='true' display-prop='name' @input='queryPlayers' @selection='emitSelection' :items='players' />
+    <autocomplete :clear-on-selection='clearOnSelection' :is-async='true' display-prop='displayName' @input='queryPlayers' @selection='emitSelection' :items='players' />
 </template>
 
 <script>
@@ -30,6 +30,11 @@
                 type: Number,
                 required: false,
                 default: null
+            },
+            showTeam: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
         data() {
@@ -48,7 +53,10 @@
                             searchTerm
                         }
                     }).then(result => {
-                        this.players = result.data.slice(0, 10);
+                        this.players = result.data.slice(0, 10).map(p => ({
+                            displayName: this.showTeam ? `${p.name} (${p.team})` : p.name,
+                            ...p
+                        }));
                     });
                 }
             },

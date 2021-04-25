@@ -28,6 +28,8 @@
                             </autocomplete>
                             <autocomplete v-else-if="qp.parameter.name == 'statTypeId'" :items='playStatTypes' displayProp='name' valueProp='id' v-on:selection='qp.value = $event' :placeholder='qp.parameter.description' :is-required='qp.parameter.required'>
                             </autocomplete>
+                            <player-search v-else-if="qp.parameter.name == 'athleteId' || qp.parameter.name == 'playerId'" :clearOnSelection="false" :show-team="true" @selection="qp.value = $event.id"></player-search>
+                            <b-form-checkbox v-else-if="qp.parameter.type == 'boolean'" v-model="qp.value" />
                             <b-form-select v-else-if="qp.parameter.name == 'seasonType'" v-model="qp.value"
                                 :options="['regular', 'postseason', 'both']" class="mb-3" />
                             <b-form-input v-else :placeholder='qp.parameter.description'
@@ -84,11 +86,13 @@
 
 <script>
     import Autocomplete from './Autocomplete.vue';
+    import PlayerSearch from './PlayerSearch.vue';
 
     export default {
         name: 'endpoint',
         components: {
-            Autocomplete
+            Autocomplete,
+            PlayerSearch
         },
         props: {
             endpoint: Object,
@@ -136,7 +140,7 @@
                 let params = {};
 
                 for (let qp of this.queryParams) {
-                    if (qp.value) {
+                    if (qp.value || qp.value === false) {
                         params[qp.parameter.name] = qp.value;
                     }
                 }
@@ -185,7 +189,7 @@
             },
             isTeamParameter(inputName) {
                 return inputName.toLowerCase().indexOf('team') !== -1 || inputName == 'home' || inputName == 'away' ||
-                    inputName == 'offense' || inputName == 'defense';
+                    inputName == 'offense' || inputName == 'defense' || inputName == 'college';
             },
             isConferenceParameter(inputName) {
                 return inputName.toLowerCase().indexOf('conference') != -1;
@@ -399,6 +403,9 @@
             if (this.endpoint && this.endpoint.path && this.endpoint.path.get && this.endpoint.path.get.parameters) {
                 for (let parameter of this.endpoint.path.get.parameters) {
                     let value = parameter.default ? parameter.default : null;
+                    if (parameter.type == 'boolean' && value === null) {
+                        value = false;
+                    }
 
                     if (this.query) {
                         let queryParam = this.query[parameter.name];
