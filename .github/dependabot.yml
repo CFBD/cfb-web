@@ -1,0 +1,30 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: dotenv-webpack
+    versions:
+    - 6.0.0
+    - 6.0.2
+    - 6.0.4
+    - 7.0.1
+  - dependency-name: "@vue/cli-plugin-eslint"
+    versions:
+    - 4.5.11
+  - dependency-name: "@fortawesome/free-brands-svg-icons"
+    versions:
+    - 5.15.2
+  - dependency-name: "@fortawesome/fontawesome-svg-core"
+    versions:
+    - 1.2.34
+  - dependency-name: elliptic
+    versions:
+    - 6.5.3
