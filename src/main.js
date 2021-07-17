@@ -19,6 +19,11 @@ Vue.filter('capitalize', function (value) {
     return value.charAt(0).toUpperCase() + value.slice(1)
   });
 
+Vue.filter('titlecase', function(value) {
+  return value.replace (/^[-_]*(.)/, (_, c) => c.toUpperCase())
+              .replace (/[-_]+(.)/g, (_, c) => ' ' + c.toUpperCase());
+})
+
 new Vue({
     router,
     render: h => h(App)

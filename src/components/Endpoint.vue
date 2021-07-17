@@ -71,13 +71,27 @@
                         </b-form-group>
                     </b-col>
                     <b-col sm="2">
-                        <download-csv :data='items' :delimiter='selected' class='btn btn-info' @click='onExport'>
+                        <download-csv :data='items' :fields='selectedFields' :delimiter='selected' class='btn btn-info' @click='onExport'>
                             Download
                         </download-csv>
                     </b-col>
                     <b-col></b-col>
                 </b-row>
-                <b-table striped responsive hover small :items="items" :current-page="currentPage" :per-page="perPage">
+                <b-row class='mb-5'>
+                    <b-col/>
+                    <b-col md='8'>
+                        <b-row>
+                            <b-col><h5>Fields</h5></b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col>
+                                <b-form-checkbox-group value-field='item' text-field='name' :options='allFields' v-model='selectedFields'></b-form-checkbox-group>
+                            </b-col>
+                        </b-row>
+                    </b-col>
+                    <b-col/>
+                </b-row>
+                <b-table striped responsive hover small :items="items" :fields="displayFields" :current-page="currentPage" :per-page="perPage">
                 </b-table>
             </div>
         </div>
@@ -115,6 +129,8 @@
                 selected: ',',
                 loading: false,
                 error: false,
+                allFields: [],
+                selectedFields: [],
                 options: [{
                         value: ',',
                         text: 'Comma (,)'
@@ -128,6 +144,21 @@
                         text: 'Tab'
                     }
                 ]
+            }
+        },
+        computed: {
+            displayFields() {
+                // return this.selectedFields.map(f => ({
+                //         key: f,
+                //         sortable: true
+                //     }));
+
+                return this.allFields
+                        .filter(f => this.selectedFields.includes(f.item))
+                        .map(f => ({
+                            key: f.item,
+                            sortable: true
+                        }));
             }
         },
         methods: {
@@ -161,6 +192,11 @@
                             return f;
                         });
                     this.items = flattened;
+                    this.allFields = this.items && this.items.length ? Object.keys(this.items[0]).map(k => ({
+                        item: k,
+                        name: k.replace (/^[-_]*(.)/, (_, c) => c.toUpperCase()).replace (/[-_]+(.)/g, (_, c) => ' ' + c.toUpperCase())
+                    })) : [];
+                    this.selectedFields = this.allFields.map(f => f.item);
 
                     this.currentPage = 1;
                     this.totalRows = this.items.length;
