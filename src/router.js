@@ -41,8 +41,8 @@ const router = new Router({
             props: true
         },
         {
-            path: '/contribute',
-            name: 'contribute',
+            path: '/about',
+            name: 'about',
             component: Contribute
         },
         {

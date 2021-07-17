@@ -2,7 +2,7 @@
   <b-container class='page-container'>
       <b-row>
           <b-col>
-              <b-card title='Glossary'>
+              <b-card bg-variant="dark" text-variant="white" title='Glossary'>
                   <b-row class='text-left'>
                       <b-col>
                         <p><strong></strong></p>

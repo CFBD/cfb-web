@@ -1,5 +1,5 @@
 # stage-1: build dist folder
-FROM node:12-alpine as build
+FROM node:14-alpine as build
 RUN mkdir -p /home/node/app/node_modules && mkdir -p /home/node/app/dist
 WORKDIR /home/node/app
 COPY package*.json ./

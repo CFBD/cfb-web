@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id='blog-box'>
         <b-row class='mt-4 mb-4'>
             <blog-post v-for="post in posts" :key="post.url" :post="post" />
         </b-row>
@@ -42,6 +42,8 @@
 
 </script>
 
-<style>
-
+<style lang='scss'>
+    #blog-box {
+        padding: 2em;
+    }
 </style>

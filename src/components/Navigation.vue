@@ -1,11 +1,7 @@
 <template>
     <div>
-        <b-navbar toggleable="md" type="dark" variant="secondary">
+        <b-navbar toggleable="md" type="light" variant="secondary">
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-            <b-navbar-brand href='/'>
-                <img src='/Logo.png' class='brand-image' />
-                CollegeFootballData.com
-            </b-navbar-brand>
             <b-collapse is-nav id="nav_collapse">
                 <b-navbar-nav>
                     <b-nav-item>
@@ -54,11 +50,11 @@
                     <b-nav-item>
                         <router-link to="/Glossary" class='nav-link'>Glossary</router-link>
                     </b-nav-item>
+                    <b-nav-item>
+                        <router-link to="/about" class='nav-link'>About</router-link>
+                    </b-nav-item>
                     <b-nav-item href='https://blog.collegefootballdata.com' target='_blank'>
                         <a href='https://blog.collegefootballdata.com' class='nav-link' target='_blank'>Blog</a>
-                    </b-nav-item>
-                    <b-nav-item>
-                        <router-link to="/contribute" class='nav-link'>Contribute</router-link>
                     </b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class='ml-auto'>
@@ -79,6 +75,10 @@
 </script>
 
 <style lang="scss">
+    #nav, #nav > .bg-secondary {
+        background-color: #555555!important;
+    }
+
     .brand-image {
         height: 30px;
         width: 30px;
@@ -86,6 +86,7 @@
 
     #api-link {
         background-color: #38b0ff;
+        color: black!important;
     }
 
 </style>

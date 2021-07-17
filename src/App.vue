@@ -2,6 +2,7 @@
     <div id="app">
         <navigation id='nav'></navigation>
         <router-view />
+        <footer>Copyright &copy; 2021 CollegeFootballData.com</footer>
     </div>
 </template>
 
@@ -18,6 +19,12 @@
 
 
 <style lang="scss">
+    footer {
+        margin-top: 2em;
+        background: #555555;
+        color: white;
+    }
+
     body {
         background: url('./assets/bg.jpg') scroll;
         background-repeat: repeat-x;
@@ -76,10 +83,10 @@
 
         a {
             font-weight: bold;
-            color: #2c3e50;
+            color: #38b0ff;
 
             &.router-link-exact-active {
-                color: #38b0ff;
+                color: white;
             }
         }
     }
