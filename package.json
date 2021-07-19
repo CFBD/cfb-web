@@ -38,7 +38,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0-0",
     "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^12.1.0",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-bootstrap-vue": "^0.6.0",
     "vue-cli-plugin-docker-nginx": "^1.0.1",
