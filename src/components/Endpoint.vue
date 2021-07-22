@@ -84,6 +84,12 @@
                             <b-col><h5>Fields</h5></b-col>
                         </b-row>
                         <b-row>
+                            <b-col />
+                            <b-col md='2'><b-button @click='selectAllFields'>Select All</b-button></b-col>
+                            <b-col md='2'><b-button @click='removeAllFields'>Deselect All</b-button></b-col>
+                            <b-col />
+                        </b-row>
+                        <b-row>
                             <b-col>
                                 <b-form-checkbox-group value-field='item' text-field='name' :options='allFields' v-model='selectedFields'></b-form-checkbox-group>
                             </b-col>
@@ -233,6 +239,12 @@
             updateBoxSelected(selection) {
                 this.boxSelected = selection;
                 this.items = this.flattentData(this.endpoint.key, this.results);
+            },
+            selectAllFields() {
+                this.selectedFields = this.allFields.map(f => f.item);
+            },
+            removeAllFields() {
+                this.selectedFields = [];
             },
             flattentData(key, data) {
                 let flattened = [];

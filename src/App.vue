@@ -27,7 +27,7 @@
 
     body {
         background: url('./assets/bg.jpg') scroll;
-        background-repeat: repeat-x;
+        // background-repeat: repeat-x;
         background-attachment: fixed;
     }
 

@@ -3,7 +3,7 @@
         <div id='title-box'>
             <b-row class='justify-content-between'>
                 <b-col>
-                    <h1 class='display-2'>CollegeFootballData.com</h1>
+                    <h1>CollegeFootballData.com</h1>
                 </b-col>
             </b-row>
             <b-row>
@@ -34,7 +34,7 @@
             </b-row>
             <b-row>
                 <b-col />
-                <b-col>
+                <b-col md='6'>
                     <b-alert show variant="warning">API keys will be required starting April 1st</b-alert>
                 </b-col>
                 <b-col />
