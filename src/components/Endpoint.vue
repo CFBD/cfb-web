@@ -334,7 +334,11 @@
                                     lineProvider: line.provider,
                                     overUnder: line.overUnder,
                                     spread: line.spread,
-                                    formattedSpread: line.formattedSpread
+                                    formattedSpread: line.formattedSpread,
+                                    openingSpread: line.spreadOpen,
+                                    openingOverUnder: line.overUnderOpen,
+                                    homeMoneyline: line.homeMoneyline,
+                                    awayMoneyline: line.awayMoneyline
                                 });
                             }
                         }
