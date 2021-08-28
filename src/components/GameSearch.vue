@@ -108,7 +108,7 @@
                     value: 'SBC',
                     text: 'Sun Belt'
                 }],
-                year: 2020,
+                year: 2021,
                 week: 1,
                 team: null,
                 conference: null,

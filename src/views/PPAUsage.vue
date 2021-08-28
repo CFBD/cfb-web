@@ -72,7 +72,7 @@
             return {
                 loading: false,
                 years: [],
-                year: 2020,
+                year: 2021,
                 threshold: 100,
                 position: 'QB',
                 positions: [
@@ -251,7 +251,7 @@
         },
         created() {
             this.years = [];
-            for (let year = 2020; year > 2013; year--) {
+            for (let year = 2021; year > 2013; year--) {
                 this.years.push(year);
             }
             

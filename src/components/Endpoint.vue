@@ -198,11 +198,14 @@
                             return f;
                         });
                     this.items = flattened;
-                    this.allFields = this.items && this.items.length ? Object.keys(this.items[0]).map(k => ({
-                        item: k,
-                        name: k.replace (/^[-_]*(.)/, (_, c) => c.toUpperCase()).replace (/[-_]+(.)/g, (_, c) => ' ' + c.toUpperCase())
-                    })) : [];
-                    this.selectedFields = this.allFields.map(f => f.item);
+
+                    if (!this.allFields.length) {
+                        this.allFields = this.items && this.items.length ? Object.keys(this.items[0]).map(k => ({
+                            item: k,
+                            name: k.replace (/^[-_]*(.)/, (_, c) => c.toUpperCase()).replace (/[-_]+(.)/g, (_, c) => ' ' + c.toUpperCase())
+                        })) : [];
+                        this.selectedFields = this.allFields.map(f => f.item);
+                    }
 
                     this.currentPage = 1;
                     this.totalRows = this.items.length;
