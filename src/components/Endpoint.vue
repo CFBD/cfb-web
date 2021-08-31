@@ -483,6 +483,7 @@
                     this.queryParams = [];
                     this.results = [];
                     this.items = [];
+                    this.allFields = [];
                     if (to && to.path && to.path.get && to.path.get
                         .parameters) {
                         for (let parameter of to.path.get.parameters) {
