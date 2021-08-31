@@ -258,7 +258,8 @@
                             flattened.push(...coach.seasons.map(s => {
                                 s.first_name = coach.first_name;
                                 s.last_name = coach.last_name;
-
+                                s.hire_date = coach.hire_date;
+                                
                                 return s;
                             }));
                         }
