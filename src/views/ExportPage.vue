@@ -64,7 +64,7 @@
                 this.paths = Object.keys(data.paths);
                 this.categories = Array.from(new Set(this.paths.map(p => data.paths[p].get.tags[0])));
                 let endpoints = this.paths
-                    .filter(p => p !== '/games/weather')
+                    .filter(p => p !== '/games/weather' && p !== '/scoreboard')
                     .map(p => {
                         return {
                             path: data.paths[p],
