@@ -18,6 +18,8 @@ import BoxScore from './views/BoxScore.vue';
 import ExportPage from './views/ExportPage.vue';
 import Glossary from './views/Glossary.vue';
 import KeyPage from './views/KeyPage.vue';
+import Teams from './views/Teams.vue';
+import Team from './views/Team.vue';
 
 Vue.use(Router)
 
@@ -104,6 +106,16 @@ const router = new Router({
             path: '/key',
             name: 'key',
             component: KeyPage
+        },
+        {
+            path: '/teams',
+            name: 'teams',
+            component: Teams
+        },
+        {
+            path: '/team/:team',
+            name: 'team',
+            component: Team
         }
     ]
 });

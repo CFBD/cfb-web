@@ -11,6 +11,9 @@
                         <router-link to='/exporter' class='nav-link'>Data</router-link>
                     </b-nav-item>
                     <b-nav-item>
+                        <router-link to='/teams' class='nav-link'>Teams</router-link>
+                    </b-nav-item>
+                    <b-nav-item>
                         <router-link to='/boxscore' class='nav-link'>Box Scores</router-link>
                     </b-nav-item>
                     <b-nav-item-dropdown text='Charts' class='nav-link'>
