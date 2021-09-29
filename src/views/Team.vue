@@ -199,51 +199,51 @@
             },
             getPPAColor(ppa, isOffense) {
                 if (isOffense) {
-                    return ppa <= 0 ? 'danger' : ppa >= 0.4 ? 'success' : null;
+                    return ppa <= 0.09 ? 'danger' : ppa >= 0.27 ? 'success' : null;
                 } else {
-                    return ppa <= 0 ? 'success' : ppa >= 0.4 ? 'danger' : null;
+                    return ppa <= 0.09 ? 'success' : ppa >= 0.27 ? 'danger' : null;
                 }
             },
             getRushPPAColor(ppa, isOffense) {
                 if (isOffense) {
-                    return ppa <= 0.1 ? 'danger' : ppa >= 0.5 ? 'success' : null;
+                    return ppa <= 0.05 ? 'danger' : ppa >= 0.23 ? 'success' : null;
                 } else {
-                    return ppa <= 0.1 ? 'success' : ppa >= 0.5 ? 'danger' : null;
+                    return ppa <= 0.05 ? 'success' : ppa >= 0.23 ? 'danger' : null;
                 }
             },
             getPassPPAColor(ppa, isOffense) {
                 if (isOffense) {
-                    return ppa <= 0 ? 'danger' : ppa >= 0.3 ? 'success' : null;
+                    return ppa <= 0.08 ? 'danger' : ppa >= 0.38 ? 'success' : null;
                 } else {
-                    return ppa <= 0 ? 'success' : ppa >= 0.3 ? 'danger' : null;
+                    return ppa <= 0.08 ? 'success' : ppa >= 0.38 ? 'danger' : null;
                 }
             },
             getSuccessColor(rate, isOffense) {
                 if (isOffense) {
-                    return rate < 0.3 ? 'danger' : rate >= 0.5 ? 'success' : null;
+                    return rate < 0.39 ? 'danger' : rate >= 0.47 ? 'success' : null;
                 } else {
-                    return rate < 0.3 ? 'success' : rate >= 0.5 ? 'danger' : null;
+                    return rate < 0.39 ? 'success' : rate >= 0.47 ? 'danger' : null;
                 }
             },
             getSuccessStandardColor(rate, isOffense) {
                 if (isOffense) {
-                    return rate < 0.35 ? 'danger' : rate >= 0.55 ? 'success' : null;
+                    return rate < 0.44 ? 'danger' : rate >= 0.52 ? 'success' : null;
                 } else {
-                    return rate < 0.35 ? 'success' : rate >= 0.55 ? 'danger' : null;
+                    return rate < 0.44 ? 'success' : rate >= 0.52 ? 'danger' : null;
                 }
             },
             getSuccessPassingColor(rate, isOffense) {
                 if (isOffense) {
-                    return rate < 0.2 ? 'danger' : rate >= 0.4 ? 'success' : null;
+                    return rate < 0.28 ? 'danger' : rate >= 0.38 ? 'success' : null;
                 } else {
-                    return rate < 0.2 ? 'success' : rate >= 0.4 ? 'danger' : null;
+                    return rate < 0.28 ? 'success' : rate >= 0.38 ? 'danger' : null;
                 }
             },
             getExplosivenessColor(ppa, isOffense) {
                 if (isOffense) {
-                    return ppa < 1 ? 'danger' : ppa >= 1.5 ? 'success' : null;
+                    return ppa < 1.11 ? 'danger' : ppa >= 1.29 ? 'success' : null;
                 } else {
-                    return ppa < 1 ? 'success' : ppa >= 1.5 ? 'danger' : null;
+                    return ppa < 1.11 ? 'success' : ppa >= 1.29 ? 'danger' : null;
                 }
             }
         },
@@ -298,20 +298,20 @@
                     offense: this.roundOne(this.teamStats.offense.fieldPosition.averageStart),
                     defense: this.roundOne(this.teamStats.defense.fieldPosition.averageStart),
                     _cellVariants: {
-                        offense: this.teamStats.offense.fieldPosition.averageStart > 75 ? 'danger' : this.teamStats.offense.fieldPosition.averageStart < 67 ? 'success' : null,
-                        defense: this.teamStats.defense.fieldPosition.averageStart > 75 ? 'success' : this.teamStats.defense.fieldPosition.averageStart < 67 ? 'danger' : null
+                        offense: this.teamStats.offense.fieldPosition.averageStart > 72 ? 'danger' : this.teamStats.offense.fieldPosition.averageStart < 68 ? 'success' : null,
+                        defense: this.teamStats.defense.fieldPosition.averageStart > 72 ? 'success' : this.teamStats.defense.fieldPosition.averageStart < 68 ? 'danger' : null
                     }
                 }, {
                     metric: 'Average Expected Points',
                     offense: this.roundOne(this.teamStats.offense.fieldPosition.averagePredictedPoints),
                     defense: this.roundOne(this.teamStats.defense.fieldPosition.averagePredictedPoints),
                     _cellVariants: {
-                        offense: this.teamStats.offense.fieldPosition.averagePredictedPoints > 1.75 ?
+                        offense: this.teamStats.offense.fieldPosition.averagePredictedPoints > 1.6 ?
                             'success' : this.teamStats.offense.fieldPosition.averagePredictedPoints <
-                            1 ? 'danger' : null,
-                        defense: this.teamStats.defense.fieldPosition.averagePredictedPoints < -1.75 ?
+                            1.25 ? 'danger' : null,
+                        defense: this.teamStats.defense.fieldPosition.averagePredictedPoints < -1.6 ?
                             'danger' : this.teamStats.defense.fieldPosition.averagePredictedPoints >
-                            -1 ? 'success' : null
+                            -1.25 ? 'success' : null
                     }
                 }]
             },
@@ -329,32 +329,32 @@
                     offense: this.percent(this.teamStats.offense.stuffRate),
                     defense: this.percent(this.teamStats.defense.stuffRate),
                     _cellVariants: {
-                        offense: this.teamStats.offense.stuffRate < 0.15 ? 'success' : this.teamStats.offense.stuffRate >= 0.3 ? 'danger' : null,
-                        defense: this.teamStats.defense.stuffRate < 0.15 ? 'danger' : this.teamStats.defense.stuffRate >= 0.3 ? 'success' : null
+                        offense: this.teamStats.offense.stuffRate < 0.16 ? 'success' : this.teamStats.offense.stuffRate >= 0.22 ? 'danger' : null,
+                        defense: this.teamStats.defense.stuffRate < 0.16 ? 'danger' : this.teamStats.defense.stuffRate >= 0.22 ? 'success' : null
                     }
                 }, {
                     metric: 'Line Yards per Rush',
                     offense: this.roundOne(this.teamStats.offense.lineYards),
                     defense: this.roundOne(this.teamStats.defense.lineYards),
                     _cellVariants: {
-                        offense: this.teamStats.offense.lineYards < 2.5 ? 'danger' : this.teamStats.offense.lineYards >= 3.5 ? 'success' : null,
-                        defense: this.teamStats.defense.lineYards < 2.5 ? 'success' : this.teamStats.defense.lineYards >= 3.5 ? 'danger' : null
+                        offense: this.teamStats.offense.lineYards < 2.6 ? 'danger' : this.teamStats.offense.lineYards >= 3.2 ? 'success' : null,
+                        defense: this.teamStats.defense.lineYards < 2.6 ? 'success' : this.teamStats.defense.lineYards >= 3.2 ? 'danger' : null
                     }
                 }, {
                     metric: 'Second Level Yards per Rush',
                     offense: this.roundOne(this.teamStats.offense.secondLevelYards),
                     defense: this.roundOne(this.teamStats.defense.secondLevelYards),
                     _cellVariants: {
-                        offense: this.teamStats.offense.secondLevelYards < 0.7 ? 'danger' : this.teamStats.offense.secondLevelYards >= 1.5 ? 'success' : null,
-                        defense: this.teamStats.defense.secondLevelYards < 0.7 ? 'success' : this.teamStats.defense.secondLevelYards >= 1.5 ? 'danger' : null
+                        offense: this.teamStats.offense.secondLevelYards < 0.9 ? 'danger' : this.teamStats.offense.secondLevelYards >= 1.3 ? 'success' : null,
+                        defense: this.teamStats.defense.secondLevelYards < 0.9 ? 'success' : this.teamStats.defense.secondLevelYards >= 1.3 ? 'danger' : null
                     }
                 }, {
                     metric: 'Open Field Yards per Rush',
                     offense: this.roundOne(this.teamStats.offense.openFieldYards),
                     defense: this.roundOne(this.teamStats.defense.openFieldYards),
                     _cellVariants: {
-                        offense: this.teamStats.offense.openFieldYards < 1 ? 'danger' : this.teamStats.offense.openFieldYards >= 2 ? 'success' : null,
-                        defense: this.teamStats.defense.openFieldYards < 1 ? 'success' : this.teamStats.defense.openFieldYards >= 2 ? 'danger' : null
+                        offense: this.teamStats.offense.openFieldYards < 0.6 ? 'danger' : this.teamStats.offense.openFieldYards >= 1.8 ? 'success' : null,
+                        defense: this.teamStats.defense.openFieldYards < 0.6 ? 'success' : this.teamStats.defense.openFieldYards >= 1.8 ? 'danger' : null
                     }
                 }]
             },
@@ -368,24 +368,24 @@
                     offense: this.percent(this.teamStats.offense.havoc.total),
                     defense: this.percent(this.teamStats.defense.havoc.total),
                     _cellVariants: {
-                        offense: this.teamStats.offense.havoc.total < .1 ? 'success' : this.teamStats.offense.havoc.total >= .25 ? 'danger' : null,
-                        defense: this.teamStats.defense.havoc.total < .1 ? 'danger' : this.teamStats.defense.havoc.total >= .25 ? 'success' : null
+                        offense: this.teamStats.offense.havoc.total < .07 ? 'success' : this.teamStats.offense.havoc.total >= .21 ? 'danger' : null,
+                        defense: this.teamStats.defense.havoc.total < .07 ? 'danger' : this.teamStats.defense.havoc.total >= .21 ? 'success' : null
                     }
                 }, {
                     metric: 'Front Seven',
                     offense: this.percent(this.teamStats.offense.havoc.frontSeven),
                     defense: this.percent(this.teamStats.defense.havoc.frontSeven),
                     _cellVariants: {
-                        offense: this.teamStats.offense.havoc.frontSeven < .07 ? 'success' : this.teamStats.offense.havoc.frontSeven >= .15 ? 'danger' : null,
-                        defense: this.teamStats.defense.havoc.frontSeven < .07 ? 'danger' : this.teamStats.defense.havoc.frontSeven >= .15 ? 'success' : null
+                        offense: this.teamStats.offense.havoc.frontSeven < .035 ? 'success' : this.teamStats.offense.havoc.frontSeven >= .135 ? 'danger' : null,
+                        defense: this.teamStats.defense.havoc.frontSeven < .035 ? 'danger' : this.teamStats.defense.havoc.frontSeven >= .135 ? 'success' : null
                     }
                 }, {
                     metric: 'DB',
                     offense: this.percent(this.teamStats.offense.havoc.db),
                     defense: this.percent(this.teamStats.defense.havoc.db),
                     _cellVariants: {
-                        offense: this.teamStats.offense.havoc.db < .04 ? 'success' : this.teamStats.offense.havoc.db >= .1 ? 'danger' : null,
-                        defense: this.teamStats.defense.havoc.db < .04 ? 'danger' : this.teamStats.defense.havoc.db >= .1 ? 'success' : null
+                        offense: this.teamStats.offense.havoc.db < .025 ? 'success' : this.teamStats.offense.havoc.db >= .075 ? 'danger' : null,
+                        defense: this.teamStats.defense.havoc.db < .025 ? 'danger' : this.teamStats.defense.havoc.db >= .075 ? 'success' : null
                     }
                 }]
             },
