@@ -7,7 +7,7 @@
                 </b-card>
             </b-col>
         </b-row>
-        <b-row v-if='team && teamStats'>
+        <b-row v-if='!loading'>
             <b-col>
                 <b-card :title='`${teamStats.team} (${year})`' class='box-score-card'>
                     <b-row>
@@ -62,13 +62,13 @@
                             <hr>
                             <b-row class='justify-content-center' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.usage.content }" :title="popovers.usage.title">
                                 <h6><strong>Usage</strong></h6>
-                                <b-table :items='playerUsageMetrics' :fields='playerUsageFields' small responsive>
+                                <b-table :items='playerUsageMetrics' :fields='playerUsageFields' sort-by='all' sort-desc='true' small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
                             <b-row class='justify-content-center' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <h6><strong>Predicted Points Added</strong></h6>
-                                <b-table :items='playerPPAMetrics' :fields='playerPPAFields' small responsive>
+                                <b-table :items='playerPPAMetrics' :fields='playerPPAFields' sort-by='all' sort-desc='true' small responsive>
                                 </b-table>
                             </b-row>
                         </b-col>
@@ -501,11 +501,11 @@
                     sortable: true
                 }, {
                     key: 'rushing',
-                    label: 'Rushing',
+                    label: 'Rush',
                     sortable: true
                 }, {
                     key: 'passing',
-                    label: 'Passing',
+                    label: 'Pass',
                     sortable: true
                 }, {
                     key: 'standardDowns',
@@ -551,11 +551,11 @@
                     sortable: true
                 }, {
                     key: 'rushing',
-                    label: 'Rushing',
+                    label: 'Rush',
                     sortable: true
                 }, {
                     key: 'passing',
-                    label: 'Passing',
+                    label: 'Pass',
                     sortable: true
                 }];
             },
