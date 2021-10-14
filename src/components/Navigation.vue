@@ -3,7 +3,7 @@
         <b-navbar toggleable="md" type="light" variant="secondary">
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
             <b-collapse is-nav id="nav_collapse">
-                <b-navbar-nav>
+                <b-navbar-nav align='center'>
                     <b-nav-item>
                         <router-link to="/" class='nav-link'>Home</router-link>
                     </b-nav-item>
@@ -50,20 +50,26 @@
                             </router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
-                    <b-nav-item>
-                        <router-link to="/Glossary" class='nav-link'>Glossary</router-link>
-                    </b-nav-item>
-                    <b-nav-item>
-                        <router-link to="/about" class='nav-link'>About</router-link>
-                    </b-nav-item>
-                    <b-nav-item href='https://blog.collegefootballdata.com' target='_blank'>
-                        <a href='https://blog.collegefootballdata.com' class='nav-link' target='_blank'>Blog</a>
-                    </b-nav-item>
-                </b-navbar-nav>
-                <b-navbar-nav class='ml-auto'>
-                    <b-button id='api-link' href="https://api.collegefootballdata.com" target="_blank">
-                        API
-                    </b-button>
+                    <b-nav-item-dropdown text='API' class='nav-link'>
+                        <b-dropdown-item href='https://api.collegefootballdata.com' target='_blank'>
+                            <a href='https://api.collegefootballdata.com' class='nav-link' target='_blank'>Docs</a>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/key' class='nav-link text-primary'>API Keys
+                            </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-divider></b-dropdown-divider>
+                        <b-dropdown-header>Wrappers</b-dropdown-header>
+                        <b-dropdown-item href='https://pypi.org/project/cfbd/' target='_blank'>
+                            <a href='https://pypi.org/project/cfbd/' class='nav-link' target='_blank'>Python</a>
+                        </b-dropdown-item>
+                        <b-dropdown-item href='https://www.npmjs.com/package/cfb.js' target='_blank'>
+                            <a href='https://www.npmjs.com/package/cfb.js' class='nav-link' target='_blank'>JavaScript</a>
+                        </b-dropdown-item>
+                        <b-dropdown-item href='https://www.nuget.org/packages/CFBSharp/' target='_blank'>
+                            <a href='https://www.nuget.org/packages/CFBSharp/' class='nav-link' target='_blank'>C#</a>
+                        </b-dropdown-item>
+                    </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
@@ -78,18 +84,34 @@
 </script>
 
 <style lang="scss">
-    #nav, #nav > .bg-secondary {
-        background-color: #555555!important;
-    }
+    #nav {
+        font-size: 1.3em;
+        margin-bottom: 2.5em;
 
-    .brand-image {
-        height: 30px;
-        width: 30px;
-    }
+        .dropdown-menu {
+            background: #6c757d;
+        }
 
-    #api-link {
-        background-color: #38b0ff;
-        color: black!important;
+        .dropdown-item:focus,
+        .dropdown-item:hover {
+            background-color: #38b0ff;
+        }
+
+        a {
+            font-weight: bold;
+            color: white !important;
+            text-transform: uppercase !important;
+
+            &.router-link-exact-active {
+                color: #38b0ff !important;
+            }
+        }
+
+        .dropdown-header {
+            font-size: .8em;
+            color: #38b0ff;
+            font-weight: bolder;
+        }
     }
 
 </style>

@@ -1,5 +1,13 @@
 <template>
     <div id="app">
+        <div id='banner-image'>
+            <b-row class='text-left'>
+                <b-col class='ml-2'>
+                    <img class='mr-2' src='/LetterLogo.png' />
+                </b-col>
+                <b-col />
+            </b-row>
+        </div>
         <navigation id='nav'></navigation>
         <router-view />
         <footer>Copyright &copy; 2021 CollegeFootballData.com</footer>
@@ -27,7 +35,7 @@
 
     body {
         background: url('./assets/bg.jpg') scroll;
-        // background-repeat: repeat-x;
+        background-repeat: repeat-x;
         background-attachment: fixed;
     }
 
@@ -70,7 +78,7 @@
     }
 
     #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-family: "proxima-nova", "Arial", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
@@ -78,17 +86,10 @@
         height: 100%;
     }
 
-    #nav {
-        margin-bottom: 2.5em;
-
-        a {
-            font-weight: bold;
-            color: #38b0ff;
-
-            &.router-link-exact-active {
-                color: white;
-            }
-        }
+    #banner-image {
+        // background: white;
+        margin-bottom: 2em;
+        margin-left: 2em;
     }
 
 </style>
