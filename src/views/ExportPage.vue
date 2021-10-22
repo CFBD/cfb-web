@@ -17,7 +17,7 @@
             <b-col />
         </b-row>
         <b-row class='ml-3 mr-3' v-if='!collapsed'>
-            <b-col lg='3' v-for='category in categories' :key='category'>
+            <b-col lg='3' v-for="category in categories.filter(c => c.toLowerCase() != 'live')" :key='category'>
                 <b-row>
                     {{ category | capitalize }}
                 </b-row>
