@@ -17,13 +17,13 @@
             <b-col />
         </b-row>
         <b-row class='ml-3 mr-3' v-if='!collapsed'>
-            <b-col lg='3' v-for="category in categories.filter(c => c.toLowerCase() != 'live')" :key='category'>
+            <b-col lg='3' v-for="category in categories" :key='category'>
                 <b-row>
                     {{ category | capitalize }}
                 </b-row>
                 <b-row>
                     <ul>
-                        <li class='text-left' v-for='endpoint in endpoints.filter(e => e.category == category)'
+                        <li class='text-left' v-for='endpoint in endpoints.filter(e => e.category == category && e.summary.indexOf("Patreon") === -1)'
                             :key='endpoint.key'>
                             <b-link @click='selectPath(endpoint.key)'>{{ endpoint.summary }}</b-link>
                         </li>
