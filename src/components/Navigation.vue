@@ -70,6 +70,16 @@
                             <a href='https://www.nuget.org/packages/CFBSharp/' class='nav-link' target='_blank'>C#</a>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
+                    <b-nav-item-dropdown text='About' class='nav-link'>
+                        <b-dropdown-item>
+                            <router-link to='/glossary' class='nav-link text-primary'>Glossary
+                            </router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item>
+                            <router-link to='/about' class='nav-link text-primary'>FAQ
+                            </router-link>
+                        </b-dropdown-item>
+                    </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>

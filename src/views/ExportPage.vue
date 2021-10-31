@@ -1,5 +1,5 @@
 <template>
-    <div id='ExportContainer' class='pt-3 ml-3 mr-3 pb-3'>
+    <div id='ExportContainer' class='page-container wide-container'>
         <h3>Data Search</h3>
         <p class='muted'>What data are you trying to find?</p>
         <b-row>

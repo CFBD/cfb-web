@@ -77,6 +77,10 @@
         }
     }
 
+    .wide-container {
+        margin: 2em;
+    }
+
     #app {
         font-family: "proxima-nova", "Arial", sans-serif;
         -webkit-font-smoothing: antialiased;

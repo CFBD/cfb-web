@@ -1,5 +1,5 @@
 <template>
-    <b-container class="page-container">
+    <div class="page-container wide-container">
         <b-row v-if='loading'>
             <b-col>
                 <b-card>
@@ -77,7 +77,7 @@
                 </b-card>
             </b-col>
         </b-row>
-    </b-container>
+    </div>
 </template>
 
 <script>
