@@ -76,7 +76,7 @@
                             </router-link>
                         </b-dropdown-item>
                         <b-dropdown-item>
-                            <router-link to='/about' class='nav-link text-primary'>FAQ
+                            <router-link to='/about' class='nav-link text-primary'>FAQ &amp; Info
                             </router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
