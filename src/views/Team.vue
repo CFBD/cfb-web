@@ -9,7 +9,16 @@
         </b-row>
         <b-row v-if='!loading'>
             <b-col>
-                <b-card :title='`${teamStats.team} (${year})`' class='box-score-card'>
+                <b-card :title='`${teamStats.team}`' class='box-score-card'>
+                    <b-row>
+                        <b-col />
+                        <b-col lg='1'>
+                            <b-row class='justify-content-center'><label>Year</label></b-row>
+                            <b-form-select v-model="year" :options='years' @change="updateYear">
+                            </b-form-select>
+                        </b-col>
+                        <b-col />
+                    </b-row>
                     <b-row>
                         <b-col v-if='!hasPlayerData' />
                         <b-col :lg='hasPlayerData ? 6 : 9' class='team-column'>
@@ -62,13 +71,13 @@
                             <hr>
                             <b-row class='justify-content-center' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.usage.content }" :title="popovers.usage.title">
                                 <h6><strong>Usage</strong></h6>
-                                <b-table :items='playerUsageMetrics' :fields='playerUsageFields' sort-by='all' sort-desc='true' small responsive>
+                                <b-table :items='playerUsageMetrics' :fields='playerUsageFields' sort-by='all' sort-desc small responsive>
                                 </b-table>
                             </b-row>
                             <hr>
                             <b-row class='justify-content-center' v-b-popover.hover.lefttop="{ variant: 'primary', content: popovers.ppa.content }" :title="popovers.ppa.title">
                                 <h6><strong>Predicted Points Added</strong></h6>
-                                <b-table :items='playerPPAMetrics' :fields='playerPPAFields' sort-by='all' sort-desc='true' small responsive>
+                                <b-table :items='playerPPAMetrics' :fields='playerPPAFields' sort-by='all' sort-desc small responsive>
                                 </b-table>
                             </b-row>
                         </b-col>
@@ -86,6 +95,7 @@
         data() {
             return {
                 year: 2021,
+                years: [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014],
                 team: null,
                 loading: false,
                 teamStats: null,
@@ -141,6 +151,14 @@
             }
         },
         methods: {
+            updateYear(year) {
+                this.year = year;
+                this.teamStats = null;
+                this.playerUsage = null;
+                this.playerPPA = null;
+                this.hasPlayerData = false;
+                this.loadData(this.team);
+            },
             loadData(team) {
                 this.loading = true;
                 this.team = team;

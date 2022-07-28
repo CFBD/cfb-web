@@ -10,7 +10,7 @@
         </div>
         <navigation id='nav'></navigation>
         <router-view />
-        <footer>Copyright &copy; 2021 CollegeFootballData.com</footer>
+        <footer>Copyright &copy; 2022 CollegeFootballData.com</footer>
     </div>
 </template>
 
