@@ -112,7 +112,8 @@
                 week: 1,
                 team: null,
                 conference: null,
-                seasonType: 'regular'
+                seasonType: 'regular',
+                division: 'fbs'
             }
         },
         methods: {
@@ -123,7 +124,8 @@
                         week: this.week,
                         seasonType: this.seasonType,
                         conference: this.conference,
-                        team: this.team ? this.team.school : null
+                        team: this.team ? this.team.school : null,
+                        division: this.division
                     }
                 }).then(result => {
                     this.games = result.data.map(r => ({
