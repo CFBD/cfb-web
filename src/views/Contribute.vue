@@ -30,6 +30,7 @@
         <hr/>
         <h3>Cost and Usage</h3>
         <p class='text-muted'>This website and its companion API are completely free to use without restrictions. Attribution is always greatly appreciated. Some functionality may be available exclusively to Patreon subscribers. Patreon subscribers also are able to use the API with less frequent request throttling.</p>
+        <p class='text-muted'>Please utilize good API usage habits when interacting with the API. This includes making efficient use of calls to grab greater chunks of data at a time as opposed to more frequent calls of smaller data chunks (i.e. "chunky" vs "chatty" calls). Abusing the free and public nature of the API may result in your key becoming blacklisted.</p>
         <hr/>
         <h3>Data Corrections and New Data</h3>
         <p class='text-muted'>If you have data corrections or even some new data you would like to submit for inclusion, please reach out to me at any of the methods mentioned at the top of the page. CSV files works best. To ensure speediest inclusion of your submission, please be sure to include any relevant id fields (e.g. game id, play id, athlete id, etc). This is a one-person operation and I try to get things included as quickly as I am able. Your patience is very much appreciated.</p>
