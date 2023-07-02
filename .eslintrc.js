@@ -1,4 +1,4 @@
 module.exports = {
-  extends: ["eslint:recommended", "plugin:vue/vue-essential", "prettier"],
+  extends: ["eslint:recommended", "plugin:vue/vue-essential"],
   plugins: ["vue"]
 };
