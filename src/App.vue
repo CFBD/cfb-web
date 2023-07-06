@@ -36,7 +36,7 @@ footer {
 }
 
 body {
-  height: 100%;
+  min-height: 100%;
   background: url("./assets/bg.jpg") fixed;
   overflow-x: hidden;
   background-size: cover;
