@@ -6,7 +6,7 @@
             </b-col>
             <b-col lg='3'>
                 <b-row class='mb-5 justify-content-center'>
-                        <a href="https://www.patreon.com/bePatron?u=23067681" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
+                        <a href="https://www.patreon.com/bePatron?u=23067681" data-patreon-widget-type="become-patron-button">Become a Patreon!</a>
                 </b-row>
                 <b-row class='justify-content-center mb-5'>
                     <router-link class='brand-link' to="/key">
